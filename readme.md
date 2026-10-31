@@ -2,14 +2,15 @@
 
 This is the composition gallery with the endlessly scrolling score covers and short background videos when you enter a composition.
 
-Everything a composition shows on the page lives in one data file, [lib/catalog.json](lib/catalog.json). You do not edit it by hand: while the site runs, open **http://localhost:3000/edit** and use the editor.
+Everything a composition shows on the page lives in one data file, [lib/catalog.json](lib/catalog.json). You do not edit it by hand. While the site runs there are two editors: **http://localhost:3000/editlive** edits the real page by clicking and dragging, and **http://localhost:3000/edit** is the same catalog as a form. Both also answer with `.html` on the end.
 
 ## Pick the thing you came here to do
 
 | I want to… | Go here |
 | --- | --- |
 | Open the site and work on it | [Start the site](#start-the-site) |
-| Change a title, year, blurb, cover crop, or room image | [The editor](#the-editor) |
+| Change things by clicking and dragging on the page itself | [The live editor](#the-live-editor) |
+| Change a title, year, blurb, cover crop, or room image in a form | [The table editor](#the-table-editor) |
 | Add a brand-new composition | [Add a composition](#add-a-composition) |
 | Pull in pieces from the old player's tracks.json | [Import the old catalog](#import-the-old-catalog) |
 | Know what a field does | [Field reference](#field-reference) |
@@ -37,7 +38,7 @@ npm run dev
 
 **3. Leave that Terminal window running.** Open the `Local` address it prints in your browser. It is usually `http://localhost:3000`; use the printed address if the port is different.
 
-**4. Open the editor** in a second tab: `http://localhost:3000/edit`. Save there and the gallery tab updates by itself.
+**4. Open an editor** in a second tab: `http://localhost:3000/editlive` to work on the page itself, or `http://localhost:3000/edit` for the form. Save there and the gallery tab updates by itself.
 
 **To stop the site:** click the running Terminal window and press **Control+C**.
 
@@ -47,7 +48,50 @@ npm run dev
 npm install
 ```
 
-## The editor
+## The live editor
+
+`http://localhost:3000/editlive` shows the real page with a small glass panel floating over it. Neither exists on the deployed site.
+
+| Do this on the page | What changes |
+| --- | --- |
+| Click any text and type | The title lines, year, place, ensemble, duration, and inside a composition the eyebrow, paragraph and meta line. Enter or clicking away keeps it, Escape puts it back. An empty line is removed; the panel has **Add a title line**. |
+| Drag the big cover | Which part of the sheet shows (`cover.position`). |
+| Scroll over the big cover | Zoom in and out (`cover.size`). It never gets smaller than the cover box. |
+| Click the big cover | Choose or upload a different image. |
+| Press play, then drag the empty background while the video shows | Where the video is cropped (`intro.position`). |
+| Drag the empty background while the still room shows | Where the room image is cropped (`room.position`). |
+
+The panel holds the rest. It drags by its title bar and remembers where you left it.
+
+| Panel section | Shows | Controls |
+| --- | --- | --- |
+| Composition | always | title, id, order arrows, **Home**, add, duplicate, delete |
+| Cover, Gallery | in the gallery | whole image or crop, zoom, look sliders, backdrop image, intro cooldown |
+| Room | inside a composition | image, color, stars, tint (direction, color, strength), look sliders |
+| Intro video | inside a composition | on/off, video file, fill or whole frame, start, play, speed, delay, tint, look |
+| Sound | inside a composition | the recording |
+
+**Look** is the CSS `filter` as sliders: brightness, contrast, saturation, grayscale, sepia, blur. **Tint** is the overlay gradient as a direction, a color and a strength; anything it cannot express shows as **custom** CSS.
+
+Inside a composition the video keeps looping so you can place it. Untick **Show** to see the still room, or press **Replay timing** to watch the real delay, play and stop once.
+
+**Undo and redo** are ⌘Z and ⇧⌘Z, or the arrows in the panel. Every drag, slider release and text edit is one step. **Save** is ⌘S. Nothing is written until you save.
+
+### Matching the video to the room
+
+When the video closes, the still room appears underneath it. If the two differ, the visitor sees a cut. In the Intro video section, tick **Hold the last frame and compare it with the room**. The video parks on the frame the visitor sees last, and a vertical line appears on the page: left of it is that frame, right of it is the room. Drag the line, or use the slider. **Blend** fades the frame over the room instead, which shows color differences as ghosting. **Hold to hide the frame** flips between the two while pressed.
+
+Three buttons close the gap:
+
+| Button | What it does |
+| --- | --- |
+| Use the frame as the room image | Saves the frame as a JPEG in `public/images`, sets it as the room image, and copies the video's crop position so they line up. The cut becomes invisible. |
+| Match the room color | Sets the room's flat color to the frame's average color. Useful for gradient-only rooms. |
+| Copy tint and look to the room | Copies the video's overlay and filter onto the room. |
+
+Changing **start**, **play** or **speed** while holding moves the held frame, so you can also pick a better frame to end on.
+
+## The table editor
 
 `http://localhost:3000/edit` only exists while `npm run dev` is running. The deployed site does not have it.
 
@@ -115,6 +159,7 @@ For a cover that is its own image file, set `src` to that file and leave `size` 
 | --- | --- | --- |
 | `src` | `"/images/raven-room.png"` | The room image. Leave out for a gradient-only room. |
 | `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the image. With no `src`, this is the whole backdrop. Several layers go in one string separated by commas. |
+| `position` | `"50% 100%"` | Which part of the image stays in view when it is cropped to the screen. Leave out for center. |
 | `color` | `"#070d19"` | Flat color behind everything. Leave out for near-black. |
 | `filter` | `"grayscale(1)"`, `"brightness(.8)"` | CSS filter on the image and overlay. Leave out for none. |
 | `stars` | `true` | Adds the twinkling star layer. Leave out for none. |
@@ -184,8 +229,10 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 | --- | --- |
 | The site will not open | Start `npm run dev` in the project folder, leave Terminal running, and use the `Local` address it prints. |
 | Changes do not appear | Save the file. Confirm the browser address matches the running server. Refresh once. If needed, Control+C and `npm run dev` again. |
-| Save is grey | Read the red list at the top of the left column and fix what it names. |
-| `/edit` shows a 404 | The editor only exists in development mode. Start `npm run dev` and use its `Local` address. |
+| Save is grey | Read the red list (top of the left column, or top of the live editor's panel) and fix what it names. |
+| `/edit` or `/editlive` shows a 404 | The editors only exist in development mode. Start `npm run dev` and use its `Local` address. |
+| Clicking text in the live editor does nothing | Text is only editable while the inspector panel is present. If the page was opened at `/` instead of `/editlive`, switch tabs. |
+| Arrow keys move the gallery while typing | Click into the text first; keys only browse when nothing is being edited. |
 | A red error appears after editing by hand | If you changed `lib/catalog.json` yourself, check for a missing comma, quote, or bracket. Undo and save to get back. |
 | A video does not repeat | Set the intro cooldown to `0` in Site settings, save, return to the room, then enter the piece again. |
 | A video never appears | Confirm you entered the composition, rather than only selected it. Check `intro.src`. Check the browser's reduced-motion setting. |
@@ -203,7 +250,8 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 | --- | --- |
 | Everything per composition, plus cooldown, home piece, and gallery backdrop | [lib/catalog.json](lib/catalog.json), edited at `/edit` |
 | The field list and types | [lib/compositions.ts](lib/compositions.ts) |
-| The editor itself | [app/edit/editor.tsx](app/edit/editor.tsx), [app/edit/editor.css](app/edit/editor.css), and the API routes under [app/api](app/api) |
+| The live editor | [app/editlive/live.tsx](app/editlive/live.tsx) and [app/editlive/live.css](app/editlive/live.css); the on-page handles live in [components/composition-browser.tsx](components/composition-browser.tsx) behind the `editor` prop |
+| The table editor | [app/edit/editor.tsx](app/edit/editor.tsx), [app/edit/editor.css](app/edit/editor.css), shared pieces in [app/edit/shared.tsx](app/edit/shared.tsx), and the API routes under [app/api](app/api) |
 | Layout, cover scrolling, shared playback styling | [app/globals.css](app/globals.css) |
 | Page logic | [components/composition-browser.tsx](components/composition-browser.tsx) |
 | Cover artwork element | [components/score-artwork.tsx](components/score-artwork.tsx) |
@@ -212,7 +260,7 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 
 ## Development mode versus the production version
 
-**While editing:** use `npm run dev` and the editor at `/edit`. Saving there updates the gallery automatically. The editor is not part of the production build.
+**While editing:** use `npm run dev` and an editor at `/editlive` or `/edit`. Saving there updates the gallery automatically. The editors are not part of the production build.
 
 **To run a production build:** stop the development server with Control+C, then run these one at a time:
 

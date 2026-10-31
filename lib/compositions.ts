@@ -34,6 +34,7 @@ export type Cover = {
 export type Room = {
   src?: string; // background image; omit for gradients only
   overlay?: string; // CSS gradient layers drawn over the image
+  position?: string; // CSS background-position of the image; default center
   color?: string; // CSS color behind everything; default #080d15
   filter?: string; // CSS filter on the image and overlay; default none
   stars?: boolean; // twinkling star layer

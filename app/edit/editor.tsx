@@ -1,45 +1,17 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type InputHTMLAttributes, type PointerEvent as ReactPointerEvent, type ReactNode, type TextareaHTMLAttributes } from "react";
-import { ArrowDown, ArrowUp, Copy, Music, Plus, Trash2, Upload, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Copy, Plus, Trash2, Upload, X } from "lucide-react";
 import type { Catalog, Composition, Cover, Intro, Room } from "@/lib/compositions";
 import { folderFor, type Asset, type AssetKind } from "@/lib/assets";
+import { AssetPicker, AssetThumb, blank, clamp, clean, coverAspect, coverStyle, fmt, pct, validate } from "./shared";
 import "./editor.css";
 
 // ==== EDITOR ====
-const coverAspect = 512 / 662; // must match .score-artwork in globals.css
 const importDefault = "/Users/alex/Documents/Cufolio/alexgoodhart/public/player/tracks.json";
-const idPattern = /^[a-z0-9-]+$/i;
-const accept: Record<AssetKind, string> = { image: "image/*", video: "video/*,.m4v", audio: "audio/*" };
 
 type Selection = "settings" | number;
 type PickFile = (kind: AssetKind, set: (url: string) => void) => void;
 
-const clean = <T extends object>(obj: T): T => Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined && v !== "" && v !== false && !(typeof v === "number" && Number.isNaN(v)))) as T;
-const pct = (s = "") => s.trim().split(/\s+/).map(parseFloat);
-const fmt = (n: number) => String(+n.toFixed(3));
-const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
-const fileSize = (n: number) => (n > 1e6 ? `${(n / 1e6).toFixed(1)} MB` : `${Math.round(n / 1e3)} KB`);
-const coverStyle = (c: Cover): CSSProperties => ({ backgroundImage: c.src ? `url("${c.src}")` : undefined, backgroundSize: c.size ?? "cover", backgroundPosition: c.position ?? "center", filter: c.filter });
-const blank = (id: string): Composition => ({ id, title: "New composition", lines: ["New", "composition"], year: "", place: "", ensemble: "", duration: "", world: "", note: "", cover: { src: "/placeholder.svg" }, room: { color: "#080d15" } });
-
-function validate(c: Catalog | null) {
-  if (!c) return [];
-  const out: string[] = [];
-  const seen = new Set<string>();
-  c.compositions.forEach((p, i) => {
-    const name = p.title || `#${i + 1}`;
-    if (!p.id) out.push(`${name}: needs an id`);
-    else if (!idPattern.test(p.id)) out.push(`${name}: the id may only use letters, numbers and dashes`);
-    if (seen.has(p.id)) out.push(`Two compositions use the id “${p.id}”`);
-    seen.add(p.id);
-    if (!p.title) out.push(`#${i + 1}: needs a title`);
-    if (!p.cover?.src) out.push(`${name}: the cover needs an image`);
-    if (p.intro && !p.intro.src) out.push(`${name}: the intro video needs a file`);
-    if (p.intro && !(p.intro.play > 0)) out.push(`${name}: the intro “play” time must be above 0`);
-  });
-  if (!c.compositions.some(p => p.id === c.settings.homeId)) out.push("The home piece is not in the list");
-  return out;
-}
 
 export function Editor() {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
@@ -262,6 +234,7 @@ function PieceForm({ piece, patch, rename, pick, onDuplicate, onDelete }: { piec
         <div className="grid">
           <Field label="Color" hint="Flat color behind everything."><ColorText value={piece.room.color} onChange={v => room({ color: v })} fallback="#080d15" /></Field>
           <Field label="Filter" hint="e.g. grayscale(1) or brightness(.8)."><Text value={piece.room.filter} onChange={v => room({ filter: v })} placeholder="none" /></Field>
+          <Field label="Image position" hint="Where the image is anchored, e.g. 50% 100%."><Text value={piece.room.position} onChange={v => room({ position: v })} placeholder="center" /></Field>
         </div>
         <label className="check"><input type="checkbox" checked={!!piece.room.stars} onChange={e => room({ stars: e.target.checked })} /> Twinkling stars</label>
       </section>
@@ -321,7 +294,7 @@ function PiecePreview({ piece }: { piece: Composition }) {
     <>
       <div className="preview-cover" style={coverStyle(piece.cover)} />
       <div className="preview-room" style={{ backgroundColor: room.color ?? "#080d15" }}>
-        <div className="layers" style={{ backgroundImage: [room.overlay, room.src && `url("${room.src}")`].filter(Boolean).join(",") || undefined, filter: room.filter }} />
+        <div className="layers" style={{ backgroundImage: [room.overlay, room.src && `url("${room.src}")`].filter(Boolean).join(",") || undefined, backgroundPosition: room.position, filter: room.filter }} />
         {room.stars && <div className="stars" />}
         <div className="heading"><small>{piece.world || "World"}</small>{piece.lines.map((line, i) => <span key={i}>{line}</span>)}</div>
       </div>
@@ -392,13 +365,6 @@ function CropTool({ cover, onChange }: { cover: Cover; onChange: (patch: Partial
 }
 
 // ==== ASSETS ====
-function AssetThumb({ url, kind }: { url?: string; kind: AssetKind }) {
-  if (!url) return <span className="thumb empty" />;
-  if (kind === "image") return <span className="thumb" style={{ backgroundImage: `url("${url}")` }} />;
-  if (kind === "video") return <video className="thumb" src={url} muted preload="metadata" playsInline />;
-  return <span className="thumb icon"><Music size={16} /></span>;
-}
-
 function AssetField({ value, kind, onChange, pick, allowEmpty }: { value?: string; kind: AssetKind; onChange: (v: string | undefined) => void; pick: PickFile; allowEmpty?: boolean }) {
   return (
     <div className="asset-field">
@@ -406,34 +372,6 @@ function AssetField({ value, kind, onChange, pick, allowEmpty }: { value?: strin
       <input value={value ?? ""} placeholder={`/${folderFor(kind)}/…`} spellCheck={false} onChange={e => onChange(e.target.value || undefined)} />
       <button type="button" onClick={() => pick(kind, onChange)}>Choose</button>
       {allowEmpty && value && <button type="button" className="icon" aria-label="Clear" onClick={() => onChange(undefined)}><X size={14} /></button>}
-    </div>
-  );
-}
-
-function AssetPicker({ kind, assets, onPick, onClose, onUpload }: { kind: AssetKind; assets: Asset[]; onPick: (url: string) => void; onClose: () => void; onUpload: (files: FileList | File[], kind: AssetKind) => Promise<string[]> }) {
-  const list = assets.filter(a => a.kind === kind);
-  const input = useRef<HTMLInputElement>(null);
-  const [busy, setBusy] = useState(false);
-  const handle = async (files: FileList | null) => {
-    if (!files?.length) return;
-    setBusy(true);
-    const saved = await onUpload(files, kind);
-    setBusy(false);
-    if (saved.length === 1) onPick(saved[0]);
-  };
-  useEffect(() => { const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [onClose]);
-  return (
-    <div className="picker-backdrop" onClick={onClose}>
-      <div className="picker" role="dialog" aria-label="Choose a file" onClick={e => e.stopPropagation()} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); void handle(e.dataTransfer.files); }}>
-        <header><h2>{kind === "image" ? "Images" : kind === "video" ? "Videos" : "Recordings"}</h2><button className="icon" onClick={onClose} aria-label="Close"><X size={18} /></button></header>
-        <button className="dropzone" onClick={() => input.current?.click()} disabled={busy}>{busy ? "Uploading…" : <><Upload size={16} /> Drop files here or click to add them to public/{folderFor(kind)}</>}</button>
-        <input ref={input} type="file" multiple hidden accept={accept[kind]} onChange={e => void handle(e.target.files)} />
-        {list.length ? (
-          <ul className={`asset-grid ${kind}`}>{list.map(a => <li key={a.url}><button onClick={() => onPick(a.url)}><AssetThumb url={a.url} kind={kind} /><span>{a.name}</span><small>{fileSize(a.size)}</small></button></li>)}</ul>
-        ) : (
-          <p className="hint">Nothing here yet. Drop a file above.</p>
-        )}
-      </div>
     </div>
   );
 }

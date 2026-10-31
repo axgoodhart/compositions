@@ -1,133 +1,21 @@
-
-
-/* ===== editor.css ===== */
 /* ==== TOKENS ==== */
-.editor {
-    --paper: #18181b;
-    --card: #09090b;
-    --ink: #eae9ea;
-    --ink-soft: #9d99a1;
-    --ink-faint: #726f75;
-    --line: #ffffff14;
-    --line-strong: #ffffff26;
-    --accent: #9487af;
-    --accent-soft: #241668;
-    --danger: #5db5c5;
-    --radius: 6px;
-    display: grid;
-    grid-template-columns: 290px minmax(0, 1fr) 360px;
-    height: 100svh;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 14px;
-    color-scheme: light;
-}
-
-.editor.loading {
-    display: grid;
-    place-items: center;
-    color: var(--ink-soft);
-    letter-spacing: .5px;
-}
-
-.editor h1 {
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -.6px;
-    line-height: 1.15;
-    margin: 0;
-}
-
-.editor h2 {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin: 0 0 14px;
-}
-
-.editor .eyebrow {
-    display: block;
-    font-size: 8px;
-    letter-spacing: 1.9px;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 4px;
-}
-
-.editor .hint {
-    font-size: 11px;
-    color: var(--ink-faint);
-    line-height: 1.5;
-}
-
-.editor button {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    padding: 7px 11px;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius);
-    background: #000000;
-    color: var(--ink);
-    transition: background .15s, border-color .15s;
-}
-
-.editor button:hover:not(:disabled) {
-    background: #050507;
-    border-color: #ffffff40;
-}
-
-.editor button:disabled {
-    opacity: .45;
-    cursor: default;
-}
-
-.editor button.icon {
-    padding: 5px;
-    border-color: transparent;
-    background: transparent;
-}
-
-.editor button.danger {
-    color: var(--danger);
-}
-
-.editor button:focus-visible,
-.editor input:focus-visible,
-.editor textarea:focus-visible,
-.editor select:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 1px;
-}
-
-.editor input:not([type=checkbox], [type=range], [type=color]),
-.editor textarea,
-.editor select {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius);
-    background: #000000;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.editor textarea {
-    resize: vertical;
-    min-height: 38px;
-}
-
-.editor select {
-    appearance: auto;
-}
-
-.editor input::placeholder,
-.editor textarea::placeholder {
-    color: #4b494f;
-}
+:is(.editor, .editor-ui) { --paper: #e7e7e4; --card: #f6f6f4; --ink: #151615; --ink-soft: #62665e; --ink-faint: #8d908a; --line: #00000014; --line-strong: #00000026; --accent: #6b7850; --accent-soft: #dbe997; --danger: #a24a3a; --radius: 6px; font-size: 13px; color-scheme: light; }
+.editor { display: grid; grid-template-columns: 290px minmax(0, 1fr) 360px; height: 100svh; background: var(--paper); color: var(--ink); }
+.editor.loading { display: grid; place-items: center; color: var(--ink-soft); letter-spacing: .5px; }
+:is(.editor, .editor-ui) h1 { font-size: 22px; font-weight: 600; letter-spacing: -.6px; line-height: 1.15; margin: 0; }
+:is(.editor, .editor-ui) h2 { font-size: 11px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 14px; }
+:is(.editor, .editor-ui) .eyebrow { display: block; font-size: 8px; letter-spacing: 1.9px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+:is(.editor, .editor-ui) .hint { font-size: 11px; color: var(--ink-faint); line-height: 1.5; }
+:is(.editor, .editor-ui) button { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 7px 11px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; color: var(--ink); transition: background .15s, border-color .15s; }
+:is(.editor, .editor-ui) button:hover:not(:disabled) { background: #fafaf8; border-color: #00000040; }
+:is(.editor, .editor-ui) button:disabled { opacity: .45; cursor: default; }
+:is(.editor, .editor-ui) button.icon { padding: 5px; border-color: transparent; background: transparent; }
+:is(.editor, .editor-ui) button.danger { color: var(--danger); }
+:is(.editor, .editor-ui) :is(button, input, textarea, select):focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+:is(.editor, .editor-ui) input:not([type=checkbox], [type=range], [type=color]), :is(.editor, .editor-ui) textarea, :is(.editor, .editor-ui) select { width: 100%; padding: 8px 10px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; font-size: 13px; line-height: 1.4; }
+:is(.editor, .editor-ui) textarea { resize: vertical; min-height: 38px; }
+:is(.editor, .editor-ui) select { appearance: auto; }
+:is(.editor, .editor-ui) :is(input, textarea)::placeholder { color: #b4b6b0; }
 
 /* ==== RAIL ==== */
 .rail {
@@ -555,7 +443,7 @@
     border-radius: 6px;
     overflow: hidden;
     color: #000000;
-    background: #ffffff;
+    background:transparent;
 }
 
 .preview-room .layers {

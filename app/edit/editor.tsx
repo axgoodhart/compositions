@@ -281,7 +281,7 @@ function ImportForm({ onImport, onClose }: { onImport: (file: string, copyAudio:
       <span className="field-label">Older tracks.json</span>
       <input value={file} onChange={e => setFile(e.target.value)} spellCheck={false} />
       <label className="check"><input type="checkbox" checked={copyAudio} onChange={e => setCopyAudio(e.target.checked)} /> Also copy recordings into public/audio (hundreds of MB)</label>
-      <small>One composition per family. Covers are copied into public/images/covers. Nothing is written until you save.</small>
+      <small>One composition per family. Covers are copied into public/content/covers/covers. Nothing is written until you save.</small>
       <div className="row"><button type="submit" disabled={busy}>{busy ? "Importing…" : "Import"}</button><button type="button" onClick={onClose}>Cancel</button></div>
     </form>
   );

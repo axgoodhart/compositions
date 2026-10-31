@@ -25,7 +25,7 @@ export async function POST(request: Request) {
   const base = path.dirname(file); // covers/ sits beside tracks.json; mp3 paths are relative to its parent (public/)
   const families = new Map<string, Track[]>();
   for (const track of tracks) { const key = (track.family || track.title || "").trim(); if (key) families.set(key, [...(families.get(key) ?? []), track]); }
-  await mkdir(path.join(publicDir, "images/covers"), { recursive: true });
+  await mkdir(path.join(publicDir, "content/covers/covers"), { recursive: true });
   if (copyAudio) await mkdir(path.join(publicDir, "audio"), { recursive: true });
 
   const compositions: Composition[] = [];
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     const coverId = usable(lead.cover) ? String(lead.cover) : "999";
     const coverFile = path.join(base, "covers", `${coverId}.webp`);
     let cover = "/placeholder.svg";
-    if (await exists(coverFile)) { await copyFile(coverFile, path.join(publicDir, "images/covers", `${coverId}.webp`)); cover = `/images/covers/${coverId}.webp`; }
+    if (await exists(coverFile)) { await copyFile(coverFile, path.join(publicDir, "content/covers/covers", `${coverId}.webp`)); cover = `/content/covers/covers/${coverId}.webp`; }
     const years = [...new Set(list.map(t => t.year).filter(Boolean))].sort();
     const durations = list.map(t => seconds(t.duration));
     const oneRecording = new Set(list.map(t => t.mp3)).size === 1; // movements sharing one file list the whole piece's length

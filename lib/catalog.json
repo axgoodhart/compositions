@@ -2,7 +2,7 @@
   "settings": {
     "introCooldownHours": 0,
     "homeId": "raven",
-    "galleryImage": "/images/piano-room.png"
+    "galleryImage": "/content/interface/piano-room.png"
   },
   "compositions": [
     {
@@ -27,14 +27,14 @@
         440
       ],
       "cover": {
-        "src": "/images/39.webp",
+        "src": "/content/covers/39.webp",
         "filter": "contrast(2)"
       },
       "room": {
-        "src": "/images/raven-room.png"
+        "src": "/content/interface/raven-room.png"
       },
       "intro": {
-        "src": "/images/Ravenical.m4v",
+        "src": "/content/videos/Ravenical.m4v",
         "start": 0,
         "speed": 1,
         "delay": 0.7,
@@ -67,7 +67,7 @@
         523.25
       ],
       "cover": {
-        "src": "/images/29.webp"
+        "src": "/content/covers/29.webp"
       },
       "room": {
         "overlay": "radial-gradient(ellipse at 70% 32%,#55707575,transparent 35%),radial-gradient(ellipse at 30% 70%,#41365680,transparent 50%)",
@@ -97,11 +97,11 @@
         523.25
       ],
       "cover": {
-        "src": "/images/1.webp",
+        "src": "/content/covers/1.webp",
         "filter": "brightness(1.4)saturate(.82)"
       },
       "room": {
-        "src": "/images/forest-room.png",
+        "src": "/content/interface/forest-room.png",
         "overlay": "linear-gradient(90deg,#07170fb0,#07170f10)"
       }
     }

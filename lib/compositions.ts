@@ -1,5 +1,5 @@
 // Everything the page shows lives in lib/catalog.json. Edit it visually at http://localhost:3000/edit while `npm run dev` runs.
-// Files inside public/ use a URL without "public": public/images/x.png -> /images/x.png
+// Files inside public/ use a URL without "public": public/content/covers/x.png -> /content/covers/x.png
 import catalog from "./catalog.json";
 
 // ==== FIELDS ====

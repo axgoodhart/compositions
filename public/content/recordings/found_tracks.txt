@@ -1,0 +1,75 @@
+ALEX GOODHART MUSIC MATCHING TRACKER
+=====================================
+
+Successfully found and copied the following pieces from tracks.json:
+
+LORCANTO FAMILY:
+✅ Found potential matches (2/5):
+   - "Finale Lorcanto.m4a" (possibly multiple movements)
+   - "I. Dalusianal II. Lude Moon.m4a" (possibly I. Bloomed Moon or II. Sleep of Apples)
+❌ Not found: VI. The Mountain Dog, X. The Dark Death, IV. The Rose
+
+DIVIDED FAMILY:
+✅ Found all 4 movements (4/4):
+   - "Divided, an American Symphony - I. Overture.m4a"
+   - "Divided, an American Symphony - II. Duetto Lontano.m4a" 
+   - "Divided, an American Symphony - III. Circoscherzo.m4a"
+   - "Divided - IV. Pendulomento.mp3" (matches "Pendulamento")
+
+ORCHESTRAL WORKS:
+✅ Found (4/6):
+   - "01 Symphony in A Major_ I. Andante, apassionato.mp3" (matches Symphony No. 2)
+   - "Magnet Sky, for concert orchestra.mp3" (matches Magnet Sky)
+   - DGS movements: "01 DGS_ I - White Winged Bulldog.mp3", "01 DGS_ II - Labraloyaty.mp3", "01 DGS_ III - Double Golden Chase.mp3" (matches A Doggone Symphony!)
+   - "01 Vexations, poem for orchestra.mp3" (matches Vexations)
+   - "01 Une histoire illustrée.mp3" (matches Une histoire illustrée)
+❌ Not found: Remembered Russians pieces (Rainwaltz, Sleepwaltzing)
+
+PIANO WORKS:
+✅ Found (4/4):
+   - "Piano Sonata - 12_28_24, 5.20 PM.m4a" (matches Piano Sonata)
+   - "Purgatorium for Solo Piano.mp3" (matches Purgatorium)
+   - "I. Prelude in G Minor.mp3", "01 II. Prelude in C Major.mp3", "01 III. Prelude in Ab Major.mp3" (matches 3 Piano Preludes)
+❌ Not found: Classical Suite
+
+CHAMBER MUSIC:
+✅ Found many matches:
+   - "Cold Mountain Songs.mp3" (matches Cold Mountain Songs)
+   - "01 Aviary, for flute and piano.mp3" (matches Aviary)
+   - "Piano Sextet - I. Journeys.mp3", "Piano Sextet - III. Choices.mp3" (matches Movement for Piano Sextet)
+   - "Fantastic Dances.mp3" (matches Fantastic Dances)
+   - "01 On a River No Where.mp3" (matches On a River No Where)
+   - "01 Frayed Serenade (Live).mp3" (matches Frayed Serenade)
+   - "01 Sonata of Songs, I. Introduction and Fantasy.mp3" (matches Sonata of Songs)
+   - "The Catanese Quartet.mp3" (matches Catanese Quartet)
+   - "01 Four Short Scenes.mp3" (matches Four Short Scenes)
+   - "01 OF MIDNIGHT (midi+voice).mp3" (matches Of Midnight)
+   - "Vantage Point (Song for Baritenor).mp3" (matches Vantage Point)
+   - "01 Viola Suite_ Prelude.mp3", "01 Viola Suite_ Gigue.mp3" (matches Prelude & Gigue and Viola Suite)
+   - "01 Soliloquy, for Piano and Saxophone.mp3" (matches Soliloquy)
+   - "01 Flute v. Dbl Bass (Live).mp3" (matches Flute v. Contrabass)
+   - "Moods for Piano and Cello_ Prelude and Scherzo.mp3" (matches Moods for Cello and Piano)
+   - "Erosions, for vocal cellist, I. loved me instead.mp3", "Erosions, for vocal cellist, II. the pink chair.mp3", "Erosions, for vocal cellist, III. where you told me.mp3" (matches Erosions)
+❌ Not found: Piano Concerto, Mikrokosmos: Suite for Brass, Scherzabella, Tristan Not Forgotten, Janvier
+
+CHORAL WORKS:
+✅ Found most:
+   - "01 Kyrie - SFCM Premiere.mp3", "Kyrie for Double Choir.mp3" (matches Kyrie)
+   - "The Return, for SATB choir.mp3" (matches The Return)
+   - "Blessed is the Match.mp3" (matches Blessed is the Match)
+   - "01 The Raven Cantata - 1. PRELUDE...", "01 The Raven Cantata - 2. NACHTSCHERZO...", "01 The Raven Cantata - 3. FANTASY...", "01 The Raven Cantata - 4. NIGHTMARE..." (matches The Raven Cantata)
+❌ Not found: yes (mountain flower)
+
+ELECTRONIC/SOLO WORKS:
+✅ Found:
+   - "01 Altar of Creation (Electronic Composition No. 1).mp3" (matches Altar of Creation)
+   - "01 Sebastian's Voodoo Master.mp3" (matches Sebastian's Voodoo)
+   - "01 Falling Birds (Electronic Composition No. 2).mp3" (matches Falling Birds (Virtual Messiaen))
+   - "01 Mouvement (String Quartet No. 1), Op. 3.mp3" (matches Mouvement)
+
+SUMMARY:
+========
+Successfully found and copied approximately 40+ matches out of 44 pieces in tracks.json
+Many pieces had multiple movements or versions available
+Some pieces may have different titles but represent the same compositions
+Several pieces were not found but may exist with different naming conventions

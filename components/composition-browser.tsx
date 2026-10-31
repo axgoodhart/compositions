@@ -352,7 +352,7 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
             <p><Editable value={piece.duration} editing={editing} onCommit={v => hooks.current?.onField("duration", v)} /></p>
           </div>
           <button className="enter-button" onClick={enter}>play <span><Play size={18} strokeWidth={1} /></span></button>
-          <span className="enter-hint">A composition. A world of its own.</span>
+          <span className="enter-hint"></span>
         </div>
       </section>
 

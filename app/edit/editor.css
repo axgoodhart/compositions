@@ -7,7 +7,7 @@
 :is(.editor, .editor-ui) .eyebrow { display: block; font-size: 8px; letter-spacing: 1.9px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
 :is(.editor, .editor-ui) .hint { font-size: 11px; color: var(--ink-faint); line-height: 1.5; }
 :is(.editor, .editor-ui) button { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 7px 11px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; color: var(--ink); transition: background .15s, border-color .15s; }
-:is(.editor, .editor-ui) button:hover:not(:disabled) { background: #fafaf8; border-color: #00000040; }
+:is(.editor, .editor-ui) button:hover:not(:disabled) { background: darkgreen; color:lightgray; border-color: #00000040; }
 :is(.editor, .editor-ui) button:disabled { opacity: .45; cursor: default; }
 :is(.editor, .editor-ui) button.icon { padding: 5px; border-color: transparent; background: transparent; }
 :is(.editor, .editor-ui) button.danger { color: var(--danger); }
@@ -318,8 +318,8 @@
 .segmented button {
     border: 0;
     border-radius: 0;
+    color: gray;
     background: #000000;
-    color: var(--ink-soft);
 }
 
 .segmented button+button {
@@ -328,7 +328,7 @@
 
 .segmented button.on {
     background: var(--ink);
-    color: #000000;
+    color: white;
 }
 
 .color-field {

@@ -103,7 +103,7 @@ Changing **start**, **play** or **speed** while holding moves the held frame, so
 
 **Saving.** The Save button (or ⌘S) writes [lib/catalog.json](lib/catalog.json). The gallery tab reloads on its own. Save stays grey while the red list at the top shows a problem, such as two pieces with the same id or a video with no file.
 
-**Choosing files.** Every image, video, and recording field has a **Choose** button. It opens everything already in `public/`, and you can drop new files on it to add them. Images and videos land in `public/images`, recordings in `public/audio`. You can also type a path: files inside `public/` are written without `public`, so `public/images/raven-room.png` is `/images/raven-room.png`.
+**Choosing files.** Every image, video, and recording field has a **Choose** button. It opens everything already in `public/`, and you can drop new files on it to add them. Images and videos land in `public/images`, recordings in `public/audio`. You can also type a path: files inside `public/` are written without `public`, so `public/content/covers/raven-room.png` is `/content/covers/raven-room.png`.
 
 **Cropping a cover from a sheet.** Under Cover, pick **Crop from a sheet**, then drag the white frame over the part you want. Drag its corner or scroll to resize. The frame keeps the cover's shape. **Whole image** uses the file as is.
 
@@ -119,7 +119,7 @@ Changing **start**, **play** or **speed** while holding moves the held frame, so
 
 ## Import the old catalog
 
-**Import…** reads the older player's `tracks.json` and makes one composition per family (so the four Raven movements become one piece). It copies the family's cover into `public/images/covers`. Tick the box to also copy the recordings, which are large. Nothing touches the catalog until you Save, and families whose id already exists are skipped, so running it twice is safe.
+**Import…** reads the older player's `tracks.json` and makes one composition per family (so the four Raven movements become one piece). It copies the family's cover into `public/content/covers/covers`. Tick the box to also copy the recordings, which are large. Nothing touches the catalog until you Save, and families whose id already exists are skipped, so running it twice is safe.
 
 Imported pieces have empty `place`, `world`, and `note` fields and a plain dark room. Fill those in afterwards.
 
@@ -144,7 +144,7 @@ The editor labels match these names. Every file path is a URL without `public`.
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `src` | `"/images/reference.png"` | The image file. All three current covers are cropped from this one sheet. |
+| `src` | `"/content/covers/reference.png"` | The image file. All three current covers are cropped from this one sheet. |
 | `size` | `"400% 183.08%"` | How big the sheet is relative to the cover box. Leave out for `cover`. |
 | `position` | `"26.04% 27.09%"` | Which part of the sheet shows. Leave out for `center`. |
 | `filter` | `"grayscale(1)"`, `"sepia(.4)"`, `"contrast(1.2)"` | CSS filter on the cover. Leave out for none. |
@@ -157,7 +157,7 @@ For a cover that is its own image file, set `src` to that file and leave `size` 
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `src` | `"/images/raven-room.png"` | The room image. Leave out for a gradient-only room. |
+| `src` | `"/content/covers/raven-room.png"` | The room image. Leave out for a gradient-only room. |
 | `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the image. With no `src`, this is the whole backdrop. Several layers go in one string separated by commas. |
 | `position` | `"50% 100%"` | Which part of the image stays in view when it is cropped to the screen. Leave out for center. |
 | `color` | `"#070d19"` | Flat color behind everything. Leave out for near-black. |
@@ -170,7 +170,7 @@ For a cover that is its own image file, set `src` to that file and leave `size` 
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `src` | `"/images/Ravenical.m4v"` | The video file. Must be a browser-friendly H.264 MP4 or M4V. |
+| `src` | `"/content/covers/Ravenical.m4v"` | The video file. Must be a browser-friendly H.264 MP4 or M4V. |
 | `start` | `12.5` | Seconds into the file where playback begins. Leave out for `0`. |
 | `play` | `4` | Seconds the video stays on screen. Required. The file ending sooner also stops it. |
 | `speed` | `1`, `0.5`, `2` | Playback rate. `0.5` is half speed, `2` is double. Leave out for `1`. |
@@ -236,7 +236,7 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 | A red error appears after editing by hand | If you changed `lib/catalog.json` yourself, check for a missing comma, quote, or bracket. Undo and save to get back. |
 | A video does not repeat | Set the intro cooldown to `0` in Site settings, save, return to the room, then enter the piece again. |
 | A video never appears | Confirm you entered the composition, rather than only selected it. Check `intro.src`. Check the browser's reduced-motion setting. |
-| You suspect a file path | Open its URL directly, for example `http://localhost:3000/images/Ravenical.m4v`. A missing-file page means the path or filename is wrong. |
+| You suspect a file path | Open its URL directly, for example `http://localhost:3000/content/covers/Ravenical.m4v`. A missing-file page means the path or filename is wrong. |
 | You changed `start` and now see no video | `start` must be before the file's end; `play` must be greater than zero. |
 | The file exists but will not play | Its encoding needs browser support. Use an H.264 MP4; renaming an extension does not convert it. |
 | The picture is cropped | Set Fit to `contain`, or change Position to move the crop focus. |

@@ -2,15 +2,17 @@
 
 This is the composition gallery with the endlessly scrolling score covers and short background videos when you enter a composition.
 
-Everything a composition shows on the page lives in one file: [lib/compositions.ts](lib/compositions.ts). One entry per piece, like a row in a table.
+Everything a composition shows on the page lives in one data file, [lib/catalog.json](lib/catalog.json). You do not edit it by hand: while the site runs, open **http://localhost:3000/edit** and use the editor.
 
 ## Pick the thing you came here to do
 
 | I want to… | Go here |
 | --- | --- |
 | Open the site and work on it | [Start the site](#start-the-site) |
-| Change a title, year, blurb, cover crop, or room image | [The compositions table](#the-compositions-table) |
+| Change a title, year, blurb, cover crop, or room image | [The editor](#the-editor) |
 | Add a brand-new composition | [Add a composition](#add-a-composition) |
+| Pull in pieces from the old player's tracks.json | [Import the old catalog](#import-the-old-catalog) |
+| Know what a field does | [Field reference](#field-reference) |
 | Attach a video, or change its timing, speed, or look | [Video settings](#video-settings) |
 | Attach a real recording to the in-room player | [Audio](#audio) |
 | Make a video replay while experimenting | [The cooldown switch](#the-cooldown-switch) |
@@ -35,7 +37,7 @@ npm run dev
 
 **3. Leave that Terminal window running.** Open the `Local` address it prints in your browser. It is usually `http://localhost:3000`; use the printed address if the port is different.
 
-**4. Edit a file and save it.** The browser should update automatically. This is hot reload. The compositions file, components, and CSS all participate.
+**4. Open the editor** in a second tab: `http://localhost:3000/edit`. Save there and the gallery tab updates by itself.
 
 **To stop the site:** click the running Terminal window and press **Control+C**.
 
@@ -45,17 +47,41 @@ npm run dev
 npm install
 ```
 
-## The compositions table
+## The editor
 
-Open [lib/compositions.ts](lib/compositions.ts). It has three parts:
+`http://localhost:3000/edit` only exists while `npm run dev` is running. The deployed site does not have it.
 
-| Part | What it holds |
+| Column | What it does |
 | --- | --- |
-| `SETTINGS` | Site-wide knobs: intro cooldown, which piece is home, the gallery backdrop image. |
-| `FIELDS` | The list of every field a composition can have, with a short note on each. Read it, do not edit it. |
-| `COMPOSITIONS` | The table. One `{ … }` block per piece, in the order they appear on the page. |
+| Left | **Site settings** (home piece, gallery backdrop, intro cooldown) and the list of compositions in page order. Arrows reorder, **Add** makes a blank piece, **Import…** pulls from the old catalog. |
+| Middle | The form for the selected piece: Text, Cover, Room, Intro video, Sound. |
+| Right | A live preview of the cover, the room with its title, and the intro video. |
 
-Every file path is a URL without `public`: the file `public/images/raven-room.png` is written `"/images/raven-room.png"`.
+**Saving.** The Save button (or ⌘S) writes [lib/catalog.json](lib/catalog.json). The gallery tab reloads on its own. Save stays grey while the red list at the top shows a problem, such as two pieces with the same id or a video with no file.
+
+**Choosing files.** Every image, video, and recording field has a **Choose** button. It opens everything already in `public/`, and you can drop new files on it to add them. Images and videos land in `public/images`, recordings in `public/audio`. You can also type a path: files inside `public/` are written without `public`, so `public/images/raven-room.png` is `/images/raven-room.png`.
+
+**Cropping a cover from a sheet.** Under Cover, pick **Crop from a sheet**, then drag the white frame over the part you want. Drag its corner or scroll to resize. The frame keeps the cover's shape. **Whole image** uses the file as is.
+
+## Add a composition
+
+1. Click **Add** at the bottom of the left column.
+2. Fill in the text. Give it a short `id` made of letters, numbers, and dashes.
+3. Choose a cover image, then a room image or an overlay gradient.
+4. Optionally turn on **Play a video on entry** and choose a recording under Sound.
+5. Save. The `01—03` counts in the header and footer update by themselves.
+
+**Duplicate** and **Delete** sit at the top of the form. Deleting a piece never deletes its files.
+
+## Import the old catalog
+
+**Import…** reads the older player's `tracks.json` and makes one composition per family (so the four Raven movements become one piece). It copies the family's cover into `public/images/covers`. Tick the box to also copy the recordings, which are large. Nothing touches the catalog until you Save, and families whose id already exists are skipped, so running it twice is safe.
+
+Imported pieces have empty `place`, `world`, and `note` fields and a plain dark room. Fill those in afterwards.
+
+## Field reference
+
+The editor labels match these names. Every file path is a URL without `public`.
 
 ### Text fields
 
@@ -124,23 +150,9 @@ To style the whole page only while a video is showing, use `.music-room.intro-pl
 
 Put audio files in `public/audio` (create the folder) and reference them as `/audio/…`.
 
-## Add a composition
-
-1. Copy an existing `{ … }` block in `COMPOSITIONS`, paste it where you want the piece to appear, and give it a new `id`.
-2. Fill in the text fields.
-3. Point `cover` at its artwork and `room` at its background image. Put new files in `public/images`.
-4. Optionally add `intro` and `audio`.
-5. Save.
-
-The `01—03` counts in the header and footer update by themselves.
-
 ## The cooldown switch
 
-In `SETTINGS` at the top of [lib/compositions.ts](lib/compositions.ts):
-
-```ts
-export const introCooldownHours = 0;
-```
+In the editor, open **Site settings** and change **Intro cooldown (hours)**.
 
 | Value | Behavior |
 | --- | --- |
@@ -172,14 +184,16 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 | --- | --- |
 | The site will not open | Start `npm run dev` in the project folder, leave Terminal running, and use the `Local` address it prints. |
 | Changes do not appear | Save the file. Confirm the browser address matches the running server. Refresh once. If needed, Control+C and `npm run dev` again. |
-| A red error appears after editing | Read the first error's file name and line. Check that area for a missing comma, quote, or closing brace. Undo the last edit and save to get back to the working version. |
-| A video does not repeat | Set `introCooldownHours` to `0`, save, return to the room, then enter the piece again. |
+| Save is grey | Read the red list at the top of the left column and fix what it names. |
+| `/edit` shows a 404 | The editor only exists in development mode. Start `npm run dev` and use its `Local` address. |
+| A red error appears after editing by hand | If you changed `lib/catalog.json` yourself, check for a missing comma, quote, or bracket. Undo and save to get back. |
+| A video does not repeat | Set the intro cooldown to `0` in Site settings, save, return to the room, then enter the piece again. |
 | A video never appears | Confirm you entered the composition, rather than only selected it. Check `intro.src`. Check the browser's reduced-motion setting. |
 | You suspect a file path | Open its URL directly, for example `http://localhost:3000/images/Ravenical.m4v`. A missing-file page means the path or filename is wrong. |
 | You changed `start` and now see no video | `start` must be before the file's end; `play` must be greater than zero. |
 | The file exists but will not play | Its encoding needs browser support. Use an H.264 MP4; renaming an extension does not convert it. |
-| The picture is cropped | Try `fit: "contain"`, or adjust `position` to move the crop focus. |
-| The cover shows the wrong part of the sheet | Adjust `cover.position` and `cover.size`. Percentages can have decimals. |
+| The picture is cropped | Set Fit to `contain`, or change Position to move the crop focus. |
+| The cover shows the wrong part of the sheet | Under Cover, drag the crop frame. |
 | The room is black | `room` needs a `src`, an `overlay`, or both. Check the file path. |
 | There is no sound from the video | Intro videos are intentionally muted. Sound comes from `audio`, or the synth preview when there is none. |
 
@@ -187,7 +201,9 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 
 | Thing | File |
 | --- | --- |
-| Everything per composition, plus cooldown, home piece, and gallery backdrop | [lib/compositions.ts](lib/compositions.ts) |
+| Everything per composition, plus cooldown, home piece, and gallery backdrop | [lib/catalog.json](lib/catalog.json), edited at `/edit` |
+| The field list and types | [lib/compositions.ts](lib/compositions.ts) |
+| The editor itself | [app/edit/editor.tsx](app/edit/editor.tsx), [app/edit/editor.css](app/edit/editor.css), and the API routes under [app/api](app/api) |
 | Layout, cover scrolling, shared playback styling | [app/globals.css](app/globals.css) |
 | Page logic | [components/composition-browser.tsx](components/composition-browser.tsx) |
 | Cover artwork element | [components/score-artwork.tsx](components/score-artwork.tsx) |
@@ -196,7 +212,7 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 
 ## Development mode versus the production version
 
-**While editing:** use `npm run dev`. Save a file; the page updates automatically.
+**While editing:** use `npm run dev` and the editor at `/edit`. Saving there updates the gallery automatically. The editor is not part of the production build.
 
 **To run a production build:** stop the development server with Control+C, then run these one at a time:
 

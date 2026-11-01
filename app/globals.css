@@ -154,10 +154,10 @@ button:focus-visible {
     --score-width: 30.2%;
     --score-left: 20%;
     --score-top: 20%;
-    --score-previous-x: -86.1%;
-    --score-next-x: 198.7%;
-    --score-previous-scale: .64;
-    --score-next-scale: .65;
+    --score-previous-x: -66.1%;
+    --score-next-x: 305.7%;
+    --score-previous-scale: .6;
+    --score-next-scale: .6;
     position: absolute;
     inset: 0 112px 0 0;
     transition: opacity 1s, filter 1s, transform 1.5s;
@@ -180,7 +180,7 @@ button:focus-visible {
 .score-artwork {
     aspect-ratio: 512 / 662;
     width: 100%;
-    background: #fafafa var(--cover-image, none) var(--cover-position, center) / var(--cover-size, cover) no-repeat;
+    background: #0a0a0a var(--cover-image, none) var(--cover-position, center) / var(--cover-size, cover) no-repeat;
     filter: var(--cover-filter, none);
     box-shadow: 0 12px 26px #0003, 0 1px 3px #0002;
     transition: box-shadow .5s, transform .5s;
@@ -290,14 +290,14 @@ h1>span {
 .enter-button {
     display: flex;
     align-items: center;
+    backdrop-filter:drop-shadow(-1px -1px 4px black);
     gap: 22px;
-    font-size: clamp(65px, 7.5vw, 120px);
+    font-size: clamp(35px, 4.5vw, 70px);
     font-weight: 200;
-    letter-spacing: -5px;
-    color: #fff;
+    color: white;
+    text-shadow: -3px -2px 1px black;
     line-height: 1.2;
     margin-top: 20px;
-    text-shadow: 0 3px 20px #0001;
 }
 
 .enter-button>span {
@@ -757,10 +757,10 @@ h1>span {
         --score-left: 21%;
         --score-top: 18%;
         --score-previous-x: -96.4%;
-        --score-next-x: 210.7%;
+        --score-next-x: 230.7%;
     }
     .composition-info {
-        top: 39%;
+        top: 19%;
     }
 }
 
@@ -773,7 +773,7 @@ h1>span {
         --score-next-x: 219.2%;
     }
     .composition-info {
-        top: 34%;
+        top: 24%;
     }
     .enter-button {
         margin-top: 9px;

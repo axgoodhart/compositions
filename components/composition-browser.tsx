@@ -344,7 +344,6 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
           </button>;
         })}
         <div className="composition-info" key={piece.id} aria-live="polite">
-          <div className="piece-eyebrow"><span /> SELECTED WORK / {String(selected + 1).padStart(2, "0")}</div>
           {title}
           <div className="piece-details">
             <p><Editable value={piece.year} editing={editing} onCommit={v => hooks.current?.onField("year", v)} />, <Editable value={piece.place} editing={editing} onCommit={v => hooks.current?.onField("place", v)} /></p>

@@ -2,7 +2,7 @@
   "settings": {
     "introCooldownHours": 0,
     "homeId": "raven",
-    "galleryImage": "/content/interface/piano-room.png"
+    "galleryImage": "/content/interface/other piano-room.png"
   },
   "compositions": [
     {
@@ -28,7 +28,9 @@
       ],
       "cover": {
         "src": "/content/covers/39.webp",
-        "filter": "contrast(2)"
+        "filter": "contrast(2)",
+        "size": "101.487% 100%",
+        "position": "50% 50%"
       },
       "room": {
         "src": "/content/interface/raven-room.png"
@@ -104,6 +106,1309 @@
         "src": "/content/interface/forest-room.png",
         "overlay": "linear-gradient(90deg,#07170fb0,#07170f10)"
       }
+    },
+    {
+      "id": "lorcanto",
+      "title": "Lorcanto",
+      "lines": [
+        "Lorcanto"
+      ],
+      "year": "2024–2025",
+      "place": "",
+      "ensemble": "voice and chamber orchestra",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/3.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "symphony-no-2",
+      "title": "Symphony No. 2",
+      "lines": [
+        "Symphony No.",
+        "2"
+      ],
+      "year": "2024",
+      "place": "",
+      "ensemble": "concert orchestra",
+      "duration": "20 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/37.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "divided",
+      "title": "Divided",
+      "lines": [
+        "Divided"
+      ],
+      "year": "2022–2025",
+      "place": "",
+      "ensemble": "string orchestra",
+      "duration": "35 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/14.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "serenade-for-strings",
+      "title": "Serenade for Strings",
+      "lines": [
+        "Serenade for",
+        "Strings"
+      ],
+      "year": "2024–2025",
+      "place": "",
+      "ensemble": "concert orchestra",
+      "duration": "18 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/7.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "viola-suite",
+      "title": "Viola Suite",
+      "lines": [
+        "Viola Suite"
+      ],
+      "year": "2016",
+      "place": "",
+      "ensemble": "solo viola",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/41.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "src": "/content/interface/piano-room.png",
+        "position": "50% 50%",
+        "overlay": "linear-gradient(90deg,#000000ff,#00000026)"
+      },
+      "audio": "/audio/viola_suite.mp3"
+    },
+    {
+      "id": "classical-suite",
+      "title": "Classical Suite",
+      "lines": [
+        "Classical Suite"
+      ],
+      "year": "2023",
+      "place": "",
+      "ensemble": "solo piano",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/8.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "piano-sonata",
+      "title": "Piano Sonata",
+      "lines": [
+        "Piano Sonata"
+      ],
+      "year": "2023",
+      "place": "",
+      "ensemble": "solo piano",
+      "duration": "18 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/31.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/piano_sonata.mp3"
+    },
+    {
+      "id": "erosions",
+      "title": "Erosions",
+      "lines": [
+        "Erosions"
+      ],
+      "year": "2021",
+      "place": "",
+      "ensemble": "solo cello with voice",
+      "duration": "13 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/16.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/erosions.mp3"
+    },
+    {
+      "id": "purgatorium",
+      "title": "Purgatorium",
+      "lines": [
+        "Purgatorium"
+      ],
+      "year": "2021",
+      "place": "",
+      "ensemble": "solo piano",
+      "duration": "9 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/32.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/purgatorium.mp3"
+    },
+    {
+      "id": "aviary",
+      "title": "Aviary",
+      "lines": [
+        "Aviary"
+      ],
+      "year": "2021",
+      "place": "",
+      "ensemble": "flute and piano",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/aviary5.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/aviary.mp3"
+    },
+    {
+      "id": "piano-concerto",
+      "title": "Piano Concerto",
+      "lines": [
+        "Piano Concerto"
+      ],
+      "year": "2020",
+      "place": "",
+      "ensemble": "piano, strings",
+      "duration": "10 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/42.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "i-journeys",
+      "title": "I. Journeys",
+      "lines": [
+        "I. Journeys"
+      ],
+      "year": "2020",
+      "place": "",
+      "ensemble": "2 vln, vla, 2 vlc, piano",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/30.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/movement_for_piano_sextet.mp3"
+    },
+    {
+      "id": "ii-choices",
+      "title": "II. Choices",
+      "lines": [
+        "II. Choices"
+      ],
+      "year": "2020",
+      "place": "",
+      "ensemble": "2 vln, vla, 2 vlc, piano",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/movement_for_piano_sextet.mp3"
+    },
+    {
+      "id": "cold-mountain-songs",
+      "title": "Cold Mountain Songs",
+      "lines": [
+        "Cold Mountain",
+        "Songs"
+      ],
+      "year": "2020",
+      "place": "",
+      "ensemble": "baritone and piano",
+      "duration": "12 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/9.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/cold_mountain_songs.mp3"
+    },
+    {
+      "id": "kyrie",
+      "title": "Kyrie",
+      "lines": [
+        "Kyrie"
+      ],
+      "year": "2020",
+      "place": "",
+      "ensemble": "double choir",
+      "duration": "4 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/kyrie.mp3"
+    },
+    {
+      "id": "blessed-is-the-match",
+      "title": "Blessed is the Match",
+      "lines": [
+        "Blessed is",
+        "the Match"
+      ],
+      "year": "2019",
+      "place": "",
+      "ensemble": "vln, timp, TTBB",
+      "duration": "6 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/blessed_is_the_match.mp3"
+    },
+    {
+      "id": "fantastic-dances",
+      "title": "Fantastic Dances",
+      "lines": [
+        "Fantastic Dances"
+      ],
+      "year": "2019",
+      "place": "",
+      "ensemble": "two pianos",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/fantastic_dances.mp3"
+    },
+    {
+      "id": "magnet-sky",
+      "title": "Magnet Sky",
+      "lines": [
+        "Magnet Sky"
+      ],
+      "year": "2019",
+      "place": "",
+      "ensemble": "concert orchestra",
+      "duration": "9 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/28.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/magnet_sky.mp3"
+    },
+    {
+      "id": "the-return",
+      "title": "The Return",
+      "lines": [
+        "The Return"
+      ],
+      "year": "2018",
+      "place": "",
+      "ensemble": "SATB chorus",
+      "duration": "4 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/38.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/the_return.mp3"
+    },
+    {
+      "id": "a-doggone-symphony",
+      "title": "A Doggone Symphony!",
+      "lines": [
+        "A Doggone",
+        "Symphony!"
+      ],
+      "year": "2018",
+      "place": "",
+      "ensemble": "concert orchestra",
+      "duration": "14 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/a_doggone_symphony.mp3"
+    },
+    {
+      "id": "mikrokosmos-suite-for-brass",
+      "title": "Mikrokosmos: Suite for Brass",
+      "lines": [
+        "Mikrokosmos: Suite",
+        "for Brass"
+      ],
+      "year": "2018",
+      "place": "",
+      "ensemble": "2 tpt, horn, trombone, tuba",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "on-a-river-no-where",
+      "title": "On a River No Where",
+      "lines": [
+        "On a River",
+        "No Where"
+      ],
+      "year": "2018",
+      "place": "",
+      "ensemble": "flute and piano",
+      "duration": "5 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/on_a_river_no_where.mp3"
+    },
+    {
+      "id": "vexations-a-nightmare-for-orchestra",
+      "title": "Vexations: a nightmare for orchestra",
+      "lines": [
+        "Vexations: a nightmare",
+        "for orchestra"
+      ],
+      "year": "2017",
+      "place": "",
+      "ensemble": "concert orchestra",
+      "duration": "9 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/40.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/vexations.mp3"
+    },
+    {
+      "id": "frayed-serenade",
+      "title": "Frayed Serenade",
+      "lines": [
+        "Frayed Serenade"
+      ],
+      "year": "2017",
+      "place": "",
+      "ensemble": "flute and piano",
+      "duration": "5 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/frayed_serenade.mp3"
+    },
+    {
+      "id": "three-piano-preludes",
+      "title": "Three Piano Preludes",
+      "lines": [
+        "Three Piano",
+        "Preludes"
+      ],
+      "year": "2017",
+      "place": "",
+      "ensemble": "solo piano",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/3_piano_preludes.mp3"
+    },
+    {
+      "id": "two-ballades",
+      "title": "Two Ballades",
+      "lines": [
+        "Two Ballades"
+      ],
+      "year": "2016",
+      "place": "",
+      "ensemble": "solo piano",
+      "duration": "7 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "scherzabella",
+      "title": "Scherzabella",
+      "lines": [
+        "Scherzabella"
+      ],
+      "year": "2017",
+      "place": "",
+      "ensemble": "trumpet and piano",
+      "duration": "8 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "the-raven-cantata",
+      "title": "The Raven Cantata",
+      "lines": [
+        "The Raven",
+        "Cantata"
+      ],
+      "year": "2016",
+      "place": "",
+      "ensemble": "bar, SATB, pno, strings",
+      "duration": "23 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/39.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/the_raven_cantata.mp3"
+    },
+    {
+      "id": "sonata-of-songs",
+      "title": "Sonata of Songs",
+      "lines": [
+        "Sonata of",
+        "Songs"
+      ],
+      "year": "2016",
+      "place": "",
+      "ensemble": "mezzo, oboe, piano",
+      "duration": "8 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/sonata_of_songs.mp3"
+    },
+    {
+      "id": "miniature-for-wind-quartet",
+      "title": "Miniature for Wind Quartet",
+      "lines": [
+        "Miniature for",
+        "Wind Quartet"
+      ],
+      "year": "2016",
+      "place": "",
+      "ensemble": "picc, fl, ob, b.clar",
+      "duration": "2 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/catanese_quartet.mp3"
+    },
+    {
+      "id": "four-short-scenes",
+      "title": "Four Short Scenes",
+      "lines": [
+        "Four Short",
+        "Scenes"
+      ],
+      "year": "2016",
+      "place": "",
+      "ensemble": "string quartet",
+      "duration": "3 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/four_short_scenes.mp3"
+    },
+    {
+      "id": "sonnets-from-the-drain",
+      "title": "Sonnets from the Drain",
+      "lines": [
+        "Sonnets from",
+        "the Drain"
+      ],
+      "year": "2015–2023",
+      "place": "",
+      "ensemble": "baritenor, two pianos",
+      "duration": "16 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/29.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/of_midnight.mp3"
+    },
+    {
+      "id": "prelude-and-gigue",
+      "title": "Prelude & Gigue",
+      "lines": [
+        "Prelude &",
+        "Gigue"
+      ],
+      "year": "2015",
+      "place": "",
+      "ensemble": "solo viola",
+      "duration": "6 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/prelude_and_gigue.mp3"
+    },
+    {
+      "id": "une-histoire-illustree",
+      "title": "Une histoire illustrée",
+      "lines": [
+        "Une histoire",
+        "illustrée"
+      ],
+      "year": "2014",
+      "place": "",
+      "ensemble": "chamber orchestra",
+      "duration": "9 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/une_histoire_illustrée.mp3"
+    },
+    {
+      "id": "altar-of-creation",
+      "title": "Altar of Creation",
+      "lines": [
+        "Altar of",
+        "Creation"
+      ],
+      "year": "2014",
+      "place": "",
+      "ensemble": "narrator, choir, Metasynth, PureData",
+      "duration": "6 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/altar_of_creation.mp3"
+    },
+    {
+      "id": "sebastian-s-voodoo",
+      "title": "Sebastian’s Voodoo",
+      "lines": [
+        "Sebastian’s Voodoo"
+      ],
+      "year": "2014",
+      "place": "",
+      "ensemble": "virtual orchestra",
+      "duration": "4 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/sebastians_voodoo.mp3"
+    },
+    {
+      "id": "falling-birds-virtual-messiaen",
+      "title": "Falling Birds (Virtual Messiaen)",
+      "lines": [
+        "Falling Birds",
+        "(Virtual Messiaen)"
+      ],
+      "year": "2013",
+      "place": "",
+      "ensemble": "PureData",
+      "duration": "6 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/falling_birds_virtual_messiaen.mp3"
+    },
+    {
+      "id": "mouvement",
+      "title": "Mouvement",
+      "lines": [
+        "Mouvement"
+      ],
+      "year": "2013",
+      "place": "",
+      "ensemble": "string quartet",
+      "duration": "8 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/mouvement.mp3"
+    },
+    {
+      "id": "janvier",
+      "title": "Janvier",
+      "lines": [
+        "Janvier"
+      ],
+      "year": "2012",
+      "place": "",
+      "ensemble": "piano and orchestra",
+      "duration": "8 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "tristan-not-forgotten",
+      "title": "Tristan Not Forgotten",
+      "lines": [
+        "Tristan Not",
+        "Forgotten"
+      ],
+      "year": "2011",
+      "place": "",
+      "ensemble": "alto, vibraphone, cello, and piano",
+      "duration": "4 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      }
+    },
+    {
+      "id": "soliloquy",
+      "title": "Soliloquy",
+      "lines": [
+        "Soliloquy"
+      ],
+      "year": "2011",
+      "place": "",
+      "ensemble": "alto sax. and piano",
+      "duration": "11 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        146.83,
+        174.61,
+        220,
+        293.66,
+        349.23,
+        440
+      ],
+      "cover": {
+        "src": "/content/covers/covers/36.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/soliloquy.mp3"
+    },
+    {
+      "id": "flute-v-contrabass",
+      "title": "Flute v. Contrabass",
+      "lines": [
+        "Flute v.",
+        "Contrabass"
+      ],
+      "year": "2011",
+      "place": "",
+      "ensemble": "flute and contrabass",
+      "duration": "4 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        174.61,
+        220,
+        261.63,
+        349.23,
+        440,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/19.webp",
+        "size": "100% 100.09%",
+        "position": "50% 87.894%"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/flute_v_contrabass.mp3"
+    },
+    {
+      "id": "moods-for-cello-and-piano",
+      "title": "Moods for Cello and Piano",
+      "lines": [
+        "Moods for Cello",
+        "and Piano"
+      ],
+      "year": "2010",
+      "place": "",
+      "ensemble": "cello and piano",
+      "duration": "5 minutes",
+      "world": "",
+      "note": "",
+      "tones": [
+        130.81,
+        196,
+        261.63,
+        293.66,
+        392,
+        523.25
+      ],
+      "cover": {
+        "src": "/content/covers/covers/999.webp"
+      },
+      "room": {
+        "color": "#0b0f17",
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
+        "stars": true
+      },
+      "audio": "/audio/moods_for_cello_and_piano.mp3"
     }
   ]
 }

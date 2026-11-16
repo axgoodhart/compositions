@@ -2,7 +2,7 @@
   "settings": {
     "introCooldownHours": 0,
     "homeId": "raven",
-    "galleryImage": "/content/interface/other piano-room.png"
+    "galleryImage": "/media/site/gallery.png"
   },
   "compositions": [
     {
@@ -12,31 +12,19 @@
         "The Raven",
         "Cantata"
       ],
-      "year": "2019",
+      "year": "2016",
       "place": "San Francisco",
-      "ensemble": "vocal, chamber orchestra",
       "duration": "32 minutes",
-      "world": "Inside the raven’s chamber",
-      "note": "For baritone solo, mixed chorus, piano & strings. A world of shadow, memory, and the words of Edgar Allan Poe.",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/39.webp",
+        "src": "/media/covers/raven.webp",
         "filter": "contrast(2)",
-        "size": "101.487% 100%",
+        "size": "100% 100%",
         "position": "50% 50%"
       },
       "room": {
-        "src": "/content/interface/raven-room.png"
+        "src": "/media/rooms/raven.png"
       },
       "intro": {
-        "src": "/content/videos/Ravenical.m4v",
         "start": 0,
         "speed": 1,
         "delay": 0.7,
@@ -44,8 +32,10 @@
         "position": "50% 100%",
         "filter": "none",
         "overlay": "none",
-        "play": 3.875
-      }
+        "play": 3.875,
+        "src": "/media/intros/raven.m4v"
+      },
+      "ensemble": "baritone, chorus, piano, strings"
     },
     {
       "id": "midnight",
@@ -58,24 +48,17 @@
       "place": "San Francisco",
       "ensemble": "tenor, two pianos",
       "duration": "24 minutes",
-      "world": "Beyond the midnight sky",
-      "note": "A quiet constellation of voice and piano. Step beyond the walls and into the night.",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/29.webp"
+        "src": "/media/covers/midnight.webp",
+        "filter": "brightness(0.8) contrast(0.96) saturate(0.94)",
+        "size": "100% 100.08%",
+        "position": "50% 0%"
       },
       "room": {
         "overlay": "radial-gradient(ellipse at 70% 32%,#55707575,transparent 35%),radial-gradient(ellipse at 30% 70%,#41365680,transparent 50%)",
-        "color": "#070d19",
-        "stars": true
-      }
+        "color": "#070d19"
+      },
+      "hidden": true
     },
     {
       "id": "mountain",
@@ -88,22 +71,12 @@
       "place": "San Francisco",
       "ensemble": "double choir",
       "duration": "18 minutes",
-      "world": "Where the walls become woodland",
-      "note": "Two choirs, an open landscape. A space for voices to unfold like the first light through the trees.",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/yes_mountain_flower.webp",
+        "src": "/media/covers/mountain.webp",
         "filter": "brightness(1.4)saturate(.82)"
       },
       "room": {
-        "src": "/content/interface/forest-room.png",
+        "src": "/media/rooms/mountain.png",
         "overlay": "linear-gradient(90deg,#07170fb0,#07170f10)"
       }
     },
@@ -117,54 +90,14 @@
       "place": "",
       "ensemble": "voice and chamber orchestra",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/3.webp"
+        "src": "/media/covers/lorcanto.png"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
-    },
-    {
-      "id": "symphony-no-2",
-      "title": "Symphony No. 2",
-      "lines": [
-        "Symphony No.",
-        "2"
-      ],
-      "year": "2024",
-      "place": "",
-      "ensemble": "concert orchestra",
-      "duration": "20 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
-      "cover": {
-        "src": "/content/covers/covers/37.webp"
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "room": {
-        "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
+      "score": "/media/scores/Lorcanto.pdf"
     },
     {
       "id": "divided",
@@ -176,23 +109,12 @@
       "place": "",
       "ensemble": "string orchestra",
       "duration": "35 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/14.webp"
+        "src": "/media/covers/divided.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       }
     },
     {
@@ -206,23 +128,12 @@
       "place": "",
       "ensemble": "concert orchestra",
       "duration": "18 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/7.webp"
+        "src": "/media/covers/serenade-for-strings.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       }
     },
     {
@@ -235,26 +146,154 @@
       "place": "",
       "ensemble": "solo viola",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/41.webp"
+        "src": "/media/covers/viola-suite.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#1e1701",
+          "mark": {
+            "w": 816,
+            "color": "#aeb780",
+            "tone": "ink",
+            "x": 380,
+            "y": 561
+          },
+          "shapes": [
+            {
+              "id": "rule-0",
+              "x": 60,
+              "y": 80,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-1",
+              "x": 60,
+              "y": 269,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-2",
+              "x": 60,
+              "y": 458,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-3",
+              "x": 60,
+              "y": 647,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-4",
+              "x": 60,
+              "y": 836,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-5",
+              "x": 60,
+              "y": 1025,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-6",
+              "x": 60,
+              "y": 1214,
+              "w": 880,
+              "h": 1,
+              "fill": "#1f3a5f",
+              "tone": "ink"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "suite",
+              "font": "Jost:300:n",
+              "size": 152,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#aabcd5",
+              "tone": "ink",
+              "x": 174,
+              "y": 338,
+              "w": 284,
+              "h": 152,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for          \n  \n\n\n\n\n    \nsolo",
+              "font": "Jost:500:n",
+              "size": 33,
+              "lineHeight": 1,
+              "tracking": 0.15,
+              "textCase": "upper",
+              "color": "#d2d5aa",
+              "tone": "ink",
+              "x": 204,
+              "y": 500,
+              "w": 234,
+              "h": 264,
+              "align": "right",
+              "valign": "top"
+            },
+            {
+              "id": "text-mwdfo9xt",
+              "role": "other",
+              "text": "viola",
+              "font": "Jost:300:n",
+              "size": 294,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#b7cbe6",
+              "x": 218,
+              "y": 431,
+              "w": 552,
+              "h": 324,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "ledger",
+            "variant": "112",
+            "palette": "indigo",
+            "font": "Jost:300:n",
+            "case": "upper"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "src": "/content/interface/piano-room.png",
+        "src": "/media/rooms/viola-suite.png",
         "position": "50% 50%",
         "overlay": "linear-gradient(90deg,#000000ff,#00000026)"
       },
-      "audio": "/audio/viola_suite.mp3"
+      "audio": "/media/audio/viola-suite.mp3"
     },
     {
       "id": "classical-suite",
@@ -266,23 +305,12 @@
       "place": "",
       "ensemble": "solo piano",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/8.webp"
+        "src": "/media/covers/classical-suite.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       }
     },
     {
@@ -295,25 +323,52 @@
       "place": "",
       "ensemble": "solo piano",
       "duration": "18 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/31.webp"
+        "src": "/media/covers/piano-sonata.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#141414",
+          "mark": {
+            "w": 90,
+            "color": "#c9c7a1",
+            "tone": "ink",
+            "x": 850,
+            "y": 60
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "piano sonata",
+              "font": "Bodoni Moda:400:n",
+              "size": 70,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#ffffff",
+              "x": 41,
+              "y": 1160,
+              "w": 404,
+              "h": 77,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "whisper",
+            "variant": "295",
+            "palette": "soot",
+            "font": "Spectral:300:i",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/piano_sonata.mp3"
+      "audio": "/media/audio/piano-sonata.mp3"
     },
     {
       "id": "erosions",
@@ -325,25 +380,15 @@
       "place": "",
       "ensemble": "solo cello with voice",
       "duration": "13 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/16.webp"
+        "src": "/media/covers/erosions.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/erosions.mp3"
+      "audio": "/media/audio/erosions.mp3",
+      "score": "/media/scores/Goodhart - Erosions.pdf"
     },
     {
       "id": "purgatorium",
@@ -355,25 +400,14 @@
       "place": "",
       "ensemble": "solo piano",
       "duration": "9 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/32.webp"
+        "src": "/media/covers/purgatorium.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/purgatorium.mp3"
+      "audio": "/media/audio/purgatorium.mp3"
     },
     {
       "id": "aviary",
@@ -385,54 +419,41 @@
       "place": "",
       "ensemble": "flute and piano",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/aviary5.webp"
+        "src": "/media/covers/aviary.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/aviary.mp3"
+      "audio": "/media/audio/aviary.mp3"
     },
     {
       "id": "piano-concerto",
-      "title": "Piano Concerto",
+      "title": "Concerto for Piano and Strings",
       "lines": [
-        "Piano Concerto"
+        "Concerto for Piano and Strings"
       ],
       "year": "2020",
-      "place": "",
       "ensemble": "piano, strings",
       "duration": "10 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/42.webp"
+        "src": "/media/covers/piano-concerto.webp"
       },
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
+        "src": "/media/rooms/piano-concerto.png"
+      },
+      "intro": {
+        "src": "/media/intros/piano-concerto.mp4",
+        "play": 5.2,
+        "fit": "cover",
+        "fade": 0.5,
+        "position": "49.964% 50%",
+        "speed": 1.25
+      },
+      "audio": "/media/audio/piano-concerto.mp3"
     },
     {
       "id": "i-journeys",
@@ -444,86 +465,53 @@
       "place": "",
       "ensemble": "2 vln, vla, 2 vlc, piano",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/30.webp"
+        "src": "/media/covers/i-journeys.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/movement_for_piano_sextet.mp3"
+      "audio": "/media/audio/i-journeys.mp3"
     },
     {
       "id": "ii-choices",
-      "title": "II. Choices",
+      "title": "Piano Sextet ii. choices",
       "lines": [
-        "II. Choices"
+        "Piano Sextet",
+        "ii. choices"
       ],
       "year": "2020",
-      "place": "",
       "ensemble": "2 vln, vla, 2 vlc, piano",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/ii-choices.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/movement_for_piano_sextet.mp3"
+      "audio": "/media/audio/i-journeys.mp3"
     },
     {
       "id": "cold-mountain-songs",
       "title": "Cold Mountain Songs",
       "lines": [
-        "Cold Mountain",
+        "Cold",
+        "Mountain",
         "Songs"
       ],
       "year": "2020",
-      "place": "",
       "ensemble": "baritone and piano",
       "duration": "12 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/9.webp"
+        "src": "/media/covers/cold-mountain-songs.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/cold_mountain_songs.mp3"
+      "audio": "/media/audio/cold-mountain-songs.mp3"
     },
     {
       "id": "kyrie",
@@ -535,25 +523,90 @@
       "place": "",
       "ensemble": "double choir",
       "duration": "4 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/kyrie.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#0b0d12",
+          "mark": {
+            "w": 2151,
+            "color": "#1b2030",
+            "tone": "mark",
+            "x": -442,
+            "y": 63
+          },
+          "shapes": [
+            {
+              "id": "rule-top",
+              "x": 60,
+              "y": 520,
+              "w": 880,
+              "h": 1,
+              "fill": "#d8c07a",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-bottom",
+              "x": 60,
+              "y": 774,
+              "w": 880,
+              "h": 1,
+              "fill": "#d8c07a",
+              "tone": "ink"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Kyrie",
+              "font": "Jost:300:n",
+              "size": 202,
+              "lineHeight": 1.15,
+              "tracking": 0.35,
+              "textCase": "upper",
+              "color": "#d8c07a",
+              "tone": "ink",
+              "x": 139,
+              "y": 533,
+              "w": 833,
+              "h": 233,
+              "align": "center",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for double choir",
+              "font": "Jost:300:n",
+              "size": 59,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#d8c07a",
+              "tone": "ink",
+              "x": 569,
+              "y": 786,
+              "w": 397,
+              "h": 65,
+              "align": "center",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "tracking",
+            "variant": "224",
+            "palette": "night",
+            "font": "Jost:300:n",
+            "case": "upper"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/kyrie.mp3"
+      "audio": "/media/audio/kyrie.mp3"
     },
     {
       "id": "blessed-is-the-match",
@@ -566,25 +619,54 @@
       "place": "",
       "ensemble": "vln, timp, TTBB",
       "duration": "6 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/blessed-is-the-match.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#ffffff",
+          "mark": {
+            "w": 1250,
+            "color": "#a9a9a9",
+            "tone": "mark",
+            "x": 80,
+            "y": -150
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Blessed is\nthe Match",
+              "font": "Jost:300:n",
+              "size": 168,
+              "lineHeight": 0.98,
+              "tracking": 0.02,
+              "textCase": "upper",
+              "color": "#15161a",
+              "tone": "ink",
+              "x": 60,
+              "y": 921,
+              "w": 910,
+              "h": 329,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "mark",
+            "variant": "904",
+            "palette": "chalk",
+            "font": "Jost:300:n",
+            "case": "upper"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/blessed_is_the_match.mp3"
+      "audio": "/media/audio/blessed-is-the-match.mp3",
+      "score": "/media/scores/Goodhart - Blessed is the Match.pdf"
     },
     {
       "id": "fantastic-dances",
@@ -596,25 +678,72 @@
       "place": "",
       "ensemble": "two pianos",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/fantastic-dances.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#0b0d12",
+          "mark": {
+            "w": 90,
+            "color": "#d8c07a",
+            "tone": "ink",
+            "x": 850,
+            "y": 60
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Fantastic Dances",
+              "font": "Josefin Sans:200:n",
+              "size": 54,
+              "lineHeight": 1.15,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#d8c07a",
+              "tone": "ink",
+              "x": 120,
+              "y": 906,
+              "w": 386,
+              "h": 62,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for two pianos",
+              "font": "Josefin Sans:200:n",
+              "size": 38,
+              "lineHeight": 1.2,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#d8c07a",
+              "tone": "ink",
+              "x": 120,
+              "y": 976,
+              "w": 226,
+              "h": 46,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "whisper",
+            "variant": "527",
+            "palette": "night",
+            "font": "Josefin Sans:200:n",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/fantastic_dances.mp3"
+      "audio": "/media/audio/fantastic-dances.mp3",
+      "score": "/media/scores/Goodhart - Fantastic Dances.pdf"
     },
     {
       "id": "magnet-sky",
@@ -626,25 +755,14 @@
       "place": "",
       "ensemble": "concert orchestra",
       "duration": "9 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/28.webp"
+        "src": "/media/covers/magnet-sky.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/magnet_sky.mp3"
+      "audio": "/media/audio/magnet-sky.mp3"
     },
     {
       "id": "the-return",
@@ -656,25 +774,15 @@
       "place": "",
       "ensemble": "SATB chorus",
       "duration": "4 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/38.webp"
+        "src": "/media/covers/the-return.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/the_return.mp3"
+      "audio": "/media/audio/the-return.mp3",
+      "score": "/media/scores/Goodhart - The Return.pdf"
     },
     {
       "id": "a-doggone-symphony",
@@ -687,25 +795,17 @@
       "place": "",
       "ensemble": "concert orchestra",
       "duration": "14 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/a-doggone-symphony.png",
+        "filter": "brightness(1.12) contrast(1.14) saturate(1.3)",
+        "size": "100% 108.491%",
+        "position": "50% 50.623%"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/a_doggone_symphony.mp3"
+      "audio": "/media/audio/a-doggone-symphony.mp3"
     },
     {
       "id": "mikrokosmos-suite-for-brass",
@@ -715,27 +815,75 @@
         "for Brass"
       ],
       "year": "2018",
-      "place": "",
       "ensemble": "2 tpt, horn, trombone, tuba",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/mikrokosmos-suite-for-brass.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#e9e2d3",
+          "mark": {
+            "w": 1600,
+            "color": "#d2c9b4",
+            "tone": "mark",
+            "x": -900,
+            "y": -120
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "FOR 2 TPT, HORN,\nTROMBONE, TUBA",
+              "font": "Playfair Display:600:i",
+              "size": 22,
+              "lineHeight": 1.5,
+              "tracking": 0.25,
+              "textCase": "upper",
+              "color": "#2b2a26",
+              "tone": "ink",
+              "x": 600,
+              "y": 90,
+              "w": 279,
+              "h": 66,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Mikrokosmos:\nSuite\nfor\nBrass",
+              "font": "Playfair Display:600:i",
+              "size": 44,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "upper",
+              "color": "#2b2a26",
+              "tone": "ink",
+              "x": 600,
+              "y": 182,
+              "w": 354,
+              "h": 176,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "column",
+            "variant": "422",
+            "palette": "linen",
+            "font": "Playfair Display:600:i",
+            "case": "upper"
+          }
+        },
+        "size": "100% 100.077%",
+        "position": "50% 50%"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
+      },
+      "score": "/media/scores/Goodhart - Bartok Orchestration.pdf"
     },
     {
       "id": "on-a-river-no-where",
@@ -748,25 +896,99 @@
       "place": "",
       "ensemble": "flute and piano",
       "duration": "5 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/on-a-river-no-where.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#0b0d12",
+          "mark": {
+            "w": 950,
+            "color": "#1b2030",
+            "tone": "mark",
+            "x": -201,
+            "y": -118
+          },
+          "shapes": [
+            {
+              "id": "band",
+              "x": 0,
+              "y": 833,
+              "w": 1000,
+              "h": 461,
+              "fill": "#d8c07a",
+              "tone": "band"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "RIVER I:\n  from no\nwhere",
+              "font": "Playfair Display:600:i",
+              "size": 169,
+              "lineHeight": 1.05,
+              "tracking": 0.02,
+              "textCase": "upper",
+              "color": "#0b0d12",
+              "tone": "bandInk",
+              "x": 51,
+              "y": 791,
+              "w": 916,
+              "h": 532,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "",
+              "font": "Playfair Display:600:i",
+              "size": 56,
+              "lineHeight": 1.05,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#0b0d12",
+              "tone": "bandInk",
+              "x": 258,
+              "y": 1161,
+              "w": 14,
+              "h": 59,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "text-mwcsg7v5",
+              "role": "other",
+              "text": "fl.+pno.",
+              "font": "Playfair Display:600:i",
+              "size": 82,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#cad1e2",
+              "x": 683,
+              "y": 30,
+              "w": 278,
+              "h": 90,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "band",
+            "variant": "142",
+            "palette": "night",
+            "font": "Playfair Display:600:i",
+            "case": "upper"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/on_a_river_no_where.mp3"
+      "audio": "/media/audio/on-a-river-no-where.mp3",
+      "score": "/media/scores/Goodhart - On a River Nowhere.pdf"
     },
     {
       "id": "vexations-a-nightmare-for-orchestra",
@@ -779,25 +1001,14 @@
       "place": "",
       "ensemble": "concert orchestra",
       "duration": "9 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/40.webp"
+        "src": "/media/covers/vexations-a-nightmare-for-orchestra.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/vexations.mp3"
+      "audio": "/media/audio/vexations-a-nightmare-for-orchestra.mp3"
     },
     {
       "id": "frayed-serenade",
@@ -809,25 +1020,71 @@
       "place": "",
       "ensemble": "flute and piano",
       "duration": "5 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/frayed-serenade.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#efdcd6",
+          "mark": {
+            "w": 760,
+            "color": "#dfc3bb",
+            "tone": "mark",
+            "x": -230,
+            "y": 493
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Frayed Serenade",
+              "font": "Gloock:400:n",
+              "size": 119,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "lower",
+              "color": "#3b2a2a",
+              "tone": "ink",
+              "x": 60,
+              "y": 70,
+              "w": 880,
+              "h": 119,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for flute and piano",
+              "font": "Gloock:400:n",
+              "size": 60,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#3b2a2a",
+              "tone": "ink",
+              "x": 60,
+              "y": 203,
+              "w": 520,
+              "h": 66,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "corner",
+            "variant": "956",
+            "palette": "rose",
+            "font": "Gloock:400:n",
+            "case": "lower"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/frayed_serenade.mp3"
+      "audio": "/media/audio/frayed-serenade.mp3"
     },
     {
       "id": "three-piano-preludes",
@@ -840,25 +1097,71 @@
       "place": "",
       "ensemble": "solo piano",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/three-piano-preludes.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#ffffff",
+          "mark": {
+            "w": 760,
+            "color": "#a9a9a9",
+            "tone": "mark",
+            "x": -230,
+            "y": 493
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Three Piano\nPreludes",
+              "font": "Playfair Display:600:i",
+              "size": 150,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "lower",
+              "color": "#15161a",
+              "tone": "ink",
+              "x": 60,
+              "y": 70,
+              "w": 762,
+              "h": 300,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for solo piano",
+              "font": "Playfair Display:600:i",
+              "size": 75,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#15161a",
+              "tone": "ink",
+              "x": 60,
+              "y": 384,
+              "w": 458,
+              "h": 83,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "corner",
+            "variant": "934",
+            "palette": "chalk",
+            "font": "Playfair Display:600:i",
+            "case": "lower"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/3_piano_preludes.mp3"
+      "audio": "/media/audio/three-piano-preludes.mp3"
     },
     {
       "id": "two-ballades",
@@ -867,27 +1170,76 @@
         "Two Ballades"
       ],
       "year": "2016",
-      "place": "",
       "ensemble": "solo piano",
       "duration": "7 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/two-ballades.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#ffffff",
+          "mark": {
+            "w": 1600,
+            "color": "#a9a9a9",
+            "tone": "mark",
+            "x": 300,
+            "y": -120
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "FOR SOLO PIANO",
+              "font": "Playfair Display:600:i",
+              "size": 22,
+              "lineHeight": 1.5,
+              "tracking": 0.25,
+              "textCase": "upper",
+              "color": "#15161a",
+              "tone": "ink",
+              "x": 60,
+              "y": 90,
+              "w": 258,
+              "h": 33,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Two\nBallades",
+              "font": "Playfair Display:600:i",
+              "size": 67,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "upper",
+              "color": "#15161a",
+              "tone": "ink",
+              "x": 60,
+              "y": 149,
+              "w": 342,
+              "h": 134,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "column",
+            "variant": "70",
+            "palette": "chalk",
+            "font": "Playfair Display:600:i",
+            "case": "upper"
+          }
+        },
+        "size": "100% 100.081%",
+        "position": "50% 3.61%"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
+      },
+      "score": "/media/scores/Goodhart - Ballade in Fantasia.pdf",
+      "audio": "/media/audio/Ballade-in-Fantasia.mp3"
     },
     {
       "id": "scherzabella",
@@ -899,55 +1251,92 @@
       "place": "",
       "ensemble": "trumpet and piano",
       "duration": "8 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/scherzabella.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#4a1d21",
+          "mark": {
+            "w": 150,
+            "color": "#f1e6d8",
+            "tone": "ink",
+            "x": 425,
+            "y": 126
+          },
+          "shapes": [
+            {
+              "id": "frame",
+              "x": 36,
+              "y": 36,
+              "w": 928,
+              "h": 1222,
+              "stroke": "#f1e6d8",
+              "strokeWidth": 2,
+              "tone": "ink"
+            },
+            {
+              "id": "frame-2",
+              "x": 46,
+              "y": 46,
+              "w": 908,
+              "h": 1202,
+              "stroke": "#f1e6d8",
+              "strokeWidth": 1,
+              "tone": "ink"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Scherzabella",
+              "font": "Cormorant Infant:500:n",
+              "size": 120,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#f1e6d8",
+              "tone": "ink",
+              "x": 198,
+              "y": 581,
+              "w": 604,
+              "h": 132,
+              "align": "center",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for trumpet and piano",
+              "font": "Cormorant Infant:500:n",
+              "size": 24,
+              "lineHeight": 1,
+              "tracking": 0.25,
+              "textCase": "upper",
+              "color": "#f1e6d8",
+              "tone": "ink",
+              "x": 288,
+              "y": 1184,
+              "w": 425,
+              "h": 24,
+              "align": "center",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "frame",
+            "variant": "87",
+            "palette": "oxblood",
+            "font": "Cormorant Infant:500:n",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
-    },
-    {
-      "id": "the-raven-cantata",
-      "title": "The Raven Cantata",
-      "lines": [
-        "The Raven",
-        "Cantata"
-      ],
-      "year": "2016",
-      "place": "",
-      "ensemble": "bar, SATB, pno, strings",
-      "duration": "23 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
-      "cover": {
-        "src": "/content/covers/covers/39.webp"
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "room": {
-        "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      },
-      "audio": "/audio/the_raven_cantata.mp3"
+      "score": "/media/scores/Goodhart - Scherzabella.pdf"
     },
     {
       "id": "sonata-of-songs",
@@ -960,25 +1349,118 @@
       "place": "",
       "ensemble": "mezzo, oboe, piano",
       "duration": "8 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/sonata-of-songs.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#e9e2d3",
+          "mark": {
+            "w": 140,
+            "color": "#2b2a26",
+            "tone": "ink",
+            "x": 26,
+            "y": 968
+          },
+          "shapes": [
+            {
+              "id": "rule-0",
+              "x": 60,
+              "y": 80,
+              "w": 880,
+              "h": 1,
+              "fill": "#2b2a26",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-1",
+              "x": 60,
+              "y": 364,
+              "w": 880,
+              "h": 1,
+              "fill": "#2b2a26",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-2",
+              "x": 60,
+              "y": 647,
+              "w": 880,
+              "h": 1,
+              "fill": "#2b2a26",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-3",
+              "x": 60,
+              "y": 931,
+              "w": 880,
+              "h": 1,
+              "fill": "#2b2a26",
+              "tone": "ink"
+            },
+            {
+              "id": "rule-4",
+              "x": 60,
+              "y": 1214,
+              "w": 880,
+              "h": 1,
+              "fill": "#2b2a26",
+              "tone": "ink"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Sonata of\nSongs",
+              "font": "Josefin Sans:200:n",
+              "size": 122,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#2b2a26",
+              "tone": "ink",
+              "x": 60,
+              "y": 100,
+              "w": 502,
+              "h": 244,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "mezzo-soprano\noboe\npiano",
+              "font": "Josefin Sans:200:n",
+              "size": 56,
+              "lineHeight": 1,
+              "tracking": 0.15,
+              "textCase": "lower",
+              "color": "#2b2a26",
+              "tone": "ink",
+              "x": 481,
+              "y": 406,
+              "w": 448,
+              "h": 168,
+              "align": "right",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "ledger",
+            "variant": "151",
+            "palette": "linen",
+            "font": "Josefin Sans:200:n",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/sonata_of_songs.mp3"
+      "audio": "/media/audio/sonata-of-songs.mp3",
+      "score": "/media/scores/Goodhart - Sonata of Songs.pdf"
     },
     {
       "id": "miniature-for-wind-quartet",
@@ -991,25 +1473,81 @@
       "place": "",
       "ensemble": "picc, fl, ob, b.clar",
       "duration": "2 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/miniature-for-wind-quartet.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#f3f2ee",
+          "mark": {
+            "w": 900,
+            "color": "#d8d7d2",
+            "tone": "mark",
+            "x": 50,
+            "y": 447
+          },
+          "shapes": [
+            {
+              "id": "band",
+              "x": 0,
+              "y": 0,
+              "w": 1000,
+              "h": 467,
+              "fill": "#0b0b0b",
+              "tone": "band"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Miniature for\nWind Quartet",
+              "font": "Spectral:300:i",
+              "size": 107,
+              "lineHeight": 1.05,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#eeebe3",
+              "tone": "bandInk",
+              "x": 60,
+              "y": 65,
+              "w": 599,
+              "h": 225,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for picc, fl, ob, b.clar",
+              "font": "Spectral:300:i",
+              "size": 107,
+              "lineHeight": 1.05,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#eeebe3",
+              "tone": "bandInk",
+              "x": 60,
+              "y": 290,
+              "w": 878,
+              "h": 112,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "band",
+            "variant": "587",
+            "palette": "paper",
+            "font": "Spectral:300:i",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/catanese_quartet.mp3"
+      "audio": "/media/audio/miniature-for-wind-quartet.mp3"
     },
     {
       "id": "four-short-scenes",
@@ -1022,25 +1560,82 @@
       "place": "",
       "ensemble": "string quartet",
       "duration": "3 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/four-short-scenes.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#4a1d21",
+          "mark": {
+            "w": 380,
+            "color": "#602b30",
+            "tone": "mark",
+            "x": 560,
+            "y": 60
+          },
+          "shapes": [
+            {
+              "id": "rule",
+              "x": 60,
+              "y": 811,
+              "w": 880,
+              "h": 6,
+              "fill": "#f1e6d8",
+              "tone": "ink"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Four Short\nScenes",
+              "font": "Fraunces:400:n",
+              "size": 140,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "lower",
+              "color": "#f1e6d8",
+              "tone": "ink",
+              "x": 60,
+              "y": 851,
+              "w": 660,
+              "h": 280,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for string quartet",
+              "font": "Fraunces:400:n",
+              "size": 70,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#f1e6d8",
+              "tone": "ink",
+              "x": 60,
+              "y": 1147,
+              "w": 564,
+              "h": 77,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "rule",
+            "variant": "342",
+            "palette": "oxblood",
+            "font": "Fraunces:400:n",
+            "case": "lower"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/four_short_scenes.mp3"
+      "audio": "/media/audio/four-short-scenes.mp3",
+      "score": "/media/scores/Goodhart - Four Short Scenes.pdf"
     },
     {
       "id": "sonnets-from-the-drain",
@@ -1053,25 +1648,14 @@
       "place": "",
       "ensemble": "baritenor, two pianos",
       "duration": "16 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/29.webp"
+        "src": "/media/covers/from.png"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/of_midnight.mp3"
+      "audio": "/media/audio/sonnets-from-the-drain.mp3"
     },
     {
       "id": "prelude-and-gigue",
@@ -1084,25 +1668,72 @@
       "place": "",
       "ensemble": "solo viola",
       "duration": "6 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/prelude-and-gigue.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#bbb5a5",
+          "mark": {
+            "w": 420,
+            "color": "#ededed",
+            "tone": "mark",
+            "x": 650,
+            "y": 877
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Prelude &\nGigue",
+              "font": "Italiana:400:n",
+              "size": 132,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "lower",
+              "color": "#0b0b0b",
+              "tone": "ink",
+              "x": 218,
+              "y": 285,
+              "w": 572,
+              "h": 264,
+              "align": "center",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for viola solo",
+              "font": "Italiana:400:n",
+              "size": 64,
+              "lineHeight": 1.1,
+              "tracking": 0.05,
+              "textCase": "as-is",
+              "color": "#ffffff",
+              "tone": "ink",
+              "x": 307,
+              "y": 697,
+              "w": 386,
+              "h": 70,
+              "align": "center",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "ink",
+            "variant": "348",
+            "palette": "paper",
+            "font": "Cormorant Garamond:600:i",
+            "case": "lower"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/prelude_and_gigue.mp3"
+      "audio": "/media/audio/prelude-and-gigue.mp3",
+      "score": "/media/scores/Goodhart - Prelude and Gigue.pdf"
     },
     {
       "id": "une-histoire-illustree",
@@ -1115,25 +1746,72 @@
       "place": "",
       "ensemble": "chamber orchestra",
       "duration": "9 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/une-histoire-illustree.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#1f2a22",
+          "mark": {
+            "w": 700,
+            "color": "#2f3d32",
+            "tone": "mark",
+            "x": 500,
+            "y": 200
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Une histoire\nillustrée",
+              "font": "Cormorant Infant:500:n",
+              "size": 34,
+              "lineHeight": 1.3,
+              "tracking": 0.2,
+              "textCase": "upper",
+              "color": "#e6e1cf",
+              "tone": "ink",
+              "x": 60,
+              "y": 60,
+              "w": 307,
+              "h": 88,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for chamber orchestra",
+              "font": "Cormorant Infant:500:n",
+              "size": 100,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#e6e1cf",
+              "tone": "band",
+              "x": 60,
+              "y": 1124,
+              "w": 881,
+              "h": 100,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "inverse",
+            "variant": "973",
+            "palette": "moss",
+            "font": "Cormorant Infant:500:n",
+            "case": "upper"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/une_histoire_illustrée.mp3"
+      "audio": "/media/audio/une-histoire-illustree.mp3",
+      "score": "/media/scores/Goodhart - Une Histoire Illustrée.pdf"
     },
     {
       "id": "altar-of-creation",
@@ -1146,25 +1824,15 @@
       "place": "",
       "ensemble": "narrator, choir, Metasynth, PureData",
       "duration": "6 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/altar-of-creation.png"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/altar_of_creation.mp3"
+      "audio": "/media/audio/altar-of-creation.mp3",
+      "score": "/media/scores/Goodhart - Altar of Creation.pdf"
     },
     {
       "id": "sebastian-s-voodoo",
@@ -1176,25 +1844,15 @@
       "place": "",
       "ensemble": "virtual orchestra",
       "duration": "4 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/sebastian-s-voodoo.jpg",
+        "filter": "brightness(1.4) contrast(0.72) saturate(1.4)"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/sebastians_voodoo.mp3"
+      "audio": "/media/audio/sebastian-s-voodoo.mp3"
     },
     {
       "id": "falling-birds-virtual-messiaen",
@@ -1207,25 +1865,17 @@
       "place": "",
       "ensemble": "PureData",
       "duration": "6 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/falling-birds-virtual-messiaen.png",
+        "size": "100% 115.796%",
+        "position": "53.208% 0%",
+        "filter": "sepia(0.16)"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/falling_birds_virtual_messiaen.mp3"
+      "audio": "/media/audio/falling-birds-virtual-messiaen.mp3"
     },
     {
       "id": "mouvement",
@@ -1237,25 +1887,72 @@
       "place": "",
       "ensemble": "string quartet",
       "duration": "8 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/mouvement.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#2a2f38",
+          "mark": {
+            "w": 420,
+            "color": "#3b4352",
+            "tone": "mark",
+            "x": 650,
+            "y": 877
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Mouvement",
+              "font": "Prata:400:n",
+              "size": 132,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#d9d4c7",
+              "tone": "ink",
+              "x": 115,
+              "y": 285,
+              "w": 770,
+              "h": 132,
+              "align": "center",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for string quartet",
+              "font": "Prata:400:n",
+              "size": 82,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#d9d4c7",
+              "tone": "ink",
+              "x": 167,
+              "y": 427,
+              "w": 667,
+              "h": 90,
+              "align": "center",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "ink",
+            "variant": "599",
+            "palette": "slate",
+            "font": "Prata:400:n",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/mouvement.mp3"
+      "audio": "/media/audio/mouvement.mp3",
+      "score": "/media/scores/Goodhart - Mouvement.pdf"
     },
     {
       "id": "janvier",
@@ -1267,24 +1964,71 @@
       "place": "",
       "ensemble": "piano and orchestra",
       "duration": "8 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/janvier.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#3e2e42",
+          "mark": {
+            "w": 1600,
+            "color": "#000000",
+            "tone": "mark",
+            "x": -962,
+            "y": -120
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "FOR PIANO &\nORCHESTRA",
+              "font": "Fraunces:400:n",
+              "size": 36,
+              "lineHeight": 1.5,
+              "tracking": 0.25,
+              "textCase": "upper",
+              "color": "#c9c7a1",
+              "tone": "ink",
+              "x": 625,
+              "y": 949,
+              "w": 346,
+              "h": 108,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Janvier",
+              "font": "Cinzel:400:n",
+              "size": 178,
+              "lineHeight": 1,
+              "tracking": 0.05,
+              "textCase": "lower",
+              "color": "#ffffff",
+              "tone": "ink",
+              "x": 196,
+              "y": 772,
+              "w": 760,
+              "h": 178,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "column",
+            "variant": "662",
+            "palette": "rose",
+            "font": "Fraunces:400:n",
+            "case": "lower"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
-      }
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
+      },
+      "score": "/media/scores/Goodhart - Janvier (Full Score).pdf"
     },
     {
       "id": "tristan-not-forgotten",
@@ -1297,23 +2041,126 @@
       "place": "",
       "ensemble": "alto, vibraphone, cello, and piano",
       "duration": "4 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/tristan-not-forgotten.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#f7f4ea",
+          "mark": {
+            "w": 150,
+            "color": "#1f3a5f",
+            "tone": "ink",
+            "x": 425,
+            "y": 146
+          },
+          "shapes": [
+            {
+              "id": "corner-top-left",
+              "x": 56,
+              "y": 56,
+              "w": 70,
+              "h": 70,
+              "stroke": "#1f3a5f",
+              "strokeWidth": 2,
+              "sides": [
+                "top",
+                "left"
+              ],
+              "tone": "ink"
+            },
+            {
+              "id": "corner-top-right",
+              "x": 874,
+              "y": 56,
+              "w": 70,
+              "h": 70,
+              "stroke": "#1f3a5f",
+              "strokeWidth": 2,
+              "sides": [
+                "top",
+                "right"
+              ],
+              "tone": "ink"
+            },
+            {
+              "id": "corner-bottom-left",
+              "x": 56,
+              "y": 1168,
+              "w": 70,
+              "h": 70,
+              "stroke": "#1f3a5f",
+              "strokeWidth": 2,
+              "sides": [
+                "bottom",
+                "left"
+              ],
+              "tone": "ink"
+            },
+            {
+              "id": "corner-bottom-right",
+              "x": 874,
+              "y": 1168,
+              "w": 70,
+              "h": 70,
+              "stroke": "#1f3a5f",
+              "strokeWidth": 2,
+              "sides": [
+                "bottom",
+                "right"
+              ],
+              "tone": "ink"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Tristan Not\nForgotten",
+              "font": "Cormorant Infant:500:n",
+              "size": 120,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#1f3a5f",
+              "tone": "ink",
+              "x": 215,
+              "y": 515,
+              "w": 570,
+              "h": 264,
+              "align": "center",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for alto, vibraphone, cello, and piano",
+              "font": "Cormorant Infant:500:n",
+              "size": 24,
+              "lineHeight": 1,
+              "tracking": 0.25,
+              "textCase": "upper",
+              "color": "#1f3a5f",
+              "tone": "ink",
+              "x": 137,
+              "y": 1164,
+              "w": 727,
+              "h": 24,
+              "align": "center",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "frame",
+            "variant": "295",
+            "palette": "indigo",
+            "font": "Cormorant Infant:500:n",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       }
     },
     {
@@ -1326,25 +2173,15 @@
       "place": "",
       "ensemble": "alto sax. and piano",
       "duration": "11 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        146.83,
-        174.61,
-        220,
-        293.66,
-        349.23,
-        440
-      ],
       "cover": {
-        "src": "/content/covers/covers/36.webp"
+        "src": "/media/covers/soliloquy.webp"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/soliloquy.mp3"
+      "audio": "/media/audio/soliloquy.mp3",
+      "score": "/media/scores/Goodhart - Soliloquy.pdf"
     },
     {
       "id": "flute-v-contrabass",
@@ -1357,27 +2194,16 @@
       "place": "",
       "ensemble": "flute and contrabass",
       "duration": "4 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        174.61,
-        220,
-        261.63,
-        349.23,
-        440,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/19.webp",
+        "src": "/media/covers/flute-v-contrabass.webp",
         "size": "100% 100.09%",
         "position": "50% 87.894%"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/flute_v_contrabass.mp3"
+      "audio": "/media/audio/flute-v-contrabass.mp3"
     },
     {
       "id": "moods-for-cello-and-piano",
@@ -1390,25 +2216,72 @@
       "place": "",
       "ensemble": "cello and piano",
       "duration": "5 minutes",
-      "world": "",
-      "note": "",
-      "tones": [
-        130.81,
-        196,
-        261.63,
-        293.66,
-        392,
-        523.25
-      ],
       "cover": {
-        "src": "/content/covers/covers/999.webp"
+        "src": "/media/covers/moods-for-cello-and-piano.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#1f2a22",
+          "mark": {
+            "w": 1700,
+            "color": "#2f3d32",
+            "tone": "mark",
+            "x": 0,
+            "y": -200
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Moods for Cello  and Piano",
+              "font": "Prata:400:n",
+              "size": 87,
+              "lineHeight": 1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#e6e1cf",
+              "tone": "ink",
+              "x": -457,
+              "y": 597,
+              "w": 1134,
+              "h": 100,
+              "align": "left",
+              "valign": "middle",
+              "rotate": -90
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for cello and piano",
+              "font": "Prata:400:n",
+              "size": 30,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#e6e1cf",
+              "tone": "ink",
+              "x": 670,
+              "y": 1201,
+              "w": 270,
+              "h": 33,
+              "align": "right",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "spine",
+            "variant": "447",
+            "palette": "moss",
+            "font": "Prata:400:n",
+            "case": "as-is"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "stars": true
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/audio/moods_for_cello_and_piano.mp3"
+      "audio": "/media/audio/moods-for-cello-and-piano.mp3"
     }
   ]
 }

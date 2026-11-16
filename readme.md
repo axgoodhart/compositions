@@ -2,20 +2,21 @@
 
 This is the composition gallery with the endlessly scrolling score covers and short background videos when you enter a composition.
 
-Everything a composition shows on the page lives in one data file, [lib/catalog.json](lib/catalog.json). You do not edit it by hand. While the site runs there are two editors: **http://localhost:3000/editlive** edits the real page by clicking and dragging, and **http://localhost:3000/edit** is the same catalog as a form. Both also answer with `.html` on the end.
+Everything a composition shows on the page lives in one data file, [lib/catalog.json](lib/catalog.json). You do not edit it by hand. While the site runs, **http://localhost:3000/editlive** is the editor: the real page in the middle, the list of pieces on the left, the controls on the right. It also answers to `/editlive.html`.
 
 ## Pick the thing you came here to do
 
 | I want to… | Go here |
 | --- | --- |
 | Open the site and work on it | [Start the site](#start-the-site) |
-| Change things by clicking and dragging on the page itself | [The live editor](#the-live-editor) |
-| Change a title, year, blurb, cover crop, or room image in a form | [The table editor](#the-table-editor) |
+| Change anything on a piece | [The editor](#the-editor) |
+| Make the video end on the room without a visible cut | [Matching the video to the room](#matching-the-video-to-the-room) |
 | Add a brand-new composition | [Add a composition](#add-a-composition) |
+| Keep a piece in the editor but off the site | [Hide a piece](#hide-a-piece) |
+| Put a moving background inside a composition | [Room video](#room-video) |
+| Tidy the files in `public` | [Organize the files](#organize-the-files) |
 | Pull in pieces from the old player's tracks.json | [Import the old catalog](#import-the-old-catalog) |
 | Know what a field does | [Field reference](#field-reference) |
-| Attach a video, or change its timing, speed, or look | [Video settings](#video-settings) |
-| Attach a real recording to the in-room player | [Audio](#audio) |
 | Make a video replay while experimenting | [The cooldown switch](#the-cooldown-switch) |
 | Change the cover scroll speed | [Cover scrolling](#cover-scrolling) |
 | Figure out why nothing happened | [Something is not working](#something-is-not-working) |
@@ -38,7 +39,7 @@ npm run dev
 
 **3. Leave that Terminal window running.** Open the `Local` address it prints in your browser. It is usually `http://localhost:3000`; use the printed address if the port is different.
 
-**4. Open an editor** in a second tab: `http://localhost:3000/editlive` to work on the page itself, or `http://localhost:3000/edit` for the form. Save there and the gallery tab updates by itself.
+**4. Open the editor** in a second tab: `http://localhost:3000/editlive`. Save there and the gallery tab updates by itself.
 
 **To stop the site:** click the running Terminal window and press **Control+C**.
 
@@ -48,95 +49,123 @@ npm run dev
 npm install
 ```
 
-## The live editor
+## The editor
 
-`http://localhost:3000/editlive` shows the real page with a small glass panel floating over it. Neither exists on the deployed site.
+`http://localhost:3000/editlive` only exists while `npm run dev` runs. The deployed site has none of it.
+
+**Left: the pieces.** Every composition in page order, with its cover. Click one to go there. Drag one to reorder. Type in the box at the top to jump: a number, or part of a title, then Return. The `/` key puts you in that box.
+
+**Middle: the page**, exactly as visitors see it, except that you can change it.
 
 | Do this on the page | What changes |
 | --- | --- |
-| Click any text and type | The title lines, year, place, ensemble, duration, and inside a composition the eyebrow, paragraph and meta line. Enter or clicking away keeps it, Escape puts it back. An empty line is removed; the panel has **Add a title line**. |
-| Drag the big cover | Which part of the sheet shows (`cover.position`). |
-| Scroll over the big cover | Zoom in and out (`cover.size`). It never gets smaller than the cover box. |
-| Click the big cover | Choose or upload a different image. |
-| Press play, then drag the empty background while the video shows | Where the video is cropped (`intro.position`). |
-| Drag the empty background while the still room shows | Where the room image is cropped (`room.position`). |
+| Click any text and type | Title lines, year, place, ensemble, duration. Return keeps it, Escape puts it back. An empty title line is removed. |
+| Drag the big cover | Which part of the image shows. |
+| Scroll over the big cover | Zoom. It never gets smaller than the cover box. |
+| Click the big cover | Choose a different image. |
+| Inside a composition, drag the empty background | Moves the room image, or the video while it shows. |
+| Inside a composition, scroll over the empty background | Zooms the room image, or the video while it shows. |
+| Drop a file anywhere on the page | An image becomes the cover (in the gallery) or the room image (inside a composition). A video becomes the intro, or the room video when the Room section is open. A recording becomes the sound. A PDF becomes the score. |
 
-The panel holds the rest. It drags by its title bar and remembers where you left it.
+**Right: the controls**, one section open at a time. Opening a section moves the page to where you can see the result: Room, Video and Score enter the composition, Cover leaves it.
 
-| Panel section | Shows | Controls |
-| --- | --- | --- |
-| Composition | always | title, id, order arrows, **Home**, add, duplicate, delete |
-| Cover, Gallery | in the gallery | whole image or crop, zoom, look sliders, backdrop image, intro cooldown |
-| Room | inside a composition | image, color, stars, tint (direction, color, strength), look sliders |
-| Intro video | inside a composition | on/off, video file, fill or whole frame, start, play, speed, delay, tint, look |
-| Sound | inside a composition | the recording |
-
-**Look** is the CSS `filter` as sliders: brightness, contrast, saturation, grayscale, sepia, blur. **Tint** is the overlay gradient as a direction, a color and a strength; anything it cannot express shows as **custom** CSS.
-
-Inside a composition the video keeps looping so you can place it. Untick **Show** to see the still room, or press **Replay timing** to watch the real delay, play and stop once.
-
-**Undo and redo** are ⌘Z and ⇧⌘Z, or the arrows in the panel. Every drag, slider release and text edit is one step. **Save** is ⌘S. Nothing is written until you save.
-
-### Matching the video to the room
-
-When the video closes, the still room appears underneath it. If the two differ, the visitor sees a cut. In the Intro video section, tick **Hold the last frame and compare it with the room**. The video parks on the frame the visitor sees last, and a vertical line appears on the page: left of it is that frame, right of it is the room. Drag the line, or use the slider. **Blend** fades the frame over the room instead, which shows color differences as ghosting. **Hold to hide the frame** flips between the two while pressed.
-
-Three buttons close the gap:
-
-| Button | What it does |
+| Section | Controls |
 | --- | --- |
-| Use the frame as the room image | Saves the frame as a JPEG in `public/images`, sets it as the room image, and copies the video's crop position so they line up. The cut becomes invisible. |
-| Match the room color | Sets the room's flat color to the frame's average color. Useful for gradient-only rooms. |
-| Copy tint and look to the room | Copies the video's overlay and filter onto the room. |
+| Piece | title lines, id, year, place, ensemble, duration, players · Home, Hidden, Duplicate, Delete |
+| Cover | image · whole image or crop · zoom · adjust (look) |
+| Room | image · video · zoom · color · tint · adjust (look) |
+| Video | on/off · show, replay · file · fill or whole frame · zoom · from, to, speed, delay, fade · compare last frame · adjust (tint, look) |
+| Sound | the recording |
+| Score | the PDF for the in-room score reader |
+| Site | gallery backdrop · intro cooldown · import · preview and organize the files |
 
-Changing **start**, **play** or **speed** while holding moves the held frame, so you can also pick a better frame to end on.
+**Look** is the CSS `filter` as sliders. **Tint** is the overlay gradient as a direction, a color and a strength; **css** takes any gradient by hand. Both sit behind **adjust**; a dot on it means something is set.
 
-## The table editor
+**Files.** Every image, video, recording and score opens the same picker in the right column: a search box, one group per folder, pictures at their real proportions, and a number on anything already in use (hover it to see where). The `+` adds files from your disk, or drop them anywhere on the picker. New files land under `public/media` by what they are for: `covers`, `rooms`, `intros`, `audio`, `scores`, `site`. [Organize the files](#organize-the-files) renames each one after the piece that uses it.
 
-`http://localhost:3000/edit` only exists while `npm run dev` is running. The deployed site does not have it.
+**Undo and redo** are ⌘Z and ⇧⌘Z. Every drag, slider release and text edit is one step, and so is Delete, so there is no confirmation. **Save** is ⌘S or the button. If the button says **Fix**, something is missing; click it and the editor takes you to the field and says what. Nothing is written until you save.
 
-| Column | What it does |
+**Hide** (or the `\` key) puts the panels away so you can see the page alone. **Panels** brings them back.
+
+## Matching the video to the room
+
+When the video closes it fades into the still room. If the two differ, the visitor sees the join. In the Video section, turn on **compare last frame**. The video parks on the frame the visitor sees last and a vertical line appears on the page: left of it is that frame, right of it is the room. Drag the line or use the slider. **blend** fades the frame over the room instead, which shows color differences as ghosting. **peek** hides the frame while pressed.
+
+Then fix what you see, with the comparison still up:
+
+| To… | Do this |
 | --- | --- |
-| Left | **Site settings** (home piece, gallery backdrop, intro cooldown) and the list of compositions in page order. Arrows reorder, **Add** makes a blank piece, **Import…** pulls from the old catalog. |
-| Middle | The form for the selected piece: Text, Cover, Room, Intro video, Sound. |
-| Right | A live preview of the cover, the room with its title, and the intro video. |
+| Move the room image | Drag the page on the room side of the line, or use **room zoom** |
+| Move the video | Drag the page on the frame side of the line, or use **zoom** |
+| End on a different frame | Move **to**. The held frame follows. **from** and **speed** keep that end frame fixed. |
+| Soften the join | **fade** is how long the last frame takes to dissolve into the room |
+| Give up and let the video win | **frame → room image** saves the frame as a JPEG and makes it the room. **room color ← frame** sets the flat color to the frame's average. **look → room** copies the video's tint and look onto the room. |
 
-**Saving.** The Save button (or ⌘S) writes [lib/catalog.json](lib/catalog.json). The gallery tab reloads on its own. Save stays grey while the red list at the top shows a problem, such as two pieces with the same id or a video with no file.
-
-**Choosing files.** Every image, video, and recording field has a **Choose** button. It opens everything already in `public/`, and you can drop new files on it to add them. Images and videos land in `public/images`, recordings in `public/audio`. You can also type a path: files inside `public/` are written without `public`, so `public/content/covers/raven-room.png` is `/content/covers/raven-room.png`.
-
-**Cropping a cover from a sheet.** Under Cover, pick **Crop from a sheet**, then drag the white frame over the part you want. Drag its corner or scroll to resize. The frame keeps the cover's shape. **Whole image** uses the file as is.
+Compare stays on while you move between pieces, so you can check several in a row.
 
 ## Add a composition
 
-1. Click **Add** at the bottom of the left column.
-2. Fill in the text. Give it a short `id` made of letters, numbers, and dashes.
-3. Choose a cover image, then a room image or an overlay gradient.
-4. Optionally turn on **Play a video on entry** and choose a recording under Sound.
+1. Click **Add a piece** at the bottom of the left column. It appears at the end, selected.
+2. Type the title lines on the page or in the Piece section. Give it a short `id` of letters, numbers and dashes.
+3. Choose a cover image, then a room image or a tint.
+4. Optionally turn the video on and choose a recording under Sound.
 5. Save. The `01—03` counts in the header and footer update by themselves.
 
-**Duplicate** and **Delete** sit at the top of the form. Deleting a piece never deletes its files.
+Deleting a piece never deletes its files, and ⌘Z brings it back.
+
+## Hide a piece
+
+In the Piece section, **Hidden** keeps the piece in the editor and leaves it off the site: visitors never see it in the gallery, the counts, the dots or the player. The editor still shows it everywhere, dimmed in the left column with an eye icon, and the page wears a small *hidden on the site* tag while you are on it. Press **Hidden** again to bring it back. The Home piece cannot be hidden; Save says **Fix** until you pick another Home or unhide it.
+
+## Room video
+
+A room can move. In the Room section, **video** chooses a silent clip that loops behind the composition's text while you are inside it; the room **image**, if there is one, shows until the video is ready. Dragging and scrolling the empty background moves and zooms the video just like the image, and the tint and look apply to it too. Clear the video to go back to the still room. Visitors who have asked their system for reduced motion see the first frame, unmoving.
+
+Where it sits with the intro: the intro plays on top, then dissolves into the moving room.
+
+## Organize the files
+
+Files pile up: screenshots with long names, copies of the same recording in two folders, images nothing uses any more. **Organize** files everything under `public/media`, named after the piece that uses it:
+
+| Folder | What goes there |
+| --- | --- |
+| `media/covers` | cover images, as `raven.webp` |
+| `media/rooms` | room images and room videos, as `raven.png` and `raven-video.mp4` |
+| `media/intros` | intro videos |
+| `media/audio` | recordings |
+| `media/site` | the gallery backdrop and the logomark |
+| `media/scores` | scores, as `raven.pdf`; PDFs nothing uses keep their names |
+| `media/library` | images, videos and recordings nothing uses yet, names kept |
+
+Byte-identical copies are removed so one stays; nothing else is ever deleted. The catalog is rewritten to the new paths, and folders left empty disappear. Files named in the code (the logomark) stay where they are, and anything that is not media (`.txt`, `.json`, `.psd`) is listed and left alone.
+
+Two ways to run it, both show the full list of what moves:
+
+- In the editor, under **Site**: **preview** shows the plan, **organize** carries it out and reloads the catalog. Save first; the button waits while there are unsaved changes.
+- In Terminal, from the project folder: `npm run media` shows the plan, `npm run media -- --apply` carries it out.
+
+Run it whenever you like. A file already in its place is left alone, so the second run says *Everything is already in place*.
 
 ## Import the old catalog
 
-**Import…** reads the older player's `tracks.json` and makes one composition per family (so the four Raven movements become one piece). It copies the family's cover into `public/content/covers/covers`. Tick the box to also copy the recordings, which are large. Nothing touches the catalog until you Save, and families whose id already exists are skipped, so running it twice is safe.
+Under **Site**, **Import** reads the older player's `tracks.json` and makes one composition per family (so the four Raven movements become one piece). It copies the family's cover into `public/media/covers`. Tick **copy recordings** to also copy the audio, which is large. Nothing touches the catalog until you Save, and families whose id already exists are skipped, so running it twice is safe.
 
-Imported pieces have empty `place`, `world`, and `note` fields and a plain dark room. Fill those in afterwards.
+Imported pieces have an empty `place` and a plain dark room.
 
 ## Field reference
 
-The editor labels match these names. Every file path is a URL without `public`.
+The editor labels match these names. Every file path is a URL without `public`: `public/media/covers/raven.webp` is `/media/covers/raven.webp`.
 
 ### Text fields
 
 | Field | What it is |
 | --- | --- |
 | `id` | Short unique name. Used in storage and for `homeId`. Letters, numbers, dashes. |
-| `title` | Full title, used in labels and captions. |
-| `lines` | The title split into display lines, e.g. `["The Raven", "Cantata"]`. |
-| `year`, `place`, `ensemble`, `duration` | Shown under the title in the gallery and inside the composition. |
-| `world` | Small eyebrow text inside the composition, e.g. `"Inside the raven’s chamber"`. |
-| `note` | The paragraph inside the composition. |
+| `lines` | The title as display lines, e.g. `["The Raven", "Cantata"]`. |
+| `title` | The lines joined with spaces. Kept up to date by the editor; used in labels and captions. |
+| `year`, `place`, `ensemble`, `duration` | Shown under the title in the gallery and inside the composition. The first number in `year` and `duration` drives the YEAR and DURATION sorts. |
+| `players` | Number of performers, e.g. `4`. Not shown; drives the PLAYERS sort. Pieces without it sort last. |
+| `hidden` | `true` keeps the piece in the editor and off the site. Leave out to show it. |
 
 ### Cover
 
@@ -144,12 +173,10 @@ The editor labels match these names. Every file path is a URL without `public`.
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `src` | `"/content/covers/reference.png"` | The image file. All three current covers are cropped from this one sheet. |
-| `size` | `"400% 183.08%"` | How big the sheet is relative to the cover box. Leave out for `cover`. |
-| `position` | `"26.04% 27.09%"` | Which part of the sheet shows. Leave out for `center`. |
-| `filter` | `"grayscale(1)"`, `"sepia(.4)"`, `"contrast(1.2)"` | CSS filter on the cover. Leave out for none. |
-
-For a cover that is its own image file, set `src` to that file and leave `size` and `position` out.
+| `src` | `"/media/covers/raven.webp"` | The image file. |
+| `size` | `"400% 183.08%"` | How big the image is relative to the cover box. Leave out for `cover`. |
+| `position` | `"26.04% 27.09%"` | Which part shows. Leave out for `center`. |
+| `filter` | `"grayscale(1)"`, `"sepia(.4)"` | CSS filter on the cover. Leave out for none. |
 
 ### Room
 
@@ -157,12 +184,13 @@ For a cover that is its own image file, set `src` to that file and leave `size` 
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `src` | `"/content/covers/raven-room.png"` | The room image. Leave out for a gradient-only room. |
-| `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the image. With no `src`, this is the whole backdrop. Several layers go in one string separated by commas. |
-| `position` | `"50% 100%"` | Which part of the image stays in view when it is cropped to the screen. Leave out for center. |
+| `src` | `"/media/rooms/raven.png"` | The room image. Leave out for a tint-only room. |
+| `video` | `"/media/rooms/raven-video.mp4"` | A silent looping video over the image, shown inside the composition. Uses the same `size`, `position` and `filter`. Leave out for a still room. |
+| `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the image. With no `src`, this is the whole backdrop. |
+| `size` | `"140% 125%"` | How big the image is relative to the screen. Leave out for `cover`. |
+| `position` | `"50% 100%"` | Which part stays in view. Leave out for center. |
 | `color` | `"#070d19"` | Flat color behind everything. Leave out for near-black. |
 | `filter` | `"grayscale(1)"`, `"brightness(.8)"` | CSS filter on the image and overlay. Leave out for none. |
-| `stars` | `true` | Adds the twinkling star layer. Leave out for none. |
 
 ### Video settings
 
@@ -170,34 +198,58 @@ For a cover that is its own image file, set `src` to that file and leave `size` 
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `src` | `"/content/covers/Ravenical.m4v"` | The video file. Must be a browser-friendly H.264 MP4 or M4V. |
+| `src` | `"/media/intros/raven.m4v"` | The video file. Must be a browser-friendly H.264 MP4 or M4V. |
 | `start` | `12.5` | Seconds into the file where playback begins. Leave out for `0`. |
-| `play` | `4` | Seconds the video stays on screen. Required. The file ending sooner also stops it. |
-| `speed` | `1`, `0.5`, `2` | Playback rate. `0.5` is half speed, `2` is double. Leave out for `1`. |
+| `play` | `4` | Seconds the video stays on screen. Required. The editor derives it from **from**, **to** and **speed**. |
+| `speed` | `1`, `0.5`, `2` | Playback rate. Leave out for `1`. |
 | `delay` | `1.5` | Seconds after entering before the video appears. Leave out for `0`. |
+| `fade` | `1.2` | Seconds the last frame takes to dissolve into the room. Leave out for `0.4`. |
 | `fit` | `"cover"` or `"contain"` | `cover` fills the screen and may crop edges. `contain` shows the whole frame. |
-| `position` | `"50% 100%"` | Crop focus when `fit` is `cover`. `50% 50%` centers it; `50% 0%` favors the top. |
+| `zoom` | `1.4` | Scale on top of `fit`. Leave out for `1`. |
+| `position` | `"50% 100%"` | Crop focus. `50% 50%` centers it; `50% 0%` favors the top. |
 | `filter` | `"grayscale(1) contrast(1.2)"` | CSS filter on the video. Leave out for none. |
-| `overlay` | `"linear-gradient(90deg,#070d1980,transparent)"` or `"#00000040"` | A tint over the video, useful for keeping text readable. Leave out for none. |
+| `overlay` | `"linear-gradient(90deg,#070d1980,transparent)"` | A tint over the video. Leave out for none. |
 
 `play` counts screen time, so `play: 4, speed: 2` shows eight seconds of footage in four seconds.
 
 Videos play **silently**, behind the composition's text and controls. Leaving the composition stops its video. Missing or unplayable videos fall back to the still room.
 
-To style the whole page only while a video is showing, use `.music-room.intro-playing` in [app/globals.css](app/globals.css). For example, `.music-room.intro-playing .immersive-heading { opacity: .5; }`.
+To style the whole page only while a video is showing, use `.music-room.intro-playing` in [app/globals.css](app/globals.css).
+
+### Generated covers
+
+Pieces still showing the logomark (`logomark.webp`) have no cover yet. In the editor, Cover → **generate** (or **edit**, once a piece has a generated cover) opens the cover studio over the stage. The cover becomes a document edited in place: drag the title, subtitle or mark; drag the corner handle to resize; the small bar above a selection toggles bold, italic, capitals and lowercase, adjusts tracking and changes the font family; bold and italic are only offered where the family has those faces (the `weights` and `italics` columns of `coverFonts`). The panel beside it edits the text, fonts and colours, with palette chips that recolour everything at once. **Random** proposes eight covers, each a different *composition* (a design idea that decides where the title, subtitle and mark go, how big, and how they relate), from one shuffle to the next; click one to start from it. **Saved** keeps variants of this piece's cover in the catalog. **Use this cover** renders the document to `public/media/covers/generated/<id>-<hash>.webp` and stores the document with the piece, so the cover can be edited again later; organizing the files moves it up to `media/covers/<id>.webp`. The footer button generates every coverless piece at once, each with a composition, font and palette fixed by its id. Arrow keys nudge, Backspace removes a text, ⌘Z undoes inside the studio, Escape deselects and then closes.
+
+Everything tunable lives in `lib/cover-looks.ts`:
+
+| Block | What it does |
+| --- | --- |
+| `coverFonts` | One line per family: Google Fonts name, default weight and italic, a `style` tag (`italic`, `didone`, `display`, `caps`, `sans`), the weights the family offers and whether it has italics. Add or delete lines freely. |
+| `coverLayouts` | The eighteen compositions, each with the font styles and title cases that suit it. Each is a `case` in `compose()` in `app/api/cover/route.tsx`, placing text boxes, shapes and the mark into a document; its own choices (which edge, how big a crop, which corner) come from the cover's variant seed. |
+| `coverPalettes` | One line per palette: background, title ink, mark tint, band colour (also the accent) and the type colour on the band. |
+| `allowedStyles`, `allowedLayouts`, `allowedPalettes`, `allowedCases` | Leave empty to use everything, or list what the generator may use, e.g. `allowedStyles = ["italic", "didone"]`. |
+
+Text is fitted from the font's own advance widths, so titles fill the space they are given exactly. The studio draws the same document in HTML with the Google Fonts stylesheet; the saved image is rendered by Next's `ImageResponse` and `sharp`, both of which ship with the project. Fonts download the first time they render and are cached in `node_modules/.cache/cover-fonts`, so first use needs a network connection.
 
 ### Audio
 
 | Field | What to put there | What happens |
 | --- | --- | --- |
-| `audio` | `"/audio/raven.mp3"` | A real recording for the in-room play button. The label changes to `RECORDING`. |
-| `tones` | `[146.83, 174.61, 220]` | Pitches in Hz for the synthesized ambient preview, used only when there is no `audio`. |
+| `audio` | `"/media/audio/raven.mp3"` | A recording for the in-room play button. Without it there is no player. |
 
-Put audio files in `public/audio` (create the folder) and reference them as `/audio/…`.
+Recordings live in `public/media/audio`, referenced as `/media/audio/…`.
+
+### Score
+
+| Field | What to put there | What happens |
+| --- | --- | --- |
+| `score` | `"/media/scores/raven.pdf"` | A PDF for the in-room score reader. Without it there is no **score** button. |
+
+Inside a composition, **score** opens the reader over the room: the page in the middle, the pages already read piled at the left, the next page at the right. Arrow keys, Space, a swipe, or a click on either pile turns the page; Escape or **close the score** returns to the room. The reader is `components/score-reader.tsx` and `components/score-reader.css`, with the motion and the 3D poses in the tuning blocks at the top of each. It draws PDFs with pdf.js 3.11.174, served from `public/pdfjs`.
 
 ## The cooldown switch
 
-In the editor, open **Site settings** and change **Intro cooldown (hours)**.
+Under **Site**, change **intro cooldown**.
 
 | Value | Behavior |
 | --- | --- |
@@ -228,30 +280,32 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 | What you see | What to do |
 | --- | --- |
 | The site will not open | Start `npm run dev` in the project folder, leave Terminal running, and use the `Local` address it prints. |
-| Changes do not appear | Save the file. Confirm the browser address matches the running server. Refresh once. If needed, Control+C and `npm run dev` again. |
-| Save is grey | Read the red list (top of the left column, or top of the live editor's panel) and fix what it names. |
-| `/edit` or `/editlive` shows a 404 | The editors only exist in development mode. Start `npm run dev` and use its `Local` address. |
-| Clicking text in the live editor does nothing | Text is only editable while the inspector panel is present. If the page was opened at `/` instead of `/editlive`, switch tabs. |
+| Changes do not appear | Save in the editor. Confirm the browser address matches the running server. Refresh once. If needed, Control+C and `npm run dev` again. |
+| The Save button says Fix | Click it. The editor goes to the field and the message says what is missing. |
+| `/editlive` shows a 404 | The editor only exists in development mode. Start `npm run dev` and use its `Local` address. |
+| Clicking text on the page does nothing | Text is only editable at `/editlive`, not at `/`. |
 | Arrow keys move the gallery while typing | Click into the text first; keys only browse when nothing is being edited. |
-| A red error appears after editing by hand | If you changed `lib/catalog.json` yourself, check for a missing comma, quote, or bracket. Undo and save to get back. |
-| A video does not repeat | Set the intro cooldown to `0` in Site settings, save, return to the room, then enter the piece again. |
-| A video never appears | Confirm you entered the composition, rather than only selected it. Check `intro.src`. Check the browser's reduced-motion setting. |
-| You suspect a file path | Open its URL directly, for example `http://localhost:3000/content/covers/Ravenical.m4v`. A missing-file page means the path or filename is wrong. |
-| You changed `start` and now see no video | `start` must be before the file's end; `play` must be greater than zero. |
+| A red error appears after editing by hand | If you changed `lib/catalog.json` yourself, check for a missing comma, quote, or bracket. |
+| A video does not repeat | Set the intro cooldown to `0` under Site, save, return to the room, then enter the piece again. |
+| A video never appears | Confirm you entered the composition, rather than only selected it. Check the Video section has a file. Check the browser's reduced-motion setting. |
+| You suspect a file path | Open its URL directly, for example `http://localhost:3000/media/intros/raven.m4v`. A missing-file page means the path or filename is wrong. |
+| A piece is missing from the site but the editor has it | It is marked **Hidden** in the Piece section. |
+| The room video does not move | Check the browser's reduced-motion setting; the first frame shows instead. Check the file plays at its URL. |
+| You changed **from** and now see no video | **from** must be before the file's end; the clip must have a length. |
 | The file exists but will not play | Its encoding needs browser support. Use an H.264 MP4; renaming an extension does not convert it. |
-| The picture is cropped | Set Fit to `contain`, or change Position to move the crop focus. |
-| The cover shows the wrong part of the sheet | Under Cover, drag the crop frame. |
-| The room is black | `room` needs a `src`, an `overlay`, or both. Check the file path. |
-| There is no sound from the video | Intro videos are intentionally muted. Sound comes from `audio`, or the synth preview when there is none. |
+| The picture is cropped | Choose **whole frame**, or drag the video on the page. |
+| The cover shows the wrong part of the image | Drag the big cover on the page. |
+| The room is black | Room needs an image, a tint, or both. Check the file path. |
+| There is no sound from the video | Intro videos are intentionally muted. Sound comes from the recording under Sound. |
 
 ## Where the other things live
 
 | Thing | File |
 | --- | --- |
-| Everything per composition, plus cooldown, home piece, and gallery backdrop | [lib/catalog.json](lib/catalog.json), edited at `/edit` |
+| Everything per composition, plus cooldown, home piece, and gallery backdrop | [lib/catalog.json](lib/catalog.json), edited at `/editlive` |
 | The field list and types | [lib/compositions.ts](lib/compositions.ts) |
-| The live editor | [app/editlive/live.tsx](app/editlive/live.tsx) and [app/editlive/live.css](app/editlive/live.css); the on-page handles live in [components/composition-browser.tsx](components/composition-browser.tsx) behind the `editor` prop |
-| The table editor | [app/edit/editor.tsx](app/edit/editor.tsx), [app/edit/editor.css](app/edit/editor.css), shared pieces in [app/edit/shared.tsx](app/edit/shared.tsx), and the API routes under [app/api](app/api) |
+| The editor | [app/editlive/live.tsx](app/editlive/live.tsx), [app/editlive/picker.tsx](app/editlive/picker.tsx), [app/editlive/shared.tsx](app/editlive/shared.tsx), [app/editlive/live.css](app/editlive/live.css); the on-page handles live in [components/composition-browser.tsx](components/composition-browser.tsx) behind the `editor` prop; the API routes under [app/api](app/api) |
+| The file organizer and the `public/media` layout | [lib/media.ts](lib/media.ts), run by [scripts/organize-media.ts](scripts/organize-media.ts) and the Site section; the folder names in [lib/assets.ts](lib/assets.ts) |
 | Layout, cover scrolling, shared playback styling | [app/globals.css](app/globals.css) |
 | Page logic | [components/composition-browser.tsx](components/composition-browser.tsx) |
 | Cover artwork element | [components/score-artwork.tsx](components/score-artwork.tsx) |
@@ -260,7 +314,7 @@ Visitors with reduced motion enabled get near-instant cover transitions and stil
 
 ## Development mode versus the production version
 
-**While editing:** use `npm run dev` and an editor at `/editlive` or `/edit`. Saving there updates the gallery automatically. The editors are not part of the production build.
+**While editing:** use `npm run dev` and the editor at `/editlive`. Saving there updates the gallery automatically. The editor is not part of the production build.
 
 **To run a production build:** stop the development server with Control+C, then run these one at a time:
 

@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Alexander Goodhart — Sound & Space',
-  description: 'An immersive collection of compositions by Alexander Goodhart. Explore music for voices, piano, and chamber orchestra, each with a world of its own.',
+  title: 'Alex Goodhart – Composition Gallery',
+  description: 'A place to browse my compositions.',
   generator: 'v0.app',
   icons: {
     icon: [

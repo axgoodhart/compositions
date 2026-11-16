@@ -1,0 +1,471 @@
+/* ==== SCORE READER ==== ported from pirouette/PIROUETTE.html; lengths are relative to the reader's own box (cqw, cqh), so it fits the room and the editor's scaled page */
+
+/* ==== TUNE HERE ==== */
+.score-reader {
+    --veil: #05080c80; /* how far the room dims behind the pages */
+    --ink: #ffffffd9; /* readout and loading text */
+    --ink-dim: #ffffff90; /* side captions */
+    --line: #ffffff70; /* button outlines */
+    --chip: #101214b3; /* fill behind the controls, so they read over white paper */
+    --sheet-pose: rotateX(23deg) translateY(300px) translateX(0px) translateZ(710px) scale(.91); /* the centre page from page 2 on */
+    --sheet-settle: 1s; /* time the page takes to reach that pose */
+    --history-pose: translateY(20cqh) translateX(-10px) rotate(-30deg) rotateX(60deg) rotateY(36deg); /* the pile of read pages */
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+/* ==== IN THE ROOM ==== */
+.score-button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    font-size: 30px;
+    font-weight: 200;
+    line-height: 1.2;
+}
+
+.score-button>span {
+    display: grid;
+    place-items: center;
+    width: 31px;
+    height: 31px;
+    border: 1px solid #ffffff70;
+    border-radius: 50%;
+    transition: background .3s, transform .3s;
+}
+
+.score-button:hover>span {
+    transform: translateX(5px);
+    background: #fff2;
+}
+
+.immersive-content>*,
+.sort {
+    transition: opacity .4s;
+}
+
+.room-footer {
+    transition: bottom .7s cubic-bezier(.22, .8, .2, 1), opacity .4s;
+}
+
+.reading .immersive-content>*,
+.reading .sort,
+.reading .room-footer {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.score-reader {
+    position: absolute;
+    inset: 0 112px 0 0;
+    z-index: 11; /* over the site header, under the player bar and sidebar */
+    container: score-reader / size;
+    overflow: clip;
+    color: var(--ink);
+    background: var(--veil);
+    animation: reader-in .6s both;
+}
+
+.player-out .score-reader {
+    bottom: 68px;
+}
+
+.score-reader .back-button {
+    z-index: 40;
+    margin: -9px 0 0 -14px;
+    padding: 9px 16px 9px 14px;
+    border-radius: 999px;
+    background: var(--chip);
+    opacity: 1;
+}
+
+.score-reader [hidden] {
+    display: none !important;
+}
+
+.score-reader .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@keyframes reader-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ==== STAGE ==== */
+.score-reader .viewer-stage {
+    --toolbar-height: 4.25rem; /* band left clear under the site header */
+    position: absolute;
+    inset: var(--toolbar-height) 0 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 74cqw) minmax(0, 1fr);
+    align-items: center;
+    padding: 0 0 5.5rem;
+    perspective: 110rem;
+    touch-action: pan-y pinch-zoom;
+}
+
+.score-reader .center-sheet {
+    z-index: 5;
+    grid-column: 2;
+    width: min(120%, 56cqh);
+    aspect-ratio: .773;
+    align-self: center;
+    justify-self: center;
+    transition: all var(--sheet-settle);
+}
+
+.score-reader .center-sheet.begin {
+    transform: var(--sheet-pose);
+}
+
+.score-reader .center-sheet:focus {
+    outline: none;
+}
+
+.score-reader .paper-surface {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.score-reader .page-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+.score-reader .page-canvas.is-visible {
+    opacity: 1;
+}
+
+.score-reader .page-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: .4rem;
+    font-size: .9rem;
+    letter-spacing: .08em;
+    text-align: center;
+}
+
+.score-reader .loading-clef {
+    font-family: Georgia, serif;
+    font-size: clamp(3rem, 10cqw, 5rem);
+    line-height: 1;
+}
+
+/* ==== SIDE STACKS ==== filters and offsets are mirrored in score-reader.tsx */
+.score-reader .side-stack {
+    position: relative;
+    z-index: 4;
+    display: none;
+    width: clamp(5.5rem, 16cqw, 14rem);
+    aspect-ratio: .773;
+    perspective: 60rem;
+}
+
+.score-reader .side-stack:disabled {
+    pointer-events: none;
+}
+
+.score-reader .history-stack {
+    grid-column: 1;
+    justify-self: center;
+    transform-style: preserve-3d;
+    transform: var(--history-pose);
+}
+
+.score-reader .next-stack {
+    grid-column: 3;
+    justify-self: center;
+    transform: translate(-12%, 19%);
+}
+
+.score-reader .next-stack.is-preparing {
+    opacity: .34;
+}
+
+.score-reader .history-images,
+.score-reader .next-paper {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.score-reader .history-images img,
+.score-reader .next-paper img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    box-shadow: 0 1rem 2rem #00000075;
+}
+
+.score-reader .history-images img {
+    filter: brightness(.42) saturate(.55);
+}
+
+.score-reader .history-images img:nth-child(1) {
+    z-index: 5;
+}
+
+.score-reader .history-images img:nth-child(2) {
+    z-index: 4;
+    filter: brightness(.35) saturate(.5);
+    transform: translate(-.55rem, .52rem);
+}
+
+.score-reader .history-images img:nth-child(3) {
+    z-index: 3;
+    filter: brightness(.28) saturate(.45);
+    transform: translate(-1.1rem, 1.04rem);
+}
+
+.score-reader .next-paper img {
+    z-index: 3;
+    filter: brightness(.76) saturate(.68);
+}
+
+.score-reader .side-caption {
+    position: absolute;
+    top: calc(100% + .7rem);
+    left: 50%;
+    color: var(--ink-dim);
+    font-size: .7rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+}
+
+.score-reader .previous-caption {
+    transform: translateY(40px) translateX(-50%) rotateX(-40deg) scaleY(2) scaleX(1.5);
+}
+
+/* ==== PAGE TRAY ==== */
+.score-reader .page-tray {
+    position: absolute;
+    z-index: 30;
+    right: .75rem;
+    bottom: .75rem;
+    left: .75rem;
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, 1fr) 3.25rem;
+    min-height: 20px;
+    align-items: center;
+    border: 1px solid #ffffff2e;
+    border-radius: 999px;
+    opacity: .3;
+    box-shadow: 0 1rem 3rem #0000007a, inset 0 1px 0 #ffffff1c;
+    transition: all .2s ease;
+}
+
+.score-reader .page-tray:hover,
+.score-reader .page-tray:focus-within {
+    opacity: 1;
+}
+
+.score-reader .tray-button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    justify-self: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--chip);
+    transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+}
+
+.score-reader .tray-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.65;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.score-reader .tray-button:active {
+    transform: scale(.94);
+}
+
+.score-reader .tray-button:disabled {
+    border-color: transparent;
+    cursor: not-allowed;
+    opacity: .4;
+}
+
+.score-reader .document-label {
+    min-width: 0;
+    text-align: center;
+}
+
+.score-reader .document-label strong,
+.score-reader .document-label span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.score-reader .document-label strong {
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 1px 4px #000c;
+}
+
+.score-reader .document-label span {
+    width: min-content;
+    margin-top: .08rem;
+    padding: 3px 18px;
+    border-radius: 20px;
+    background: var(--chip);
+    font-size: .69rem;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+}
+
+.score-reader .viewer-status {
+    position: absolute;
+    z-index: 55;
+    top: 5rem;
+    right: .75rem;
+    max-width: min(24rem, calc(100cqw - 2rem));
+    padding: .45rem .7rem;
+    border-radius: .4rem;
+    background: #0f1012e6;
+    font-size: .9rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-.35rem);
+    transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+
+.score-reader .viewer-status:not(:empty) {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==== PAGE-TURN CARDS ==== on <body>, clipped to the reader by score-reader.tsx */
+.turn-layer {
+    position: fixed;
+    z-index: 150;
+    inset: 0;
+    pointer-events: none;
+}
+
+.turn-card {
+    position: fixed;
+    display: block;
+    max-width: none;
+    object-fit: contain;
+    transform-origin: 0 0;
+    will-change: left, top, width, height, transform, filter, opacity;
+}
+
+@media (hover: hover) {
+    .score-reader .tray-button:not(:disabled):hover {
+        border-color: #fff;
+        background: #2c2f34;
+        transform: translateY(-.1rem);
+    }
+    .score-reader .side-stack:not(:disabled):hover .next-paper,
+    .score-reader .side-stack:not(:disabled):hover .history-images {
+        transform: translateY(-.35rem);
+    }
+}
+
+/* ==== READER WIDTHS ==== Pirouette's window breakpoints, measured on the reader's box */
+@container score-reader (min-width: 40rem) {
+    .score-reader .viewer-stage {
+        grid-template-columns: minmax(6rem, 1fr) minmax(19rem, min(64cqw, 37rem)) minmax(6rem, 1fr);
+        padding-right: .75rem;
+        padding-left: .75rem;
+        perspective: 2000px;
+    }
+    .score-reader .side-stack {
+        display: block;
+    }
+    .score-reader .page-tray {
+        right: 14%;
+        left: 14%;
+    }
+}
+
+@container score-reader (min-width: 64rem) {
+    .score-reader .viewer-stage {
+        --toolbar-height: 4.75rem;
+        grid-template-columns: minmax(11rem, 1fr) minmax(25rem, min(45cqw, 41rem)) minmax(11rem, 1fr);
+        padding: 0 clamp(2rem, 4cqw, 5rem) 5rem;
+    }
+    .score-reader .center-sheet {
+        width: min(120%, 59cqh);
+    }
+    .score-reader .next-stack {
+        transform: translate(-17%, 20%);
+    }
+    .score-reader .page-tray {
+        right: 20%;
+        left: 20%;
+    }
+}
+
+@container score-reader (max-height: 42rem) and (orientation: landscape) {
+    .score-reader .viewer-stage {
+        grid-template-columns: minmax(6rem, 1fr) minmax(16rem, 36cqw) minmax(6rem, 1fr);
+        padding-bottom: 4.65rem;
+    }
+    .score-reader .center-sheet {
+        width: min(100%, 52cqh);
+    }
+    .score-reader .page-tray {
+        min-height: 3.75rem;
+    }
+    .score-reader .side-stack {
+        width: min(12cqw, 8rem);
+    }
+}
+
+@container score-reader (orientation: portrait) {
+    .score-reader .center-sheet.begin {
+        transform: none; /* the tilted page is wider than a tall, narrow reader */
+    }
+}
+
+@media(max-width:800px) {
+    .score-reader {
+        right: 74px;
+    }
+    .player-out .score-reader {
+        bottom: 58px;
+    }
+    .score-button {
+        font-size: 24px;
+    }
+}

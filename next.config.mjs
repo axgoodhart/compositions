@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    agentUpgrade: 'security',
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -8,8 +11,7 @@ const nextConfig = {
   },
   async rewrites() {
     return [
-      { source: '/editlive.html', destination: '/editlive' }, // the editors also answer to .html addresses
-      { source: '/edit.html', destination: '/edit' },
+      { source: '/editlive.html', destination: '/editlive' }, // the editor also answers to an .html address
     ]
   },
 }

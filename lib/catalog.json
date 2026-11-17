@@ -25,14 +25,12 @@
         "src": "/media/rooms/raven.png"
       },
       "intro": {
-        "start": 0,
-        "speed": 1,
         "delay": 0.7,
         "fit": "cover",
         "position": "50% 100%",
         "filter": "none",
         "overlay": "none",
-        "play": 3.875,
+        "play": 3.8750000000000004,
         "src": "/media/intros/raven.m4v"
       },
       "ensemble": "baritone, chorus, piano, strings"
@@ -78,7 +76,8 @@
       "room": {
         "src": "/media/rooms/mountain.png",
         "overlay": "linear-gradient(90deg,#07170fb0,#07170f10)"
-      }
+      },
+      "hidden": true
     },
     {
       "id": "lorcanto",
@@ -87,7 +86,6 @@
         "Lorcanto"
       ],
       "year": "2024–2025",
-      "place": "",
       "ensemble": "voice and chamber orchestra",
       "duration": "7 minutes",
       "cover": {
@@ -97,7 +95,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "score": "/media/scores/Lorcanto.pdf"
+      "score": "/media/scores/lorcanto.pdf",
+      "hidden": true
     },
     {
       "id": "divided",
@@ -106,16 +105,18 @@
         "Divided"
       ],
       "year": "2022–2025",
-      "place": "",
       "ensemble": "string orchestra",
       "duration": "35 minutes",
       "cover": {
-        "src": "/media/covers/divided.webp"
+        "src": "/media/covers/divided.png",
+        "size": "100% 100.843%",
+        "position": "50% 60.007%"
       },
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
-      }
+      },
+      "hidden": true
     },
     {
       "id": "serenade-for-strings",
@@ -125,7 +126,6 @@
         "Strings"
       ],
       "year": "2024–2025",
-      "place": "",
       "ensemble": "concert orchestra",
       "duration": "18 minutes",
       "cover": {
@@ -134,7 +134,8 @@
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
-      }
+      },
+      "hidden": true
     },
     {
       "id": "viola-suite",
@@ -143,7 +144,6 @@
         "Viola Suite"
       ],
       "year": "2016",
-      "place": "",
       "ensemble": "solo viola",
       "duration": "7 minutes",
       "cover": {
@@ -293,7 +293,8 @@
         "position": "50% 50%",
         "overlay": "linear-gradient(90deg,#000000ff,#00000026)"
       },
-      "audio": "/media/audio/viola-suite.mp3"
+      "audio": "/media/audio/viola-suite.mp3",
+      "hidden": true
     },
     {
       "id": "classical-suite",
@@ -302,7 +303,6 @@
         "Classical Suite"
       ],
       "year": "2023",
-      "place": "",
       "ensemble": "solo piano",
       "duration": "7 minutes",
       "cover": {
@@ -311,7 +311,8 @@
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
-      }
+      },
+      "hidden": true
     },
     {
       "id": "piano-sonata",
@@ -320,7 +321,6 @@
         "Piano Sonata"
       ],
       "year": "2023",
-      "place": "",
       "ensemble": "solo piano",
       "duration": "18 minutes",
       "cover": {
@@ -368,7 +368,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/piano-sonata.mp3"
+      "audio": "/media/audio/piano-sonata.mp3",
+      "hidden": true
     },
     {
       "id": "erosions",
@@ -377,7 +378,6 @@
         "Erosions"
       ],
       "year": "2021",
-      "place": "",
       "ensemble": "solo cello with voice",
       "duration": "13 minutes",
       "cover": {
@@ -388,7 +388,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/erosions.mp3",
-      "score": "/media/scores/Goodhart - Erosions.pdf"
+      "score": "/media/scores/erosions.pdf",
+      "hidden": true
     },
     {
       "id": "purgatorium",
@@ -397,7 +398,6 @@
         "Purgatorium"
       ],
       "year": "2021",
-      "place": "",
       "ensemble": "solo piano",
       "duration": "9 minutes",
       "cover": {
@@ -407,7 +407,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/purgatorium.mp3"
+      "audio": "/media/audio/purgatorium.mp3",
+      "hidden": true
     },
     {
       "id": "aviary",
@@ -416,7 +417,6 @@
         "Aviary"
       ],
       "year": "2021",
-      "place": "",
       "ensemble": "flute and piano",
       "duration": "7 minutes",
       "cover": {
@@ -426,7 +426,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/aviary.mp3"
+      "audio": "/media/audio/aviary.mp3",
+      "hidden": true
     },
     {
       "id": "piano-concerto",
@@ -438,7 +439,7 @@
       "ensemble": "piano, strings",
       "duration": "10 minutes",
       "cover": {
-        "src": "/media/covers/piano-concerto.webp"
+        "src": "/media/covers/piano-concerto.png"
       },
       "room": {
         "color": "#0b0f17",
@@ -453,7 +454,8 @@
         "position": "49.964% 50%",
         "speed": 1.25
       },
-      "audio": "/media/audio/piano-concerto.mp3"
+      "audio": "/media/audio/piano-concerto.mp3",
+      "hidden": true
     },
     {
       "id": "i-journeys",
@@ -462,7 +464,6 @@
         "I. Journeys"
       ],
       "year": "2020",
-      "place": "",
       "ensemble": "2 vln, vla, 2 vlc, piano",
       "duration": "7 minutes",
       "cover": {
@@ -472,7 +473,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/i-journeys.mp3"
+      "audio": "/media/audio/i-journeys.mp3",
+      "hidden": true
     },
     {
       "id": "ii-choices",
@@ -491,7 +493,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/i-journeys.mp3"
+      "audio": "/media/audio/i-journeys.mp3",
+      "hidden": true
     },
     {
       "id": "cold-mountain-songs",
@@ -505,13 +508,21 @@
       "ensemble": "baritone and piano",
       "duration": "12 minutes",
       "cover": {
-        "src": "/media/covers/cold-mountain-songs.webp"
+        "src": "/media/covers/cold-mountain-songs.png",
+        "size": "100% 116.658%",
+        "position": "29.19% 4.761%",
+        "filter": "contrast(1.04) saturate(0)"
       },
       "room": {
-        "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
+        "color": "#000000",
+        "overlay": "radial-gradient(ellipse at center,transparent 40%,#dd94ffff)",
+        "src": "/media/covers/cold-mountain-songs.png",
+        "size": "100% 251.113%",
+        "position": "100% 90.984%",
+        "filter": "brightness(0.2) contrast(0.48) saturate(1.86)"
       },
-      "audio": "/media/audio/cold-mountain-songs.mp3"
+      "audio": "/media/audio/cold-mountain-songs.mp3",
+      "hidden": true
     },
     {
       "id": "kyrie",
@@ -520,7 +531,6 @@
         "Kyrie"
       ],
       "year": "2020",
-      "place": "",
       "ensemble": "double choir",
       "duration": "4 minutes",
       "cover": {
@@ -606,7 +616,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/kyrie.mp3"
+      "audio": "/media/audio/kyrie.mp3",
+      "hidden": true
     },
     {
       "id": "blessed-is-the-match",
@@ -616,11 +627,10 @@
         "the Match"
       ],
       "year": "2019",
-      "place": "",
       "ensemble": "vln, timp, TTBB",
       "duration": "6 minutes",
       "cover": {
-        "src": "/media/covers/blessed-is-the-match.webp",
+        "src": "/media/covers/blessed-is-the-match.png",
         "doc": {
           "v": 1,
           "sheet": "#ffffff",
@@ -659,14 +669,18 @@
             "font": "Jost:300:n",
             "case": "upper"
           }
-        }
+        },
+        "size": "100% 100.08%",
+        "position": "50% 50%",
+        "filter": "brightness(1.1) contrast(1.2) saturate(0.54) sepia(0.26)"
       },
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/blessed-is-the-match.mp3",
-      "score": "/media/scores/Goodhart - Blessed is the Match.pdf"
+      "score": "/media/scores/blessed-is-the-match.pdf",
+      "hidden": true
     },
     {
       "id": "fantastic-dances",
@@ -675,7 +689,6 @@
         "Fantastic Dances"
       ],
       "year": "2019",
-      "place": "",
       "ensemble": "two pianos",
       "duration": "7 minutes",
       "cover": {
@@ -743,7 +756,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/fantastic-dances.mp3",
-      "score": "/media/scores/Goodhart - Fantastic Dances.pdf"
+      "score": "/media/scores/fantastic-dances.pdf",
+      "hidden": true
     },
     {
       "id": "magnet-sky",
@@ -752,7 +766,6 @@
         "Magnet Sky"
       ],
       "year": "2019",
-      "place": "",
       "ensemble": "concert orchestra",
       "duration": "9 minutes",
       "cover": {
@@ -762,7 +775,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/magnet-sky.mp3"
+      "audio": "/media/audio/magnet-sky.mp3",
+      "hidden": true
     },
     {
       "id": "the-return",
@@ -771,7 +785,6 @@
         "The Return"
       ],
       "year": "2018",
-      "place": "",
       "ensemble": "SATB chorus",
       "duration": "4 minutes",
       "cover": {
@@ -782,7 +795,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/the-return.mp3",
-      "score": "/media/scores/Goodhart - The Return.pdf"
+      "score": "/media/scores/the-return.pdf",
+      "hidden": true
     },
     {
       "id": "a-doggone-symphony",
@@ -792,7 +806,6 @@
         "Symphony!"
       ],
       "year": "2018",
-      "place": "",
       "ensemble": "concert orchestra",
       "duration": "14 minutes",
       "cover": {
@@ -805,7 +818,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/a-doggone-symphony.mp3"
+      "audio": "/media/audio/a-doggone-symphony.mp3",
+      "hidden": true
     },
     {
       "id": "mikrokosmos-suite-for-brass",
@@ -883,7 +897,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "score": "/media/scores/Goodhart - Bartok Orchestration.pdf"
+      "score": "/media/scores/mikrokosmos-suite-for-brass.pdf",
+      "hidden": true
     },
     {
       "id": "on-a-river-no-where",
@@ -893,7 +908,6 @@
         "No Where"
       ],
       "year": "2018",
-      "place": "",
       "ensemble": "flute and piano",
       "duration": "5 minutes",
       "cover": {
@@ -988,7 +1002,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/on-a-river-no-where.mp3",
-      "score": "/media/scores/Goodhart - On a River Nowhere.pdf"
+      "score": "/media/scores/on-a-river-no-where.pdf",
+      "hidden": true
     },
     {
       "id": "vexations-a-nightmare-for-orchestra",
@@ -998,7 +1013,6 @@
         "for orchestra"
       ],
       "year": "2017",
-      "place": "",
       "ensemble": "concert orchestra",
       "duration": "9 minutes",
       "cover": {
@@ -1008,7 +1022,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/vexations-a-nightmare-for-orchestra.mp3"
+      "audio": "/media/audio/vexations-a-nightmare-for-orchestra.mp3",
+      "hidden": true
     },
     {
       "id": "frayed-serenade",
@@ -1017,7 +1032,6 @@
         "Frayed Serenade"
       ],
       "year": "2017",
-      "place": "",
       "ensemble": "flute and piano",
       "duration": "5 minutes",
       "cover": {
@@ -1084,7 +1098,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/frayed-serenade.mp3"
+      "audio": "/media/audio/frayed-serenade.mp3",
+      "hidden": true
     },
     {
       "id": "three-piano-preludes",
@@ -1094,7 +1109,6 @@
         "Preludes"
       ],
       "year": "2017",
-      "place": "",
       "ensemble": "solo piano",
       "duration": "7 minutes",
       "cover": {
@@ -1161,7 +1175,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/three-piano-preludes.mp3"
+      "audio": "/media/audio/three-piano-preludes.mp3",
+      "hidden": true
     },
     {
       "id": "two-ballades",
@@ -1238,8 +1253,9 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "score": "/media/scores/Goodhart - Ballade in Fantasia.pdf",
-      "audio": "/media/audio/Ballade-in-Fantasia.mp3"
+      "score": "/media/scores/two-ballades.pdf",
+      "audio": "/media/audio/two-ballades.mp3",
+      "hidden": true
     },
     {
       "id": "scherzabella",
@@ -1248,7 +1264,6 @@
         "Scherzabella"
       ],
       "year": "2017",
-      "place": "",
       "ensemble": "trumpet and piano",
       "duration": "8 minutes",
       "cover": {
@@ -1336,7 +1351,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "score": "/media/scores/Goodhart - Scherzabella.pdf"
+      "score": "/media/scores/scherzabella.pdf",
+      "hidden": true
     },
     {
       "id": "sonata-of-songs",
@@ -1346,7 +1362,6 @@
         "Songs"
       ],
       "year": "2016",
-      "place": "",
       "ensemble": "mezzo, oboe, piano",
       "duration": "8 minutes",
       "cover": {
@@ -1460,7 +1475,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/sonata-of-songs.mp3",
-      "score": "/media/scores/Goodhart - Sonata of Songs.pdf"
+      "score": "/media/scores/sonata-of-songs.pdf",
+      "hidden": true
     },
     {
       "id": "miniature-for-wind-quartet",
@@ -1541,7 +1557,9 @@
             "font": "Spectral:300:i",
             "case": "as-is"
           }
-        }
+        },
+        "size": "100% 100.08%",
+        "position": "50% 100%"
       },
       "room": {
         "color": "#0b0f17",
@@ -1557,7 +1575,6 @@
         "Scenes"
       ],
       "year": "2016",
-      "place": "",
       "ensemble": "string quartet",
       "duration": "3 minutes",
       "cover": {
@@ -1635,7 +1652,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/four-short-scenes.mp3",
-      "score": "/media/scores/Goodhart - Four Short Scenes.pdf"
+      "score": "/media/scores/four-short-scenes.pdf",
+      "hidden": true
     },
     {
       "id": "sonnets-from-the-drain",
@@ -1645,17 +1663,17 @@
         "the Drain"
       ],
       "year": "2015–2023",
-      "place": "",
       "ensemble": "baritenor, two pianos",
       "duration": "16 minutes",
       "cover": {
-        "src": "/media/covers/from.png"
+        "src": "/media/covers/sonnets-from-the-drain.png"
       },
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/sonnets-from-the-drain.mp3"
+      "audio": "/media/audio/sonnets-from-the-drain.mp3",
+      "hidden": true
     },
     {
       "id": "prelude-and-gigue",
@@ -1665,7 +1683,6 @@
         "Gigue"
       ],
       "year": "2015",
-      "place": "",
       "ensemble": "solo viola",
       "duration": "6 minutes",
       "cover": {
@@ -1733,7 +1750,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/prelude-and-gigue.mp3",
-      "score": "/media/scores/Goodhart - Prelude and Gigue.pdf"
+      "score": "/media/scores/prelude-and-gigue.pdf",
+      "hidden": true
     },
     {
       "id": "une-histoire-illustree",
@@ -1743,7 +1761,6 @@
         "illustrée"
       ],
       "year": "2014",
-      "place": "",
       "ensemble": "chamber orchestra",
       "duration": "9 minutes",
       "cover": {
@@ -1811,7 +1828,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/une-histoire-illustree.mp3",
-      "score": "/media/scores/Goodhart - Une Histoire Illustrée.pdf"
+      "score": "/media/scores/une-histoire-illustree.pdf",
+      "hidden": true
     },
     {
       "id": "altar-of-creation",
@@ -1821,7 +1839,6 @@
         "Creation"
       ],
       "year": "2014",
-      "place": "",
       "ensemble": "narrator, choir, Metasynth, PureData",
       "duration": "6 minutes",
       "cover": {
@@ -1832,7 +1849,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/altar-of-creation.mp3",
-      "score": "/media/scores/Goodhart - Altar of Creation.pdf"
+      "score": "/media/scores/Goodhart - Altar of Creation.pdf",
+      "hidden": true
     },
     {
       "id": "sebastian-s-voodoo",
@@ -1841,7 +1859,6 @@
         "Sebastian’s Voodoo"
       ],
       "year": "2014",
-      "place": "",
       "ensemble": "virtual orchestra",
       "duration": "4 minutes",
       "cover": {
@@ -1852,7 +1869,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/sebastian-s-voodoo.mp3"
+      "audio": "/media/audio/sebastian-s-voodoo.mp3",
+      "hidden": true
     },
     {
       "id": "falling-birds-virtual-messiaen",
@@ -1862,7 +1880,6 @@
         "(Virtual Messiaen)"
       ],
       "year": "2013",
-      "place": "",
       "ensemble": "PureData",
       "duration": "6 minutes",
       "cover": {
@@ -1875,7 +1892,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/falling-birds-virtual-messiaen.mp3"
+      "audio": "/media/audio/falling-birds-virtual-messiaen.mp3",
+      "hidden": true
     },
     {
       "id": "mouvement",
@@ -1884,7 +1902,6 @@
         "Mouvement"
       ],
       "year": "2013",
-      "place": "",
       "ensemble": "string quartet",
       "duration": "8 minutes",
       "cover": {
@@ -1952,7 +1969,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/mouvement.mp3",
-      "score": "/media/scores/Goodhart - Mouvement.pdf"
+      "score": "/media/scores/mouvement.pdf",
+      "hidden": true
     },
     {
       "id": "janvier",
@@ -1961,7 +1979,6 @@
         "Janvier"
       ],
       "year": "2012",
-      "place": "",
       "ensemble": "piano and orchestra",
       "duration": "8 minutes",
       "cover": {
@@ -2028,7 +2045,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "score": "/media/scores/Goodhart - Janvier (Full Score).pdf"
+      "score": "/media/scores/janvier.pdf",
+      "hidden": true
     },
     {
       "id": "tristan-not-forgotten",
@@ -2038,7 +2056,6 @@
         "Forgotten"
       ],
       "year": "2011",
-      "place": "",
       "ensemble": "alto, vibraphone, cello, and piano",
       "duration": "4 minutes",
       "cover": {
@@ -2161,7 +2178,8 @@
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
-      }
+      },
+      "hidden": true
     },
     {
       "id": "soliloquy",
@@ -2170,7 +2188,6 @@
         "Soliloquy"
       ],
       "year": "2011",
-      "place": "",
       "ensemble": "alto sax. and piano",
       "duration": "11 minutes",
       "cover": {
@@ -2181,7 +2198,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/soliloquy.mp3",
-      "score": "/media/scores/Goodhart - Soliloquy.pdf"
+      "score": "/media/scores/soliloquy.pdf",
+      "hidden": true
     },
     {
       "id": "flute-v-contrabass",
@@ -2191,7 +2209,6 @@
         "Contrabass"
       ],
       "year": "2011",
-      "place": "",
       "ensemble": "flute and contrabass",
       "duration": "4 minutes",
       "cover": {
@@ -2203,7 +2220,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/flute-v-contrabass.mp3"
+      "audio": "/media/audio/flute-v-contrabass.mp3",
+      "hidden": true
     },
     {
       "id": "moods-for-cello-and-piano",
@@ -2213,7 +2231,6 @@
         "and Piano"
       ],
       "year": "2010",
-      "place": "",
       "ensemble": "cello and piano",
       "duration": "5 minutes",
       "cover": {
@@ -2281,7 +2298,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/moods-for-cello-and-piano.mp3"
+      "audio": "/media/audio/moods-for-cello-and-piano.mp3",
+      "hidden": true
     }
   ]
 }

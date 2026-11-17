@@ -11,7 +11,7 @@ const defaultCatalog: Catalog = { settings: { introCooldownHours, homeId, galler
 // ==== SORT ==== "none" is the catalog order the editor's rail writes
 export type SortKey = "none" | "alpha" | "year" | "duration" | "players";
 export const sortKeys: SortKey[] = ["none", "alpha", "year", "duration", "players"];
-const sortLabel: Record<SortKey, string> = { none: "NONE", alpha: "A–Z", year: "YEAR", duration: "DURATION", players: "PLAYERS" };
+const sortLabel: Record<SortKey, string> = { none: "NO SORT", alpha: "A–Z", year: "YEAR", duration: "DURATION", players: "PLAYERS" };
 const sortStorageKey = "composition-sort";
 const firstNumber = (s = "") => { const m = s.match(/\d+(\.\d+)?/); return m ? parseFloat(m[0]) : NaN; };
 const sortTitle = (t: string) => t.replace(/^(the|a|an)\s+/i, "");
@@ -476,6 +476,8 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
             <ScoreArtwork piece={item} />
           </button>;
         })}
+        <button className="enter-button" onClick={enter}>{piece.audio ? "play" : "enter"} <span>{piece.audio ? <Play size={18} strokeWidth={1} /> : <ArrowRight size={18} strokeWidth={1} />}</span></button>
+
         <div className="composition-info" key={piece.id} aria-live="polite">
           {title}
           <div className="piece-details">
@@ -483,8 +485,7 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
             <p><Editable value={piece.ensemble} editing={editing} onCommit={v => hooks.current?.onField("ensemble", v)} /></p>
             <p><Editable value={piece.duration} editing={editing} onCommit={v => hooks.current?.onField("duration", v)} /></p>
           </div>
-          <button className="enter-button" onClick={enter}>{piece.audio ? "play" : "enter"} <span>{piece.audio ? <Play size={18} strokeWidth={1} /> : <ArrowRight size={18} strokeWidth={1} />}</span></button>
-          <span className="enter-hint"></span>
+
         </div>
       </section>
 
@@ -503,7 +504,7 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
       {panel && <section className="info-panel" aria-labelledby="panel-title"><button className="close-panel" aria-label="Close information" onClick={() => setPanel(null)}><X size={22} /></button><span className="piece-eyebrow">Alex GOODHART</span><h2 id="panel-title">{panel}</h2>{panel === "about" ? <p>Music for voices, pianos, and the spaces in between. Explore selected compositions by Alex Goodhart, each with a world of its own.</p> : panel === "learn" ? <><p>Move through the collection with your trackpad, the arrows below, or your keyboard. On a touch screen, swipe left or right.</p><p>Select a score or press play to step inside its world. Press Escape to return.</p></> : panel === "ideas" ? <p>What if a piece of music could become a place? These rooms explore that idea: a midnight sky, a candlelit chamber, and a living forest.</p> : <p>For performance and score inquiries, contact details will be added here. Original recordings and downloadable scores have not yet been provided.</p>}<button className="panel-return" onClick={() => setPanel(null)}>return to the music <ArrowRight size={16} /></button></section>}
       <div className="room-glass" />
       <aside className="glass-sidebar"><span className="sidebar-top">AG / MUSIC</span><nav aria-label="Main navigation">{["home", "about", "learn", "listen", "ideas", "contact"].map(item => <button key={item} className={(panel === item || (!panel && item === "listen")) ? "active" : ""} onClick={() => { if (item === "home") goHome(); else if (item === "listen") { exit(); setPanel(null); } else { setScoreOpen(false); setPanel(item); } }}>{item}</button>)}</nav><button className="monogram" aria-label="Alex Goodhart home" onClick={goHome}><img src="/media/site/logomark.webp" alt="" /></button><span className="sidebar-bottom">https://alexgoodh.art</span></aside>
-      <footer className="room-footer" inert={reading}><div className="browse-controls"><button onClick={() => navigate(-1)} aria-label="Previous composition"><ArrowLeft size={25} strokeWidth={1} /></button><span>scroll</span><button onClick={() => navigate(1)} aria-label="Next composition"><ArrowRight size={25} strokeWidth={1} /></button><span className="browse-count">{String(selected + 1).padStart(2, "0")}<span> / {String(pieces.length).padStart(2, "0")}</span></span></div><div className="pagination" aria-label="Choose composition">{pieces.map((item, i) => <button key={i} className={i === selected ? "selected" : ""} aria-label={`Select ${item.title}`} aria-current={i === selected ? "true" : undefined} onClick={() => { selectPiece(i); exit(); setPanel(null); }} />)}</div><span className="headphone-note"><Headphones size={13} strokeWidth={1.5} /> best experienced with headphones</span></footer>
+      <footer className="room-footer" inert={reading}><div className="browse-controls"><button onClick={() => navigate(-1)} aria-label="Previous composition"><ArrowLeft size={25} strokeWidth={1} /></button><span>scroll</span><button onClick={() => navigate(1)} aria-label="Next composition"><ArrowRight size={25} strokeWidth={1} /></button><span className="browse-count">{String(selected + 1).padStart(2, "0")}<span> / {String(pieces.length).padStart(2, "0")}</span></span></div><div className="pagination" aria-label="Choose composition">{pieces.map((item, i) => <button key={i} className={i === selected ? "selected" : ""} aria-label={`Select ${item.title}`} aria-current={i === selected ? "true" : undefined} onClick={() => { selectPiece(i); exit(); setPanel(null); }} />)}</div></footer>
     </main>
   );
 }

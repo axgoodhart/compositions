@@ -1,7 +1,7 @@
 {
   "settings": {
     "introCooldownHours": 0,
-    "homeId": "raven",
+    "homeId": "piano-concerto",
     "galleryImage": "/media/site/gallery.png"
   },
   "compositions": [
@@ -25,13 +25,13 @@
         "src": "/media/rooms/raven.png"
       },
       "intro": {
-        "delay": 0.7,
         "fit": "cover",
         "position": "50% 100%",
         "filter": "none",
         "overlay": "none",
-        "play": 3.8750000000000004,
-        "src": "/media/intros/raven.m4v"
+        "play": 3.875000000000001,
+        "src": "/media/intros/raven.m4v",
+        "fade": 2.6
       },
       "ensemble": "baritone, chorus, piano, strings"
     },
@@ -439,23 +439,26 @@
       "ensemble": "piano, strings",
       "duration": "10 minutes",
       "cover": {
-        "src": "/media/covers/piano-concerto.png"
+        "src": "/media/covers/EWLFNJEWIUFHN.png",
+        "size": "100% 104.397%",
+        "position": "50% 51.917%"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)",
-        "src": "/media/rooms/piano-concerto.png"
+        "overlay": "radial-gradient(ellipse at 50% 40%,#041016ff,transparent 60%)",
+        "src": "/media/rooms/piano-concerto.png",
+        "position": "50% 50%",
+        "filter": "brightness(0.52)"
       },
       "intro": {
         "src": "/media/intros/piano-concerto.mp4",
         "play": 5.2,
-        "fit": "cover",
+        "fit": "contain",
         "fade": 0.5,
         "position": "49.964% 50%",
         "speed": 1.25
       },
-      "audio": "/media/audio/piano-concerto.mp3",
-      "hidden": true
+      "audio": "/media/audio/piano-concerto.mp3"
     },
     {
       "id": "i-journeys",
@@ -517,7 +520,6 @@
         "color": "#000000",
         "overlay": "radial-gradient(ellipse at center,transparent 40%,#dd94ffff)",
         "src": "/media/covers/cold-mountain-songs.png",
-        "size": "100% 251.113%",
         "position": "100% 90.984%",
         "filter": "brightness(0.2) contrast(0.48) saturate(1.86)"
       },

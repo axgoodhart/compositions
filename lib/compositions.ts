@@ -36,10 +36,11 @@ export type Cover = {
 };
 export type Room = {
   src?: string; // background image; omit for gradients only
-  video?: string; // looping silent video over the image, inside the composition; shares size, position and filter
+  video?: string; // looping silent video over the image, inside the composition; shares fit, zoom, position and filter
   overlay?: string; // CSS gradient layers drawn over the image
-  size?: string; // CSS background-size of the image, e.g. "140% 120%"; default cover
-  position?: string; // CSS background-position of the image; default center
+  fit?: "cover" | "contain" | "stretch"; // cover fills the room, contain shows the whole image, both keep its proportions; stretch does not; default cover
+  zoom?: number; // scale on top of fit; default 1
+  position?: string; // CSS object-position of the image; default center
   color?: string; // CSS color behind everything; default #080d15
   filter?: string; // CSS filter on the image and overlay; default none
 };

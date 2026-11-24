@@ -73,11 +73,13 @@ npm install
 | --- | --- |
 | Piece | title lines, id, year, place, ensemble, duration, players · Home, Hidden, Duplicate, Delete |
 | Cover | image · whole image or crop · zoom · adjust (look) |
-| Room | image · video · zoom · color · tint · adjust (look) |
+| Room | image · video · fill, whole image or stretch · zoom · color · tint · adjust (look) |
 | Video | on/off · show, replay · file · fill or whole frame · zoom · from, to, speed, delay, fade · compare last frame · adjust (tint, look) |
 | Sound | the recording |
 | Score | the PDF for the in-room score reader |
 | Site | gallery backdrop · intro cooldown · import · preview and organize the files |
+
+**Fill** covers the room and **whole image** shows all of it; both keep the image's proportions at every window size, and **zoom** scales on top. **Stretch** fits the room exactly and gives the proportions up.
 
 **Look** is the CSS `filter` as sliders. **Tint** is the overlay gradient as a direction, a color and a strength; **css** takes any gradient by hand. Both sit behind **adjust**; a dot on it means something is set.
 

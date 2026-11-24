@@ -58,10 +58,8 @@ function useNatural(...srcs: (string | undefined)[]) { // pixel sizes of the ima
   useEffect(() => {
     for (const src of srcs) {
       if (!src || dims[src]) continue;
-      const put = (w: number, h: number) => setDims(d => ({ ...d, [src]: { w, h } }));
-      if (assetKind(src) === "video") { const v = document.createElement("video"); v.preload = "metadata"; v.onloadedmetadata = () => put(v.videoWidth, v.videoHeight); v.src = src; continue; }
       const img = new Image();
-      img.onload = () => put(img.naturalWidth, img.naturalHeight);
+      img.onload = () => setDims(d => ({ ...d, [src]: { w: img.naturalWidth, h: img.naturalHeight } }));
       img.src = src;
     }
   }, srcs); // eslint-disable-line react-hooks/exhaustive-deps
@@ -102,8 +100,8 @@ export function LiveEditor() {
   const index = view.index;
   const piece = catalog?.compositions[index];
   const count = catalog?.compositions.length ?? 0;
-  const roomMedia = piece?.room.video ?? piece?.room.src; // the room's size and position belong to the video when there is one
-  const natural = useNatural(piece?.cover.src, roomMedia);
+  const roomMedia = piece?.room.video ?? piece?.room.src; // the room's fit, zoom and position belong to the video when there is one
+  const natural = useNatural(piece?.cover.src);
   const uses = usedBy(catalog);
 
   useEffect(() => {
@@ -202,14 +200,10 @@ export function LiveEditor() {
     commit();
     go(to);
   };
-  const resolve = (src: string | undefined, size: string | undefined, position: string | undefined, box?: { width: number; height: number }) => { // numbers for the zoom sliders
+  const resolve = (size: string | undefined, position: string | undefined) => { // the cover's crop as numbers for its zoom slider
     const [W, H] = pct(size);
     const [X = 50, Y = 50] = pct(position).map(v => (Number.isNaN(v) ? 50 : v));
-    if (W > 0 && H > 0) return { W, H, X, Y };
-    const d = src ? natural[src] : undefined;
-    if (!d || !box) return null;
-    const scale = Math.max(box.width / d.w, box.height / d.h);
-    return { W: (d.w * scale) / box.width * 100, H: (d.h * scale) / box.height * 100, X, Y };
+    return W > 0 && H > 0 ? { W, H, X, Y } : null;
   };
   const rescale = (g: { W: number; H: number; X: number; Y: number }, w: number) => ({ size: `${fmt(w)}% ${fmt((g.H * w) / g.W)}%`, position: `${fmt(g.X)}% ${fmt(g.Y)}%` });
   const startCrop = () => { // frame a quarter of the sheet in the cover's shape; then drag and scroll on the page
@@ -244,7 +238,7 @@ export function LiveEditor() {
     if (role === "scores") { patch({ score: url }); where = "score"; }
     else if (role === "audio") { patch({ audio: url }); where = "recording"; }
     else if (role === "intro") { patchIntro({ src: url }); where = "intro video"; show("video"); }
-    else if (role === "room" && kind === "video") { patchRoom({ video: url, size: undefined, position: undefined }); where = "room video"; }
+    else if (role === "room" && kind === "video") { patchRoom({ video: url, zoom: undefined, position: undefined }); where = "room video"; }
     else if (role === "room") { patchRoom({ src: url }); where = "room"; }
     else patchCover({ src: url });
     commit();
@@ -282,7 +276,7 @@ export function LiveEditor() {
       if (!blob) return notify("Could not capture the frame");
       const [url] = await upload([new File([blob], `${piece.id}-last-frame.jpg`, { type: "image/jpeg" })], mediaFolder.room);
       if (!url) return notify("Upload failed");
-      patchRoom({ src: url, size: undefined, position: piece.intro?.fit === "contain" ? undefined : piece.intro?.position }); // same crop as the video
+      patchRoom({ src: url, fit: piece.intro?.fit === "contain" ? "contain" : undefined, zoom: piece.intro?.zoom, position: piece.intro?.position }); // framed as the video is
       commit();
       notify("The room image is now the last frame");
     }, "image/jpeg", 0.92);
@@ -326,11 +320,12 @@ export function LiveEditor() {
 
   if (!catalog) return <div className="live loading">Loading catalog…</div>;
   const problem = (field: Problem["field"]) => problems.find(p => p.index === index && p.field === field)?.message;
-  const box = { width: vp.w, height: vp.h }; // the page's own box, before scaling
   const scale = stageBox.w && stageBox.h ? Math.min(1, stageBox.w / vp.w, stageBox.h / vp.h) : 1;
   const frameBox = { left: Math.max(0, (stageBox.w - vp.w * scale) / 2), top: Math.max(0, (stageBox.h - vp.h * scale) / 2), width: vp.w * scale, height: vp.h * scale };
-  const cover = piece ? resolve(piece.cover.src, piece.cover.size, piece.cover.position) : null; // explicit only: whole image has no zoom
-  const room = piece && roomMedia ? resolve(roomMedia, piece.room.size, piece.room.position, box) : null;
+  const cover = piece ? resolve(piece.cover.size, piece.cover.position) : null; // whole image has no zoom
+  const roomFit = piece?.room.fit ?? "cover", roomZoom = piece?.room.zoom ?? 1;
+  const setRoomFit = (fit: NonNullable<Room["fit"]>) => { patchRoom({ fit: fit === "cover" ? undefined : fit, zoom: fit !== "contain" && roomZoom < 1 ? undefined : piece?.room.zoom }); commit(); }; // only whole image goes smaller than the room
+  const roomZoomSlider = (label: string) => <Slider label={label} value={roomZoom} min={roomFit === "contain" ? 0.25 : 1} max={6} step={0.01} unit="×" onChange={z => patchRoom({ zoom: z === 1 ? undefined : z })} onCommit={commit} />;
   const intro = piece?.intro;
   const introStart = intro?.start ?? 0, introSpeed = intro?.speed ?? 1, introEnd = introStart + (intro?.play ?? 0) * introSpeed;
   const clipMax = Math.max(duration || 0, introEnd + 1, 5);
@@ -404,9 +399,16 @@ export function LiveEditor() {
             </Sec>
 
             <Sec title="Room" meta={fileName(roomMedia) || "color only"} open={open("room")} onOpen={() => toggleSection("room")}>
-              <AssetRow kind="image" label="image" value={piece.room.src} onPick={() => pick("image", "room", piece.room.src, url => patchRoom({ src: url, size: undefined, position: undefined }))} onClear={() => { patchRoom({ src: undefined, size: undefined, position: undefined }); commit(); }} />
-              <AssetRow kind="video" label="video" value={piece.room.video} onPick={() => pick("video", "room", piece.room.video, url => patchRoom({ video: url, size: undefined, position: undefined }))} onClear={() => { patchRoom({ video: undefined, size: undefined, position: undefined }); commit(); }} />
-              {room && <Slider label="zoom" value={Math.round(room.W)} min={100} max={600} step={1} unit="%" onChange={w => patchRoom(rescale(room, w))} onCommit={commit} />}
+              <AssetRow kind="image" label="image" value={piece.room.src} onPick={() => pick("image", "room", piece.room.src, url => patchRoom({ src: url, zoom: undefined, position: undefined }))} onClear={() => { patchRoom({ src: undefined, zoom: undefined, position: undefined }); commit(); }} />
+              <AssetRow kind="video" label="video" value={piece.room.video} onPick={() => pick("video", "room", piece.room.video, url => patchRoom({ video: url, zoom: undefined, position: undefined }))} onClear={() => { patchRoom({ video: undefined, zoom: undefined, position: undefined }); commit(); }} />
+              {roomMedia && <>
+                <div className="chips">
+                  <button className={roomFit === "cover" ? "on" : ""} onClick={() => setRoomFit("cover")}>fill</button>
+                  <button className={roomFit === "contain" ? "on" : ""} onClick={() => setRoomFit("contain")}>{piece.room.video ? "whole frame" : "whole image"}</button>
+                  <button className={roomFit === "stretch" ? "on" : ""} onClick={() => setRoomFit("stretch")} title="Fill the room exactly, giving up the proportions">stretch</button>
+                </div>
+                {roomZoomSlider("zoom")}
+              </>}
               <div className="row">
                 <label className="swatch"><input type="color" value={hex(piece.room.color, "#080d15")} onChange={e => { patchRoom({ color: e.target.value }); later(); }} aria-label="Room color" /><span>color</span></label>
               </div>
@@ -451,7 +453,7 @@ export function LiveEditor() {
                   </div>
                   {hold && <>
                     <Slider label={compareMode === "wipe" ? "frame width" : "frame opacity"} value={peek ? 0 : amount} min={0} max={100} step={1} unit="%" onChange={setAmount} onCommit={() => undefined} />
-                    {room && <Slider label="room zoom" value={Math.round(room.W)} min={100} max={600} step={1} unit="%" onChange={w => patchRoom(rescale(room, w))} onCommit={commit} />}
+                    {roomMedia && roomZoomSlider("room zoom")}
                     <div className="chips">
                       <button onClick={frameAsRoom}>frame → room image</button>
                       <button onClick={frameColor}>room color ← frame</button>

@@ -1,5 +1,9 @@
 /* ==== RESET ==== */
 
+
+:root{
+    --playerheight:68px;
+}
 *,
 ::before,
 ::after {
@@ -94,7 +98,7 @@ button:focus-visible {
 
 .room-background {
     background: #d1d1cf var(--gallery-image, none) center / cover no-repeat;
-    transition: opacity 1.8s, filter 1.8s, transform 2s;
+    transition: opacity 3.8s, filter 1.8s, transform 2s;
 }
 
 .room-background::after {
@@ -147,6 +151,19 @@ button:focus-visible {
     transform: none;
 }
 
+.player-title,
+.player-scrub,
+.player-time,
+.player-controls {
+    animation: player-in .3s both; /* they mount when the countdown ends or is stopped */
+}
+
+@keyframes player-in {
+    from {
+        opacity: 0;
+    }
+}
+
 .player-title {
     font-family:Warbler Variable;
     font-style: italic;
@@ -184,15 +201,27 @@ button:focus-visible {
 
 .scrub-pearl {
     position: absolute;
+    z-index:100;
     top: 50%;
     width: 24px;
     height: 24px;
     margin: -12px 0 0 -12px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #fff, #d9dde0 22%, #7c858c 60%, #353a3f);
-    box-shadow: 0 2px 5px #0006, inset 0 -1px 2px #fff5;
-    pointer-events: none;
+    border-radius: 200px;
+    background: radial-gradient(circle at 35% 30%, #fff, #d9dde0 22%, #7c858c 60%, #1c2d40);
+    box-shadow: 0 0 2px transparent, 0 0 4px transparent, 0 2px 5px #0006, inset 0 -1px 2px #fff5;
+    pointer-events:none;
+    transition:border .7s, transform 1.6s;
+    border:.5px solid transparent;
+    background-size:100%;    
 }
+.player-scrub:hover .scrub-pearl {
+    transform:scale(1.65)rotate(50deg);
+    border: 4.5px solid transparent;
+    background-size:200%;
+        box-shadow: 0 0 2px white, 0 0 4px deepskyblue, 0 2px 5px #0006, inset 0 -2px 7px rgb(255, 255, 255);
+}
+
+
 
 .player-time {
     display: grid;
@@ -215,8 +244,8 @@ button:focus-visible {
 }
 
 .player-controls svg {
-    width: 34px;
-    height: 24px;
+    width: 40px;
+    height: 30px;
     fill: #fff;
     filter: drop-shadow(0 1px 1px #0006);
 }
@@ -334,6 +363,11 @@ button:focus-visible {
     font-size: 14px;
     letter-spacing: 1.8px;
     padding-top: 2px;
+    transition: opacity .6s;
+}
+
+.immersed .sort {
+    opacity: 0;
 }
 
 .sort button {
@@ -495,22 +529,27 @@ h1>span {
 .enter-button {
     display: flex;
     align-items: center;
-    backdrop-filter:drop-shadow(-1px -1px 4px black);
+    justify-content:space-between;
+    backdrop-filter:drop-shadow(0px 3px 4px black);
     gap: 22px;
-    font-size: clamp(15px, 3vw, 40px);
+    font-size: clamp(13px, 2.7vw, 30px);
     font-weight: 300;
     color: white;
     line-height: 1.2;
     margin-top: 20px;
     position: absolute;
-        top: 5%;
+    text-shadow:1px 0px 1px transparent;
+        top: 8%;
         left:50%;
-        border: 1px solid white;
-        border-radius: 20px;
-        padding: 10px;
+        border-bottom: 1px solid white;
+        border-radius: 200px;
+        width:25%;
+        padding: 3px 10px;
         transform: translateX(-50%);
-        transition:all .3s;
+        transition: all .3s, letter-spacing .8s cubic-bezier(.1, .7, .3, 1.4), text-shadow 1s cubic-bezier(.8, 0, .6, 1), left  1s cubic-bezier(.8, 0, .6, 1);;
         backdrop-filter:brightness(1);
+        padding-right:0px;
+        box-shadow:inset 0 -1px 2px white;
 }
 
 .enter-button>span {
@@ -520,17 +559,24 @@ h1>span {
     height: 37px;
     border: 1px solid #ffffff70;
     border-radius: 50%;
-    transition: all .3s;
+    transition: all 1s;
 }
 .enter-button:hover {
+            transition: all .3s, letter-spacing .8s cubic-bezier(.1, .7, .3, 2.5), text-shadow 1.5s cubic-bezier(.8, 0, .6, 1), left cubic-bezier(.8, 0, .6, 1);
     color:black;
+    font-weight:300;;
+        letter-spacing: 44px;
     backdrop-filter:brightness(2);
-}
-.enter-button:hover>span {
-    transform: translateX(5px);
-    background: #fff2;
+    text-shadow:13px 0px 2px gray;
 }
 
+ .enter-button:hover>span {
+    transform: translateX(-5px);
+    border-color:transparent;
+}
+.enter-button:hover>span svg {
+    fill:darkslategray;
+}
 .enter-hint {
     display: block;
     font-size: 9px;
@@ -717,28 +763,37 @@ h1>span {
 .environment {
     opacity: 0;
     transform: scale(1.1);
-    transition: opacity 2s, transform 8s;
+    transition: opacity 1s, transform 8s;
     background: var(--room-color, #080d15);
 }
 
-.environment::before {
-    content: '';
+.room-still {
     position: absolute;
     inset: 0;
-    background-image: var(--room-layers, none);
-    background-position: var(--room-position, center);
-    background-size: var(--room-size, cover);
-    background-repeat: no-repeat;
+    overflow: hidden;
     filter: var(--room-filter, none);
 }
 
+.room-still::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--room-tint, none);
+}
+
+.room-still img,
 .room-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    max-width: none; /* the global video reset would cap the zoom */
-    object-fit: cover;
+    object-fit: var(--room-fit, cover); /* cover and contain keep the proportions; fill stretches */
+    object-position: var(--room-position, center);
+    transform: scale(var(--room-zoom, 1));
+    transform-origin: var(--room-position, center);
+}
+
+.room-video {
     filter: var(--room-filter, none);
     z-index: 1;
 }
@@ -762,7 +817,7 @@ h1>span {
 
 .composition-intro.visible {
     opacity: 1;
-    transition-duration: .4s;
+    transition-duration: .2s;
 }
 
 .composition-intro video {
@@ -794,8 +849,8 @@ h1>span {
 
 .immersed .room-background {
     opacity: 0;
-    filter: blur(25px);
-    transform: scale(1.12);
+    filter: blur(20px);
+    transform: scale(1.3);
 }
 
 .immersed .gallery {
@@ -962,6 +1017,9 @@ h1>span {
 }
 
 @media(max-width:800px) {
+    :root {
+        --playerheight: 58px;
+    }
     .music-room {
         min-height: 720px;
     }
@@ -1004,9 +1062,6 @@ h1>span {
     }
     .player-time {
         display: none;
-    }
-    .player-controls {
-        gap: 10px;
     }
     .player-controls svg {
         width: 26px;
@@ -1168,3 +1223,30 @@ h1>span {
         scroll-behavior: auto !important;
     }
 }
+
+.player-bar.out .player-controls {
+    bottom: calc(var(--playerheight) * 1.4);
+    right: 50%;
+    transform: scale(1.42);
+    box-shadow: inset 0 0 20px rgb(255, 255, 255);
+    position: absolute !important;
+    corner-shape: squircle;
+    gap: 10px;
+    padding: 4px 10px;
+    border-radius: 100px !important;
+    transform:translate(50%, 120%);
+    border:1px solid white;
+    backdrop-filter:blur(3px);
+}
+
+.player-controls button, .player-controls svg {
+    fill:white;
+    transition:all .2s;
+    
+}
+.player-controls svg:hover {
+    transform:scale(1.3);
+    fill:yellow;
+}
+
+* {user-select:none}

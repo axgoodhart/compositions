@@ -31,7 +31,7 @@ const clamp = (n: number) => Math.min(100, Math.max(0, n));
 const fmt = (n: number) => String(+n.toFixed(3));
 
 // ==== PLAYER ====
-const countdownSeconds = 3; // entering a room with a recording counts down, then plays
+const countdownSeconds = 5; // entering a room with a recording counts down, then plays
 const scrubFadeMs = 70; // volume ramps out before a seek and back in after it
 const showPlaylist = false; // the roman-numeral list waits for multi-movement recordings
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
@@ -119,15 +119,14 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
   const introEnd = editing && !(intro && intro.play > 0) ? Infinity : introStart + (intro?.play ?? 0) * introSpeed; // media seconds
   const introShowing = introActive && introVisible && immersed;
   const roomVideo = piece.room.video;
-  const roomMedia = roomVideo ?? piece.room.src; // what the room's size and position apply to
-  const [roomW, roomH] = pct(piece.room.size), [roomX = 50, roomY = 50] = pct(piece.room.position).map(v => (Number.isNaN(v) ? 50 : v));
-  const roomVideoStyle: CSSProperties = roomW > 0 && roomH > 0 ? { width: `${roomW}%`, height: `${roomH}%`, left: `${((100 - roomW) * roomX) / 100}%`, top: `${((100 - roomH) * roomY) / 100}%`, objectFit: "fill" } : { objectPosition: `${roomX}% ${roomY}%` }; // background-size and -position, as an element
+  const roomMedia = roomVideo ?? piece.room.src; // what the room's fit, zoom and position apply to
   const roomStyle = {
     "--gallery-image": `url("${galleryImage}")`,
-    "--room-layers": [!roomVideo && piece.room.overlay, piece.room.src && `url("${piece.room.src}")`].filter(Boolean).join(",") || undefined,
+    "--room-tint": roomVideo ? undefined : piece.room.overlay, // filtered together with the image
     "--room-overlay": roomVideo ? piece.room.overlay : undefined, // with a video the tint draws above it
     "--room-color": piece.room.color,
-    "--room-size": piece.room.size,
+    "--room-fit": piece.room.fit === "stretch" ? "fill" : piece.room.fit, // as object-fit
+    "--room-zoom": piece.room.zoom,
     "--room-position": piece.room.position,
     "--room-filter": piece.room.filter,
   } as CSSProperties;
@@ -178,7 +177,7 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
   useEffect(() => { // 3, 2, 1, play
     if (countdown === null) return;
     if (countdown <= 0) { setCountdown(null); setPlaying(true); return; }
-    const timer = window.setTimeout(() => setCountdown(countdown - 1), 1000);
+    const timer = window.setTimeout(() => setCountdown(countdown - 1), 1300);
     return () => window.clearTimeout(timer);
   }, [countdown]);
   useEffect(() => { // keep the active row in view; scrollIntoView would also scroll the drawer's hidden overflow
@@ -278,37 +277,29 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
     if (current) zoomImage(event, current, (size, position) => hooks.current?.onCover({ size, position }));
   };
   const roomBox = (element: HTMLElement) => (element.parentElement ?? element).getBoundingClientRect(); // the room fills .music-room
-  const roomDrag = (event: ReactPointerEvent<HTMLElement>) => {
-    if (!roomMedia || event.button !== 0) return;
+  // The room and the intro video are framed alike: a fit, a zoom on top of it, a focus in %.
+  const dragFocus = (event: ReactPointerEvent<HTMLElement>, media: { w: number; h: number }, fit: Room["fit"], zoom: number, position: string | undefined, apply: (position: string) => void) => {
     const box = roomBox(event.currentTarget);
-    const start = explicit(roomMedia, piece.room.size, piece.room.position, box);
-    if (start) dragImage(event, box, start, (size, position) => hooks.current?.onRoom({ size, position }));
-  };
-  const roomZoom = (event: ReactWheelEvent<HTMLElement>) => {
-    const current = roomMedia && explicit(roomMedia, piece.room.size, piece.room.position, roomBox(event.currentTarget));
-    if (current) zoomImage(event, current, (size, position) => hooks.current?.onRoom({ size, position }));
-  };
-  const videoDrag = (event: ReactPointerEvent<HTMLElement>) => {
-    const video = videoElement.current;
-    if (!video || !intro || event.button !== 0) return;
-    const box = video.getBoundingClientRect();
-    const [X = 50, Y = 50] = pct(intro.position).map(v => (Number.isNaN(v) ? 50 : v));
-    const scale = (intro.fit === "contain" ? Math.min : Math.max)(box.width / video.videoWidth, box.height / video.videoHeight) * introZoom;
-    const slackX = box.width - video.videoWidth * scale, slackY = box.height - video.videoHeight * scale;
+    const [X = 50, Y = 50] = pct(position).map(v => (Number.isNaN(v) ? 50 : v));
+    const sx = box.width / media.w, sy = box.height / media.h, kept = fit === "contain" ? Math.min(sx, sy) : Math.max(sx, sy);
+    const slackX = box.width - media.w * (fit === "stretch" ? sx : kept) * zoom, slackY = box.height - media.h * (fit === "stretch" ? sy : kept) * zoom; // box left over around the media
     const origin = { x: event.clientX, y: event.clientY };
-    const move = (e: PointerEvent) => hooks.current?.onIntro({ position: `${fmt(Math.abs(slackX) > 1 ? clamp(X + ((e.clientX - origin.x) / slackX) * 100) : X)}% ${fmt(Math.abs(slackY) > 1 ? clamp(Y + ((e.clientY - origin.y) / slackY) * 100) : Y)}%` });
+    const move = (e: PointerEvent) => apply(`${fmt(Math.abs(slackX) > 1 ? clamp(X + ((e.clientX - origin.x) / slackX) * 100) : X)}% ${fmt(Math.abs(slackY) > 1 ? clamp(Y + ((e.clientY - origin.y) / slackY) * 100) : Y)}%`);
     const up = () => { window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); hooks.current?.onCommit(); };
     window.addEventListener("pointermove", move);
     window.addEventListener("pointerup", up);
     event.preventDefault();
   };
-  const videoZoom = (event: ReactWheelEvent<HTMLElement>) => {
-    if (!intro) return;
-    const zoom = Math.min(6, Math.max(intro.fit === "contain" ? 0.25 : 1, introZoom * (event.deltaY > 0 ? 0.97 : 1.03)));
-    hooks.current?.onIntro({ zoom: +zoom.toFixed(3) });
+  const wheelZoom = (event: ReactWheelEvent<HTMLElement>, fit: Room["fit"], zoom: number, apply: (zoom: number | undefined) => void) => {
+    const next = +Math.min(6, Math.max(fit === "contain" ? 0.25 : 1, zoom * (event.deltaY > 0 ? 0.97 : 1.03))).toFixed(3); // only contain goes smaller than the room
+    apply(next === 1 ? undefined : next);
     window.clearTimeout(wheelTimer.current);
     wheelTimer.current = window.setTimeout(() => hooks.current?.onCommit(), 400);
   };
+  const roomDrag = (event: ReactPointerEvent<HTMLElement>) => { const media = roomMedia && natural.current[roomMedia]; if (media && event.button === 0) dragFocus(event, media, piece.room.fit, piece.room.zoom ?? 1, piece.room.position, position => hooks.current?.onRoom({ position })); };
+  const roomZoom = (event: ReactWheelEvent<HTMLElement>) => { if (roomMedia) wheelZoom(event, piece.room.fit, piece.room.zoom ?? 1, zoom => hooks.current?.onRoom({ zoom })); };
+  const videoDrag = (event: ReactPointerEvent<HTMLElement>) => { const video = videoElement.current; if (video && intro && event.button === 0) dragFocus(event, { w: video.videoWidth, h: video.videoHeight }, intro.fit, introZoom, intro.position, position => hooks.current?.onIntro({ position })); };
+  const videoZoom = (event: ReactWheelEvent<HTMLElement>) => { if (intro) wheelZoom(event, intro.fit, introZoom, zoom => hooks.current?.onIntro({ zoom })); };
   const onVideoSide = (clientX: number, element: HTMLElement) => { // while comparing, each side of the wipe line edits its own layer
     if (!introShowing) return false;
     if (!compare) return true;
@@ -411,7 +402,8 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
     }}>
       <div className="room-background" aria-hidden="true" />
       <div className="environment" aria-hidden="true">
-        {immersed && roomVideo && <video key={roomVideo} className="room-video" src={roomVideo} style={roomVideoStyle} autoPlay={!reducedMotion} loop muted playsInline disablePictureInPicture preload="auto" onLoadedMetadata={event => { natural.current[roomVideo] = { w: event.currentTarget.videoWidth, h: event.currentTarget.videoHeight }; }} />}
+        <div className="room-still">{piece.room.src && <img src={piece.room.src} alt="" />}</div>
+        {immersed && roomVideo && <video key={roomVideo} className="room-video" src={roomVideo} autoPlay={!reducedMotion} loop muted playsInline disablePictureInPicture preload="auto" onLoadedMetadata={event => { natural.current[roomVideo] = { w: event.currentTarget.videoWidth, h: event.currentTarget.videoHeight }; }} />}
         {introActive && immersed && intro && <div className={`composition-intro ${introVisible ? "visible" : ""} ${compare && introVisible ? "compare" : ""}`} style={{ ...introStyle, ...(compare && introVisible ? compare.mode === "wipe" ? { clipPath: `inset(0 ${100 - compare.amount}% 0 0)` } : { opacity: compare.amount / 100 } : {}) }}>
           <video key={`${piece.id}-${intro.src}`} ref={videoElement} src={intro.src} preload="auto" muted playsInline disablePictureInPicture onLoadedMetadata={event => {
             const video = event.currentTarget;
@@ -436,7 +428,7 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
       {track?.audio && <audio key={track.id} ref={audioElement} src={track.audio} preload="metadata" onEnded={() => setPlaying(false)} onTimeUpdate={event => setTime(event.currentTarget.currentTime)} onLoadedMetadata={event => setDuration(event.currentTarget.duration)} onDurationChange={event => setDuration(event.currentTarget.duration)} />}
       <header className="room-header">
         <button className="wordmark" onClick={goHome}>Alex GOODHART<span>COMPOSER</span></button>
-        <nav className="sort" aria-label="Sort compositions" inert={reading}>{sortKeys.map(key => <button key={key} className={sort === key ? "active" : ""} aria-pressed={sort === key} onClick={() => changeSort(key)}>{sortLabel[key]}</button>)}</nav>
+        <nav className="sort" aria-label="Sort compositions" inert={reading || immersed}>{sortKeys.map(key => <button key={key} className={sort === key ? "active" : ""} aria-pressed={sort === key} onClick={() => changeSort(key)}>{sortLabel[key]}</button>)}</nav>
       </header>
       <aside className={`player-bar ${track ? "out" : ""}`} aria-label="Player" aria-hidden={!track} inert={!track} onWheel={swallow} onTouchStart={swallow} onTouchEnd={swallow}>
         {countdown !== null ? <div className="player-countdown">

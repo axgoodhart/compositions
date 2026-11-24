@@ -118,11 +118,12 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
   const introFade = intro?.fade ?? 0.4;
   const introEnd = editing && !(intro && intro.play > 0) ? Infinity : introStart + (intro?.play ?? 0) * introSpeed; // media seconds
   const introShowing = introActive && introVisible && immersed;
-  const roomVideo = piece.room.video;
-  const roomMedia = roomVideo ?? piece.room.src; // what the room's fit, zoom and position apply to
+  const roomHtml = piece.room.html;
+  const roomVideo = roomHtml ? undefined : piece.room.video;
+  const roomMedia = roomHtml ? undefined : (roomVideo ?? piece.room.src);
   const roomStyle = {
     "--gallery-image": `url("${galleryImage}")`,
-    "--room-tint": roomVideo ? undefined : piece.room.overlay, // filtered together with the image
+    "--room-tint": roomVideo ? undefined : piece.room.overlay, // filtered together with the still layer
     "--room-overlay": roomVideo ? piece.room.overlay : undefined, // with a video the tint draws above it
     "--room-color": piece.room.color,
     "--room-fit": piece.room.fit === "stretch" ? "fill" : piece.room.fit, // as object-fit
@@ -402,7 +403,12 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
     }}>
       <div className="room-background" aria-hidden="true" />
       <div className="environment" aria-hidden="true">
-        <div className="room-still">{piece.room.src && <img src={piece.room.src} alt="" />}</div>
+        <div className="room-still">
+          {piece.room.src && <img src={piece.room.src} alt="" />}
+          {immersed && roomHtml && (
+            <iframe key={`${piece.id}-${roomHtml}`} className="room-html" src={roomHtml} title="Room background" sandbox="allow-scripts" tabIndex={-1} inert />
+          )}
+        </div>
         {immersed && roomVideo && <video key={roomVideo} className="room-video" src={roomVideo} autoPlay={!reducedMotion} loop muted playsInline disablePictureInPicture preload="auto" onLoadedMetadata={event => { natural.current[roomVideo] = { w: event.currentTarget.videoWidth, h: event.currentTarget.videoHeight }; }} />}
         {introActive && immersed && intro && <div className={`composition-intro ${introVisible ? "visible" : ""} ${compare && introVisible ? "compare" : ""}`} style={{ ...introStyle, ...(compare && introVisible ? compare.mode === "wipe" ? { clipPath: `inset(0 ${100 - compare.amount}% 0 0)` } : { opacity: compare.amount / 100 } : {}) }}>
           <video key={`${piece.id}-${intro.src}`} ref={videoElement} src={intro.src} preload="auto" muted playsInline disablePictureInPicture onLoadedMetadata={event => {

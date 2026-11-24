@@ -7,7 +7,7 @@ import type { Asset, AssetKind } from "@/lib/assets";
 // ==== SHARED ====
 export const coverAspect = 512 / 662; // must match .score-artwork in globals.css
 export const idPattern = /^[a-z0-9-]+$/i;
-export const accept: Record<AssetKind, string> = { image: "image/*", video: "video/*,.m4v", audio: "audio/*", pdf: "application/pdf,.pdf" };
+export const accept: Record<AssetKind, string> = { image: "image/*", video: "video/*,.m4v", audio: "audio/*", pdf: "application/pdf,.pdf", html: ".html" };
 
 export const clean = <T extends object>(obj: T): T => Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined && v !== "" && v !== false && !(typeof v === "number" && Number.isNaN(v)))) as T;
 export const pct = (s = "") => s.trim().split(/\s+/).map(parseFloat);
@@ -46,7 +46,7 @@ export function usedBy(c: Catalog | null) {
   const add = (url: string | undefined, who: string) => { if (url) map.set(url, [...(map.get(url) ?? []), who]); };
   if (!c) return map;
   add(c.settings.galleryImage, "gallery backdrop");
-  for (const p of c.compositions) { add(p.cover.src, p.title); add(p.room.src, p.title); add(p.room.video, p.title); add(p.intro?.src, p.title); add(p.audio, p.title); add(p.score, p.title); }
+  for (const p of c.compositions) { add(p.cover.src, p.title); add(p.room.src, p.title); add(p.room.video, p.title); add(p.room.html, p.title); add(p.intro?.src, p.title); add(p.audio, p.title); add(p.score, p.title); }
   return map;
 }
 

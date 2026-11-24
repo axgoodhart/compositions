@@ -14,6 +14,7 @@ Everything a composition shows on the page lives in one data file, [lib/catalog.
 | Add a brand-new composition | [Add a composition](#add-a-composition) |
 | Keep a piece in the editor but off the site | [Hide a piece](#hide-a-piece) |
 | Put a moving background inside a composition | [Room video](#room-video) |
+| Use an HTML page as a composition background | [Room HTML](#room-html) |
 | Tidy the files in `public` | [Organize the files](#organize-the-files) |
 | Pull in pieces from the old player's tracks.json | [Import the old catalog](#import-the-old-catalog) |
 | Know what a field does | [Field reference](#field-reference) |
@@ -65,7 +66,7 @@ npm install
 | Click the big cover | Choose a different image. |
 | Inside a composition, drag the empty background | Moves the room image, or the video while it shows. |
 | Inside a composition, scroll over the empty background | Zooms the room image, or the video while it shows. |
-| Drop a file anywhere on the page | An image becomes the cover (in the gallery) or the room image (inside a composition). A video becomes the intro, or the room video when the Room section is open. A recording becomes the sound. A PDF becomes the score. |
+| Drop a file anywhere on the page | An image becomes the cover (in the gallery) or the room image (inside a composition). A video becomes the intro, or the room video when the Room section is open. An `.html` file becomes the room background. A recording becomes the sound. A PDF becomes the score. |
 
 **Right: the controls**, one section open at a time. Opening a section moves the page to where you can see the result: Room, Video and Score enter the composition, Cover leaves it.
 
@@ -73,7 +74,7 @@ npm install
 | --- | --- |
 | Piece | title lines, id, year, place, ensemble, duration, players · Home, Hidden, Duplicate, Delete |
 | Cover | image · whole image or crop · zoom · adjust (look) |
-| Room | image · video · fill, whole image or stretch · zoom · color · tint · adjust (look) |
+| Room | HTML · image · video · fill, whole image or stretch · zoom · color · tint · adjust (look) |
 | Video | on/off · show, replay · file · fill or whole frame · zoom · from, to, speed, delay, fade · compare last frame · adjust (tint, look) |
 | Sound | the recording |
 | Score | the PDF for the in-room score reader |
@@ -83,7 +84,7 @@ npm install
 
 **Look** is the CSS `filter` as sliders. **Tint** is the overlay gradient as a direction, a color and a strength; **css** takes any gradient by hand. Both sit behind **adjust**; a dot on it means something is set.
 
-**Files.** Every image, video, recording and score opens the same picker in the right column: a search box, one group per folder, pictures at their real proportions, and a number on anything already in use (hover it to see where). The `+` adds files from your disk, or drop them anywhere on the picker. New files land under `public/media` by what they are for: `covers`, `rooms`, `intros`, `audio`, `scores`, `site`. [Organize the files](#organize-the-files) renames each one after the piece that uses it.
+**Files.** Images, videos, recordings, scores and HTML pages use the same picker in the right column. It has a search box, one group per folder, and a number on anything already in use (hover it to see where). The `+` adds files from your disk, or drop them anywhere on the picker. New files land under `public/media` in folders by what they are for. See [Organize the files](#organize-the-files).
 
 **Undo and redo** are ⌘Z and ⇧⌘Z. Every drag, slider release and text edit is one step, and so is Delete, so there is no confirmation. **Save** is ⌘S or the button. If the button says **Fix**, something is missing; click it and the editor takes you to the field and says what. Nothing is written until you save.
 
@@ -124,6 +125,12 @@ In the Piece section, **Hidden** keeps the piece in the editor and leaves it off
 A room can move. In the Room section, **video** chooses a silent clip that loops behind the composition's text while you are inside it; the room **image**, if there is one, shows until the video is ready. Dragging and scrolling the empty background moves and zooms the video just like the image, and the tint and look apply to it too. Clear the video to go back to the still room. Visitors who have asked their system for reduced motion see the first frame, unmoving.
 
 Where it sits with the intro: the intro plays on top, then dissolves into the moving room.
+
+## Room HTML
+
+In **Room → HTML**, pick an existing file like `blossom-mountains.html`, or use **+** to upload a self-contained `.html` page. You can also drop the file onto the editor preview. Click **Save** to use the background on the gallery site.
+
+The page fills the room behind the composition controls and intro. The room tint and look apply to it. Clearing HTML brings back the room video or image. The HTML page handles its own layout and motion. Uploads go into `public/media/rooms/html` and keep their paths when media is organized.
 
 ## Organize the files
 
@@ -188,7 +195,8 @@ The editor labels match these names. Every file path is a URL without `public`: 
 | --- | --- | --- |
 | `src` | `"/media/rooms/raven.png"` | The room image. Leave out for a tint-only room. |
 | `video` | `"/media/rooms/raven-video.mp4"` | A silent looping video over the image, shown inside the composition. Uses the same `size`, `position` and `filter`. Leave out for a still room. |
-| `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the image. With no `src`, this is the whole backdrop. |
+| `html` | `"/shaders/blossom-mountains.html"` | A full-room HTML page. Takes priority over the room image or video. |
+| `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the room background. |
 | `size` | `"140% 125%"` | How big the image is relative to the screen. Leave out for `cover`. |
 | `position` | `"50% 100%"` | Which part stays in view. Leave out for center. |
 | `color` | `"#070d19"` | Flat color behind everything. Leave out for near-black. |

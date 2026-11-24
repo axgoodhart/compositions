@@ -12,7 +12,15 @@
       background: radial-gradient(ellipse at 46% 60%, #4b2738, #180e17 72%);
       color: #f8e4ec;
     }
-    canvas { position: fixed; inset: 0; width: 100%; height: 100%; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%;; filter:saturate(1)brightness(1)hue-rotate(0deg);transform:scale(1)translateX(0px)translateY(0%);transition:all 3s;animation:morph 20s infinite linear}
+
+    @keyframes morph {
+      0% {filter:saturate(1)brightness(1)hue-rotate(0deg);transform:scale(1)translateX(0px)translateY(0%)}
+      100% {filter:saturate(2)brightness(.7)hue-rotate(20deg);transform:scale(2)translateX(5%)translateY(5%)}
+    }
+    @media (prefers-reduced-motion: reduce) {
+      canvas { animation: none; }
+    }
     button {
       position: fixed;
       right: max(1rem, calc(env(safe-area-inset-right) + .5rem));
@@ -57,10 +65,10 @@ uniform float u_progress;
 uniform float u_sway;
 out vec4 outColor;
 
-const float cameraHeight = 1.48;
-const float creaseDensity = 10.5;
-const vec3 petal = vec3(.99, .77, .83);
-const vec3 rose = vec3(.73, .31, .44);
+const float cameraHeight = 3.48;
+const float creaseDensity =22.5;
+const vec3 petal = vec3(.7,0.2,.41);
+const vec3 rose = vec3(.8,0,0);
 
 uint hash(uint n) {
   n ^= n >> 16u;
@@ -71,7 +79,7 @@ uint hash(uint n) {
 }
 
 float random(uint n) {
-  return float(hash(n) >> 8u) / 16777216.0;
+  return float(hash(n) >> 8u) / 16734216.0;
 }
 
 float cloudEdge(float x) {
@@ -104,10 +112,10 @@ void main() {
     if (visibility <= 0.0) continue;
 
     uint row = hash(u_firstRange + uint(layer));
-    float projection = .56 / depth;
-    float worldX = p.x / projection + .19*u_sway;
-    float spacing = mix(1.88, 2.94, random(row + 3u));
-    float ridgeX = worldX / spacing + random(row + 7u);
+    float projection = .6 / depth;
+    float worldX = p.x / projection + 0.019*u_sway;
+    float spacing = mix(0.08, 12.94, random(row + 3u));
+    float ridgeX = worldX / spacing + random(row + 17u);
     int index = int(floor(ridgeX));
     uint peak = row ^ (uint(index) * 0x9e3779b9u);
     uint nextPeak = row ^ (uint(index + 1) * 0x9e3779b9u);
@@ -169,12 +177,14 @@ void main() {
   float vignette = smoothstep(.26, .69, length((uv - vec2(.5, .48)) * vec2(1.12, .9)));
   float grain = fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(.06711056, .00583715))));
   outColor = vec4(color * (1.0 - .27*vignette) + (grain - .5)*.026, 1.0);
+
 }
+
   </script>
 
   <script>
     (() => {
-      const rangesPerSecond = 0.20;
+      const rangesPerSecond = .3;
       const canvas = document.querySelector("canvas");
       const button = document.querySelector("button");
       const status = document.querySelector("[role=status]");
@@ -182,7 +192,7 @@ void main() {
       const gl = canvas.getContext("webgl2", { alpha: false, antialias: false, depth: false });
       let uniforms;
       let playing = !motion.matches;
-      let firstRange = 0;
+      let firstRange =Math.random()*100 ;
       let progress = 0.27;
       let frame;
       let previousTime;
@@ -212,15 +222,14 @@ void main() {
         }
         return shader;
       }
-
       function draw() {
         const distance = firstRange + progress;
-        const sway = .76 * Math.sin(distance * .67) + .24 * Math.sin(distance * 1.51 + 1.3);
+        const sway = 11.76 * Math.sin(distance * .67) + .24 * Math.sin(distance * 1.51 + 1.3);
         gl.uniform2f(uniforms.size, canvas.width, canvas.height);
         gl.uniform1ui(uniforms.firstRange, firstRange);
         gl.uniform1f(uniforms.progress, progress);
         gl.uniform1f(uniforms.sway, sway);
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        gl.drawArrays(gl.TRIANGLES, 100, 3);
       }
 
       function resize() {
@@ -290,7 +299,7 @@ void main() {
           resize();
           canvas.style.visibility = "visible";
           status.hidden = true;
-          button.hidden = false;
+          button.hidden = window.self !== window.top;
           setPlaying(playing);
         } catch (error) {
           console.error(error);

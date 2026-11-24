@@ -782,11 +782,20 @@ h1>span {
 }
 
 .room-still img,
+.room-html,
 .room-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+}
+
+.room-html {
+    border: 0;
+}
+
+.room-still img,
+.room-video {
     object-fit: var(--room-fit, cover); /* cover and contain keep the proportions; fill stretches */
     object-position: var(--room-position, center);
     transform: scale(var(--room-zoom, 1));

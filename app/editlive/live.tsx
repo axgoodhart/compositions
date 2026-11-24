@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState, type DragEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from "react";
-import { ChevronRight, Copy, EyeOff, FileText, Film, GripVertical, Music, Plus, Redo2, RotateCcw, Star, Trash2, Undo2, X } from "lucide-react";
+import { ChevronRight, Copy, EyeOff, FileCode, FileText, Film, GripVertical, Music, Plus, Redo2, RotateCcw, Star, Trash2, Undo2, X } from "lucide-react";
 import { CompositionBrowser, type EditorHooks } from "@/components/composition-browser";
 import type { Catalog, Composition, Cover, Intro, Room, Settings } from "@/lib/compositions";
 import { assetKind, mediaFolder, type AssetKind, type MediaRole } from "@/lib/assets";
@@ -100,7 +100,7 @@ export function LiveEditor() {
   const index = view.index;
   const piece = catalog?.compositions[index];
   const count = catalog?.compositions.length ?? 0;
-  const roomMedia = piece?.room.video ?? piece?.room.src; // the room's fit, zoom and position belong to the video when there is one
+  const roomMedia = piece?.room.html ? undefined : (piece?.room.video ?? piece?.room.src);
   const natural = useNatural(piece?.cover.src);
   const uses = usedBy(catalog);
 
@@ -229,14 +229,19 @@ export function LiveEditor() {
     const file = e.dataTransfer.files[0];
     if (!file || !piece) return;
     const kind = assetKind(file.name);
-    if (!kind) return notify("Not an image, video, recording or PDF");
-    const role: MediaRole = kind === "pdf" ? "scores" : kind === "audio" ? "audio" : kind === "video" ? (view.immersed && section === "room" ? "room" : "intro") : view.immersed ? "room" : "cover"; // a video dropped with Room open is the room's
-    const [url] = await upload([file], mediaFolder[role]);
+    if (!kind) return notify("Choose an image, video, recording, PDF or HTML file");
+    const role: MediaRole = kind === "html" ? "roomHtml"
+      : kind === "pdf" ? "scores"
+      : kind === "audio" ? "audio"
+      : kind === "video" ? (view.immersed && section === "room" ? "room" : "intro")
+      : view.immersed ? "room" : "cover";
+    const [url] = await upload([file], mediaFolder[role]).catch(() => []);
     if (!url) return notify("Upload failed");
     remember(kind, url);
     let where = "cover";
     if (role === "scores") { patch({ score: url }); where = "score"; }
     else if (role === "audio") { patch({ audio: url }); where = "recording"; }
+    else if (role === "roomHtml") { patchRoom({ html: url }); where = "HTML background"; show("room"); }
     else if (role === "intro") { patchIntro({ src: url }); where = "intro video"; show("video"); }
     else if (role === "room" && kind === "video") { patchRoom({ video: url, zoom: undefined, position: undefined }); where = "room video"; }
     else if (role === "room") { patchRoom({ src: url }); where = "room"; }
@@ -306,7 +311,8 @@ export function LiveEditor() {
   };
 
   const hooks: EditorHooks = {
-    showIntro, replayKey, select, immerse,
+    showIntro: showIntro && (section !== "room" || !piece?.room.html || hold),
+    replayKey, select, immerse,
     hold, compare: hold ? { mode: compareMode, amount: peek ? 0 : amount } : undefined,
     onState: setView,
     onRoom: patchRoom,
@@ -398,7 +404,9 @@ export function LiveEditor() {
               </Adjust>
             </Sec>
 
-            <Sec title="Room" meta={fileName(roomMedia) || "color only"} open={open("room")} onOpen={() => toggleSection("room")}>
+            <Sec title="Room" meta={fileName(piece.room.html ?? roomMedia) || "color only"} open={open("room")} onOpen={() => toggleSection("room")}>
+              <AssetRow kind="html" label="HTML" value={piece.room.html} onPick={() => pick("html", "roomHtml", piece.room.html, url => patchRoom({ html: url }))} onClear={() => { patchRoom({ html: undefined }); commit(); }} />
+              {piece.room.html && (piece.room.video || piece.room.src) && <p className="meta-line">Clear HTML to switch back to the image or video.</p>}
               <AssetRow kind="image" label="image" value={piece.room.src} onPick={() => pick("image", "room", piece.room.src, url => patchRoom({ src: url, zoom: undefined, position: undefined }))} onClear={() => { patchRoom({ src: undefined, zoom: undefined, position: undefined }); commit(); }} />
               <AssetRow kind="video" label="video" value={piece.room.video} onPick={() => pick("video", "room", piece.room.video, url => patchRoom({ video: url, zoom: undefined, position: undefined }))} onClear={() => { patchRoom({ video: undefined, zoom: undefined, position: undefined }); commit(); }} />
               {roomMedia && <>
@@ -571,11 +579,12 @@ function Slider({ label, value, min, max, step, unit, onChange, onCommit }: { la
 function AssetRow({ kind, label, value, cover, onPick, onClear }: { kind: AssetKind; label?: string; value?: string; cover?: boolean; onPick: () => void; onClear?: () => void }) {
   return (
     <div className="asset">
-      <button className={`thumb ${cover ? "cover" : ""} ${value ? "" : "empty"}`} onClick={onPick} style={kind === "image" && value ? { backgroundImage: `url("${value}")` } : undefined} aria-label="Choose">
+      <button className={`thumb ${cover ? "cover" : ""} ${value ? "" : "empty"}`} onClick={onPick} style={kind === "image" && value ? { backgroundImage: `url("${value}")` } : undefined} aria-label={`Choose ${label ?? "file"}`}>
         {value && kind === "video" && <Film size={13} />}{value && kind === "audio" && <Music size={13} />}{value && kind === "pdf" && <FileText size={13} />}
+        {kind === "html" && <FileCode size={13} />}
       </button>
       <button className="name" onClick={onPick} title={value}>{label && <span className="lbl">{label}</span>}{value ? fileName(value) : "choose…"}</button>
-      {onClear && value && <button className="icon" aria-label="Clear" onClick={onClear}><X size={12} /></button>}
+      {onClear && value && <button className="icon" aria-label={`Clear ${label ?? "file"}`} onClick={onClear}><X size={12} /></button>}
     </div>
   );
 }

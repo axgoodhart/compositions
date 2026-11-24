@@ -19,7 +19,6 @@ type Ref = { url: string; role: MediaRole; name: string; who: string; set: (url:
 type Catalog = { settings: { galleryImage: string }; compositions: { id: string; title: string; cover: { src: string }; room: { src?: string; video?: string }; intro?: { src: string }; audio?: string; score?: string }[] };
 export type Result = { report: string; summary: string; changes: number };
 
-const kindOf = (name: string): Kind => (name.toLowerCase().endsWith(".pdf") ? "pdf" : assetKind(name) ?? "other");
 const ext = (name: string) => name.slice(name.lastIndexOf(".")).toLowerCase();
 const slug = (name: string) => { const dot = name.lastIndexOf("."); const stem = name.slice(0, dot < 0 ? undefined : dot).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, "-").replace(/[^\w.()-]/g, "") || "file"; return dot < 0 ? stem : stem + ext(name); };
 const mb = (n: number) => (n >= 1e9 ? `${(n / 1e9).toFixed(1)} GB` : n >= 1e6 ? `${Math.round(n / 1e6)} MB` : `${Math.round(n / 1e3)} KB`);
@@ -43,7 +42,11 @@ export async function organize(cwd: string, { apply = false } = {}): Promise<Res
   const catalogFile = path.join(cwd, "lib/catalog.json");
   const catalog = JSON.parse(await readFile(catalogFile, "utf8")) as Catalog;
   const entries = new Map<string, Entry>();
-  for (const rel of await walk(pub, pub, true)) entries.set(rel, { rel, size: (await stat(path.join(pub, rel))).size, kind: kindOf(rel), dest: rel, refs: [], pins: [] });
+  for (const rel of await walk(pub, pub, true)) {
+    const kind = assetKind(rel);
+    if (kind === "html") continue; // Keep authored backgrounds at their original URLs.
+    entries.set(rel, { rel, size: (await stat(path.join(pub, rel))).size, kind: kind ?? "other", dest: rel, refs: [], pins: [] });
+  }
 
   // what the catalog and the code point at
   const refs: Ref[] = [];

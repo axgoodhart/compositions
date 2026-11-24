@@ -1,6 +1,6 @@
 import { access, mkdir, readdir, stat, writeFile } from "fs/promises";
 import path from "path";
-import { assetKind, type Asset } from "@/lib/assets";
+import { assetKind, mediaFolder, type Asset } from "@/lib/assets";
 
 const root = path.join(process.cwd(), "public");
 const dev = process.env.NODE_ENV === "development";
@@ -34,7 +34,9 @@ export async function POST(request: Request) {
   await mkdir(dir, { recursive: true });
   const saved: string[] = [];
   for (const value of form.getAll("files")) {
-    if (!(value instanceof File) || !assetKind(value.name)) continue;
+    if (!(value instanceof File)) continue;
+    const kind = assetKind(value.name);
+    if (!kind || (kind === "html" && folder !== mediaFolder.roomHtml)) continue;
     const dot = value.name.lastIndexOf(".");
     const stem = value.name.slice(0, dot).normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, "-").replace(/[^\w.()-]/g, "") || "file";
     const ext = value.name.slice(dot).toLowerCase();

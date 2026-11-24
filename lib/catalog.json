@@ -71,11 +71,15 @@
       "duration": "18 minutes",
       "cover": {
         "src": "/media/covers/mountain.webp",
-        "filter": "brightness(1.4)saturate(.82)"
+        "filter": "brightness(1.4)saturate(.82)",
+        "size": "100% 105.958%",
+        "position": "50% 49.267%"
       },
       "room": {
-        "src": "/media/rooms/mountain.png",
-        "overlay": "linear-gradient(90deg,#07170fb0,#07170f10)"
+        "video": "/media/rooms/der_httpss.mj.run0_3SY_0wRKg_--ar_256143_--bs_2_--motion_high_4d67b471-7a2a-4ac7-974a-32a72addc811_0.mp4",
+        "fit": "stretch",
+        "html": "/shaders/blossom-mountains.html",
+        "overlay": "linear-gradient(90deg,#00000080,#00000013)"
       },
       "hidden": true
     },

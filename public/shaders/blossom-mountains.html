@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#180e17">
+  <title>Blossom Mountains</title>
+  <style>
+    html { color-scheme: dark; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 46% 60%, #4b2738, #180e17 72%);
+      color: #f8e4ec;
+    }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; }
+    button {
+      position: fixed;
+      right: max(1rem, calc(env(safe-area-inset-right) + .5rem));
+      bottom: max(1rem, calc(env(safe-area-inset-bottom) + .5rem));
+      min-width: 5.25rem;
+      min-height: 44px;
+      padding: .45rem 1rem;
+      border: 1px solid #e7b6c067;
+      border-radius: 999px;
+      background: #251823eb;
+      color: inherit;
+      font: 500 .9rem/1 Optima, Georgia, serif;
+      letter-spacing: .055em;
+      cursor: pointer;
+    }
+    button:hover { background: #462938; }
+    button:focus-visible { outline: 2px solid #ffe0e9; outline-offset: 4px; }
+    p {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: min(26rem, calc(100% - 3rem));
+      margin: 0;
+      transform: translate(-50%, -50%);
+      font: 1rem/1.5 Georgia, serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas role="img" aria-label="A landscape of overlapping peaks traced in rose and ivory"></canvas>
+  <button type="button" hidden>Pause</button>
+  <p role="status" hidden></p>
+
+  <script id="blossom-fragment" type="x-shader/x-fragment">#version 300 es
+precision highp float;
+precision highp int;
+
+uniform vec2 u_size;
+uniform uint u_firstRange;
+uniform float u_progress;
+uniform float u_sway;
+out vec4 outColor;
+
+const float cameraHeight = 1.48;
+const float creaseDensity = 10.5;
+const vec3 petal = vec3(.99, .77, .83);
+const vec3 rose = vec3(.73, .31, .44);
+
+uint hash(uint n) {
+  n ^= n >> 16u;
+  n *= 0x7feb352du;
+  n ^= n >> 15u;
+  n *= 0x846ca68bu;
+  return n ^ (n >> 16u);
+}
+
+float random(uint n) {
+  return float(hash(n) >> 8u) / 16777216.0;
+}
+
+float cloudEdge(float x) {
+  return .065 * sin(3.7*x) + .035 * sin(8.1*x + 1.9)
+       + .017 * sin(19.8*x) + .008 * sin(42.5*x + .7) + .003 * sin(91.8*x);
+}
+
+vec3 skyColor(vec2 p, float screenY) {
+  float horizonGlow = exp(-length(vec2(.85*p.x + .21, 5.2*p.y)));
+  vec3 sky = mix(vec3(.095, .043, .067), vec3(.326, .166, .216), horizonGlow);
+  float wind = .042 * u_sway;
+  float lowerCloud = .67 + cloudEdge(p.x + wind);
+  float upperCloud = .85 + cloudEdge(p.x*1.22 + 2.1 + wind);
+  sky = mix(sky, vec3(.177, .074, .101), .62 * smoothstep(lowerCloud, lowerCloud + .019, screenY));
+  return mix(sky, vec3(.077, .033, .051), .88 * smoothstep(upperCloud, upperCloud + .025, screenY));
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_size;
+  float aspect = u_size.x / u_size.y;
+  vec2 p = vec2((uv.x - .5) * max(aspect, .96) + .032*u_sway, uv.y - .45);
+  float pixel = 1.0 / u_size.y;
+  vec3 sky = skyColor(p, uv.y);
+  vec3 color = sky;
+
+  // Rows move toward the camera. Both ends fade before a row enters or leaves the draw range.
+  for (int layer = 8; layer >= 0; --layer) {
+    float depth = float(layer) + 1.0 - u_progress;
+    float visibility = smoothstep(.24, .77, depth) * (1.0 - smoothstep(7.8, 9.0, depth));
+    if (visibility <= 0.0) continue;
+
+    uint row = hash(u_firstRange + uint(layer));
+    float projection = .56 / depth;
+    float worldX = p.x / projection + .19*u_sway;
+    float spacing = mix(1.88, 2.94, random(row + 3u));
+    float ridgeX = worldX / spacing + random(row + 7u);
+    int index = int(floor(ridgeX));
+    uint peak = row ^ (uint(index) * 0x9e3779b9u);
+    uint nextPeak = row ^ (uint(index + 1) * 0x9e3779b9u);
+    float localX = fract(ridgeX);
+    float crown = mix(.24, .76, random(peak + 11u));
+    float offset = localX - crown;
+    float flankWidth = offset < 0.0 ? crown : 1.0 - crown;
+    float shoulder = clamp(1.0 - abs(offset) / flankWidth, 0.0, 1.0);
+
+    float seed = random(peak + 19u);
+    float base = mix(.17, .51, mix(random(peak + 23u), random(nextPeak + 23u), localX));
+    float rise = mix(.88, 2.45, random(peak + 29u));
+    float valleyCenter = .68 * (random(row + 31u) - .5);
+    float bank = mix(.36, 1.0, smoothstep(.16, 1.77, abs(worldX - valleyCenter)));
+    float crags = shoulder * (1.0 - shoulder) * (
+      .46*sin(13.0*localX + 6.28*seed) + .24*sin(28.0*localX - 7.0*seed)
+      + .09*sin(65.0*localX + 4.0*seed)
+    );
+    float height = base + bank * (rise * pow(shoulder, mix(.76, 1.68, seed)) + crags);
+    float gap = (height - cameraHeight) * projection - p.y;
+    float edgeWidth = max(fwidth(gap), pixel);
+    float coverage = smoothstep(-.55*edgeWidth, .55*edgeWidth, gap);
+
+    // The folds spread and bend as they descend from each summit.
+    float surfaceY = cameraHeight + p.y / projection;
+    float fall = max(0.0, base + bank*rise - surfaceY);
+    float flank = offset * spacing;
+    float bend = fall / (1.0 + fall) * ((seed - .5)*.33*fall + .13*sin(2.6*fall + 7.0*seed));
+    float fold = (flank + bend) / (1.0 + .48*fall);
+    float thread = creaseDensity*fold + .24*sin(4.9*flank + 2.7*fall + 5.0*seed)
+                + .12*sin(10.7*flank - 3.6*fall);
+    float threadWidth = max(fwidth(thread), .0001);
+
+    if (coverage > 0.0) {
+      float saddle = smoothstep(.022, .095, min(localX, 1.0 - localX));
+      float warmth = mix(random(row + 37u), random(peak + 41u), .75*saddle);
+      float litSide = 1.0 - smoothstep(-.038, .05, flank + bend*.6);
+      float facets = .5 + .5*sin(6.6*fold + .4*sin(11.0*localX + 2.2*fall));
+      float light = .16 + .39*mix(.45, litSide, saddle) + .22*facets;
+      vec3 shadow = mix(vec3(.043, .055, .068), vec3(.105, .040, .065), warmth);
+      vec3 stone = mix(vec3(.278, .278, .308), vec3(.326, .135, .171), warmth);
+      vec3 face = mix(shadow, stone, light) * mix(.72, 1.04, exp(-.42*max(gap / projection, 0.0)));
+
+      float threadDistance = abs(fract(thread + .5) - .5);
+      float filament = (1.0 - smoothstep(.10*threadWidth, .88*threadWidth, threadDistance))
+                     * (1.0 - smoothstep(.31, .72, threadWidth));
+      float accents = .5 + .5*cos(1.94*floor(thread + .5) + 6.28*seed);
+      vec3 ink = mix(rose, petal, .36 + .42*litSide);
+      face = mix(face, ink, filament * saddle * mix(.31, .64, accents));
+      float rim = 1.0 - smoothstep(.12*edgeWidth, 1.35*edgeWidth, abs(gap));
+      face = mix(face, mix(rose, petal, .72), rim * mix(.67, .91, seed));
+
+      float haze = .75 * smoothstep(1.2, 9.0, depth);
+      vec3 mist = mix(sky, vec3(.350, .191, .238), .30);
+      color = mix(color, mix(face, mist, haze), coverage * visibility);
+    }
+  }
+
+  float vignette = smoothstep(.26, .69, length((uv - vec2(.5, .48)) * vec2(1.12, .9)));
+  float grain = fract(52.9829189 * fract(dot(gl_FragCoord.xy, vec2(.06711056, .00583715))));
+  outColor = vec4(color * (1.0 - .27*vignette) + (grain - .5)*.026, 1.0);
+}
+  </script>
+
+  <script>
+    (() => {
+      const rangesPerSecond = 0.20;
+      const canvas = document.querySelector("canvas");
+      const button = document.querySelector("button");
+      const status = document.querySelector("[role=status]");
+      const motion = matchMedia("(prefers-reduced-motion: reduce)");
+      const gl = canvas.getContext("webgl2", { alpha: false, antialias: false, depth: false });
+      let uniforms;
+      let playing = !motion.matches;
+      let firstRange = 0;
+      let progress = 0.27;
+      let frame;
+      let previousTime;
+
+      function showStatus(message) {
+        uniforms = undefined;
+        cancelAnimationFrame(frame);
+        canvas.style.visibility = "hidden";
+        button.hidden = true;
+        status.textContent = message;
+        status.hidden = false;
+      }
+
+      if (!gl) {
+        showStatus("This shader needs a browser with WebGL 2 enabled.");
+        return;
+      }
+
+      function compile(type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          const error = gl.getShaderInfoLog(shader);
+          gl.deleteShader(shader);
+          throw new Error(error);
+        }
+        return shader;
+      }
+
+      function draw() {
+        const distance = firstRange + progress;
+        const sway = .76 * Math.sin(distance * .67) + .24 * Math.sin(distance * 1.51 + 1.3);
+        gl.uniform2f(uniforms.size, canvas.width, canvas.height);
+        gl.uniform1ui(uniforms.firstRange, firstRange);
+        gl.uniform1f(uniforms.progress, progress);
+        gl.uniform1f(uniforms.sway, sway);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
+
+      function resize() {
+        if (!uniforms) return;
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        if (!width || !height) return;
+        const scale = Math.min(devicePixelRatio || 1, 1.6, Math.sqrt(1_280_000 / (width * height)));
+        canvas.width = Math.round(width * scale);
+        canvas.height = Math.round(height * scale);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        draw();
+      }
+
+      function animate(now) {
+        if (previousTime !== undefined) {
+          progress += Math.min((now - previousTime) / 1000, .08) * rangesPerSecond;
+          const passed = Math.floor(progress);
+          firstRange = (firstRange + passed) >>> 0;
+          progress -= passed;
+        }
+        previousTime = now;
+        draw();
+        frame = requestAnimationFrame(animate);
+      }
+
+      function schedule() {
+        cancelAnimationFrame(frame);
+        previousTime = undefined;
+        if (uniforms && playing && !document.hidden) frame = requestAnimationFrame(animate);
+      }
+
+      function setPlaying(next) {
+        playing = next;
+        button.textContent = playing ? "Pause" : "Play";
+        button.setAttribute("aria-label", playing ? "Pause mountain traversal" : "Play mountain traversal");
+        schedule();
+      }
+
+      function start() {
+        try {
+          const vertex = compile(gl.VERTEX_SHADER, `#version 300 es
+            void main() {
+              vec2 corner = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+              gl_Position = vec4(corner * 2.0 - 1.0, 0.0, 1.0);
+            }
+          `);
+          const fragment = compile(gl.FRAGMENT_SHADER, document.querySelector("#blossom-fragment").textContent.trim());
+          const program = gl.createProgram();
+          gl.attachShader(program, vertex);
+          gl.attachShader(program, fragment);
+          gl.linkProgram(program);
+          gl.deleteShader(vertex);
+          gl.deleteShader(fragment);
+          if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            const error = gl.getProgramInfoLog(program);
+            gl.deleteProgram(program);
+            throw new Error(error);
+          }
+          gl.useProgram(program);
+          uniforms = {
+            size: gl.getUniformLocation(program, "u_size"),
+            firstRange: gl.getUniformLocation(program, "u_firstRange"),
+            progress: gl.getUniformLocation(program, "u_progress"),
+            sway: gl.getUniformLocation(program, "u_sway"),
+          };
+          resize();
+          canvas.style.visibility = "visible";
+          status.hidden = true;
+          button.hidden = false;
+          setPlaying(playing);
+        } catch (error) {
+          console.error(error);
+          showStatus("The mountain shader could not start on this graphics device.");
+        }
+      }
+
+      button.addEventListener("click", () => setPlaying(!playing));
+      motion.addEventListener("change", event => setPlaying(!event.matches));
+      document.addEventListener("visibilitychange", schedule);
+      window.addEventListener("resize", resize);
+      canvas.addEventListener("webglcontextlost", event => {
+        event.preventDefault();
+        showStatus("Waiting for the graphics device to reconnect.");
+      });
+      canvas.addEventListener("webglcontextrestored", start);
+      start();
+    })();
+  </script>
+</body>
+</html>

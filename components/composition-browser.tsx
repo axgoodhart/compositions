@@ -4,7 +4,7 @@ import { createElement, useCallback, useEffect, useLayoutEffect, useMemo, useRef
 import { ArrowLeft, ArrowRight, ArrowUpRight, Headphones, Play, X } from "lucide-react";
 import { ScoreArtwork } from "@/components/score-artwork";
 import { ScoreReader } from "@/components/score-reader";
-import { compositions, galleryImage, homeId, introCooldownHours, type Catalog, type Composition, type Cover, type Intro, type Room } from "@/lib/compositions";
+import { compositions, galleryImage, homeId, introCooldownHours, roomFramingSource, type Catalog, type Composition, type Cover, type Intro, type Room } from "@/lib/compositions";
 
 const defaultCatalog: Catalog = { settings: { introCooldownHours, homeId, galleryImage }, compositions };
 
@@ -119,8 +119,8 @@ export function CompositionBrowser({ catalog = defaultCatalog, editor }: { catal
   const introEnd = editing && !(intro && intro.play > 0) ? Infinity : introStart + (intro?.play ?? 0) * introSpeed; // media seconds
   const introShowing = introActive && introVisible && immersed;
   const roomHtml = piece.room.html;
-  const roomVideo = roomHtml ? undefined : piece.room.video;
-  const roomMedia = roomHtml ? undefined : (roomVideo ?? piece.room.src);
+  const roomVideo = piece.room.video;
+  const roomMedia = roomFramingSource(piece.room);
   const roomStyle = {
     "--gallery-image": `url("${galleryImage}")`,
     "--room-tint": roomVideo ? undefined : piece.room.overlay, // filtered together with the still layer

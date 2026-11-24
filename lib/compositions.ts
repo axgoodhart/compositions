@@ -36,8 +36,8 @@ export type Cover = {
 };
 export type Room = {
   src?: string; // background image; omit for gradients only
-  video?: string; // looping silent video over the image, inside the composition; shares fit, zoom, position and filter
-  html?: string; // full-room HTML page over the image, taking the place of the room video
+  video?: string; // silent loop over the room background, using the room's fit, zoom, position and filter
+  html?: string; // full-room HTML page above the image and beneath the room video
   overlay?: string; // CSS gradient layers drawn over the room background
   fit?: "cover" | "contain" | "stretch"; // cover fills the room, contain shows the whole image, both keep its proportions; stretch does not; default cover
   zoom?: number; // scale on top of fit; default 1
@@ -58,6 +58,10 @@ export type Intro = {
   filter?: string; // CSS filter; default none
   overlay?: string; // CSS color or gradient over the video; default none
 };
+
+export function roomFramingSource(room?: Room): string | undefined {
+  return room?.video || (room?.html ? undefined : room?.src);
+}
 
 // ==== DATA ====
 const data = catalog as unknown as Catalog;

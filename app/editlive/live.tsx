@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState, type DragEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from "react";
 import { ChevronRight, Copy, EyeOff, FileCode, FileText, Film, GripVertical, Music, Plus, Redo2, RotateCcw, Star, Trash2, Undo2, X } from "lucide-react";
 import { CompositionBrowser, type EditorHooks } from "@/components/composition-browser";
-import type { Catalog, Composition, Cover, Intro, Room, Settings } from "@/lib/compositions";
+import { roomFramingSource, type Catalog, type Composition, type Cover, type Intro, type Room, type Settings } from "@/lib/compositions";
 import { assetKind, mediaFolder, type AssetKind, type MediaRole } from "@/lib/assets";
 import { AssetPicker, remember } from "./picker";
 import { CoverStudio } from "./studio";
@@ -100,7 +100,7 @@ export function LiveEditor() {
   const index = view.index;
   const piece = catalog?.compositions[index];
   const count = catalog?.compositions.length ?? 0;
-  const roomMedia = piece?.room.html ? undefined : (piece?.room.video ?? piece?.room.src);
+  const roomMedia = roomFramingSource(piece?.room);
   const natural = useNatural(piece?.cover.src);
   const uses = usedBy(catalog);
 
@@ -311,8 +311,7 @@ export function LiveEditor() {
   };
 
   const hooks: EditorHooks = {
-    showIntro: showIntro && (section !== "room" || !piece?.room.html || hold),
-    replayKey, select, immerse,
+    showIntro, replayKey, select, immerse,
     hold, compare: hold ? { mode: compareMode, amount: peek ? 0 : amount } : undefined,
     onState: setView,
     onRoom: patchRoom,
@@ -404,9 +403,11 @@ export function LiveEditor() {
               </Adjust>
             </Sec>
 
-            <Sec title="Room" meta={fileName(piece.room.html ?? roomMedia) || "color only"} open={open("room")} onOpen={() => toggleSection("room")}>
+            <Sec title="Room" meta={fileName(roomMedia || piece.room.html) || "color only"} open={open("room")} onOpen={() => toggleSection("room")}>
               <AssetRow kind="html" label="HTML" value={piece.room.html} onPick={() => pick("html", "roomHtml", piece.room.html, url => patchRoom({ html: url }))} onClear={() => { patchRoom({ html: undefined }); commit(); }} />
-              {piece.room.html && (piece.room.video || piece.room.src) && <p className="meta-line">Clear HTML to switch back to the image or video.</p>}
+              {piece.room.html && (piece.room.video || piece.room.src) && <p className="meta-line">
+                {piece.room.video ? "The room video plays over the HTML background." : "Clear HTML to show the room image."}
+              </p>}
               <AssetRow kind="image" label="image" value={piece.room.src} onPick={() => pick("image", "room", piece.room.src, url => patchRoom({ src: url, zoom: undefined, position: undefined }))} onClear={() => { patchRoom({ src: undefined, zoom: undefined, position: undefined }); commit(); }} />
               <AssetRow kind="video" label="video" value={piece.room.video} onPick={() => pick("video", "room", piece.room.video, url => patchRoom({ video: url, zoom: undefined, position: undefined }))} onClear={() => { patchRoom({ video: undefined, zoom: undefined, position: undefined }); commit(); }} />
               {roomMedia && <>

@@ -122,7 +122,7 @@ In the Piece section, **Hidden** keeps the piece in the editor and leaves it off
 
 ## Room video
 
-A room can move. In the Room section, **video** chooses a silent clip that loops behind the composition's text while you are inside it; the room **image**, if there is one, shows until the video is ready. Dragging and scrolling the empty background moves and zooms the video just like the image, and the tint and look apply to it too. Clear the video to go back to the still room. Visitors who have asked their system for reduced motion see the first frame, unmoving.
+A room can move. In the Room section, **video** chooses a silent clip that loops behind the composition's text while you are inside it. The room's HTML page or image shows while the video loads and wherever it leaves space. Dragging and scrolling the empty background moves and zooms the video just like the image, and the tint and look apply to it too. Clear the video to see the full background. Visitors who have asked their system for reduced motion see the first frame, unmoving.
 
 Where it sits with the intro: the intro plays on top, then dissolves into the moving room.
 
@@ -130,7 +130,7 @@ Where it sits with the intro: the intro plays on top, then dissolves into the mo
 
 In **Room → HTML**, pick an existing file like `blossom-mountains.html`, or use **+** to upload a self-contained `.html` page. You can also drop the file onto the editor preview. Click **Save** to use the background on the gallery site.
 
-The page fills the room behind the composition controls and intro. The room tint and look apply to it. Clearing HTML brings back the room video or image. The HTML page handles its own layout and motion. Uploads go into `public/media/rooms/html` and keep their paths when media is organized.
+The page fills the room beneath the room video and intro. The room tint and look apply to it. Clearing HTML restores the room image as the background beneath the video. The HTML page handles its own layout and motion. Uploads go into `public/media/rooms/html` and keep their paths when media is organized.
 
 ## Organize the files
 
@@ -194,8 +194,8 @@ The editor labels match these names. Every file path is a URL without `public`: 
 | Field | What to put there | What happens |
 | --- | --- | --- |
 | `src` | `"/media/rooms/raven.png"` | The room image. Leave out for a tint-only room. |
-| `video` | `"/media/rooms/raven-video.mp4"` | A silent looping video over the image, shown inside the composition. Uses the same `size`, `position` and `filter`. Leave out for a still room. |
-| `html` | `"/shaders/blossom-mountains.html"` | A full-room HTML page. Takes priority over the room image or video. |
+| `video` | `"/media/rooms/raven-video.mp4"` | A silent clip that loops over the HTML page or image. The room's fit, zoom, position and filter apply to it. |
+| `html` | `"/shaders/blossom-mountains.html"` | A full-room HTML page above the image and beneath the room video. |
 | `overlay` | `"linear-gradient(90deg,#0b080787,#0b080715)"` | Gradient layers drawn over the room background. |
 | `size` | `"140% 125%"` | How big the image is relative to the screen. Leave out for `cover`. |
 | `position` | `"50% 100%"` | Which part stays in view. Leave out for center. |

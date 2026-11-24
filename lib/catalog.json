@@ -439,7 +439,7 @@
       "ensemble": "piano, strings",
       "duration": "10 minutes",
       "cover": {
-        "src": "/media/covers/EWLFNJEWIUFHN.png",
+        "src": "/media/covers/piano-concerto.png",
         "size": "100% 104.397%",
         "position": "50% 51.917%"
       },
@@ -458,7 +458,8 @@
         "position": "49.964% 50%",
         "speed": 1.25
       },
-      "audio": "/media/audio/piano-concerto.mp3"
+      "audio": "/media/audio/piano-concerto.mp3",
+      "score": "/media/scores/piano-concerto.pdf"
     },
     {
       "id": "i-journeys",

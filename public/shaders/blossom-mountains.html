@@ -12,11 +12,11 @@
       background: radial-gradient(ellipse at 46% 60%, #4b2738, #180e17 72%);
       color: #f8e4ec;
     }
-    canvas { position: fixed; inset: 0; width: 100%; height: 100%;; filter:saturate(1)brightness(1)hue-rotate(0deg);transform:scale(1)translateX(0px)translateY(0%);transition:all 3s;animation:morph 20s infinite linear}
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%;; filter:saturate(1)brightness(1)hue-rotate(0deg);transform:scale(1)translateX(0px)translateY(0%);transition:all 3s;animation:morph 60s infinite linear}
 
     @keyframes morph {
       0% {filter:saturate(1)brightness(1)hue-rotate(0deg);transform:scale(1)translateX(0px)translateY(0%)}
-      100% {filter:saturate(2)brightness(.7)hue-rotate(20deg);transform:scale(2)translateX(5%)translateY(5%)}
+      100% {filter:saturate(3)brightness(.5)hue-rotate(0deg);}
     }
     @media (prefers-reduced-motion: reduce) {
       canvas { animation: none; }
@@ -65,10 +65,10 @@ uniform float u_progress;
 uniform float u_sway;
 out vec4 outColor;
 
-const float cameraHeight = 3.48;
-const float creaseDensity =22.5;
-const vec3 petal = vec3(.7,0.2,.41);
-const vec3 rose = vec3(.8,0,0);
+const float cameraHeight = 1.48;
+const float creaseDensity =30.5;
+const vec3 petal = vec3(1,1,1);
+const vec3 rose = vec3(.8,0,.50);
 
 uint hash(uint n) {
   n ^= n >> 16u;

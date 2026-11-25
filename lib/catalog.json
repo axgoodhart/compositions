@@ -73,15 +73,20 @@
         "src": "/media/covers/mountain.webp",
         "filter": "brightness(1.4)saturate(.82)",
         "size": "100% 105.958%",
-        "position": "50% 49.267%"
+        "position": "50% 47.109%"
       },
       "room": {
-        "video": "/media/rooms/der_httpss.mj.run0_3SY_0wRKg_--ar_256143_--bs_2_--motion_high_4d67b471-7a2a-4ac7-974a-32a72addc811_0.mp4",
         "fit": "stretch",
         "html": "/shaders/blossom-mountains.html",
         "overlay": "linear-gradient(90deg,#00000080,#00000013)"
       },
-      "hidden": true
+      "intro": {
+        "src": "/media/intros/der_httpss.mj.run0_3SY_0wRKg_--ar_256143_--bs_2_--motion_high_4d67b471-7a2a-4ac7-974a-32a72addc811_0.mp4",
+        "play": 3.3333333333333335,
+        "filter": "brightness(0.52)",
+        "speed": 1.2,
+        "fade": 1.2
+      }
     },
     {
       "id": "lorcanto",
@@ -100,7 +105,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/lorcanto.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "divided",
@@ -120,7 +125,7 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "serenade-for-strings",
@@ -139,7 +144,7 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "viola-suite",
@@ -298,7 +303,7 @@
         "overlay": "linear-gradient(90deg,#000000ff,#00000026)"
       },
       "audio": "/media/audio/viola-suite.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "classical-suite",
@@ -310,7 +315,64 @@
       "ensemble": "solo piano",
       "duration": "7 minutes",
       "cover": {
-        "src": "/media/covers/classical-suite.webp"
+        "src": "/media/covers/generated/classical-suite-5427debb.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#4a1d21",
+          "mark": {
+            "w": 110,
+            "color": "#f1e6d8",
+            "tone": "ink",
+            "x": 842,
+            "y": 1113
+          },
+          "shapes": [],
+          "texts": [
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for solo piano",
+              "font": "Italiana:400:n",
+              "size": 24,
+              "lineHeight": 1,
+              "tracking": 0.25,
+              "textCase": "upper",
+              "color": "#f1e6d8",
+              "tone": "band",
+              "x": 40,
+              "y": 48,
+              "w": 265,
+              "h": 24,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Classical\nSuite",
+              "font": "Italiana:400:n",
+              "size": 99,
+              "lineHeight": 0.9,
+              "tracking": 0,
+              "textCase": "lower",
+              "color": "#f1e6d8",
+              "tone": "ink",
+              "x": 649,
+              "y": 23,
+              "w": 338,
+              "h": 177,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "signature",
+            "variant": "481",
+            "palette": "oxblood",
+            "font": "Italiana:400:n",
+            "case": "lower"
+          }
+        }
       },
       "room": {
         "color": "#0b0f17",
@@ -373,7 +435,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/piano-sonata.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "erosions",
@@ -393,7 +455,7 @@
       },
       "audio": "/media/audio/erosions.mp3",
       "score": "/media/scores/erosions.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "purgatorium",
@@ -412,7 +474,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/purgatorium.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "aviary",
@@ -431,7 +493,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/aviary.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "piano-concerto",
@@ -443,9 +505,93 @@
       "ensemble": "piano, strings",
       "duration": "10 minutes",
       "cover": {
-        "src": "/media/covers/piano-concerto.png",
-        "size": "100% 104.397%",
-        "position": "50% 51.917%"
+        "src": "/media/covers/generated/piano-concerto-39ccc31a.webp",
+        "doc": {
+          "v": 1,
+          "sheet": "#647296",
+          "mark": {
+            "w": 2200,
+            "color": "#ff0000",
+            "tone": "mark",
+            "x": -1200,
+            "y": -301
+          },
+          "shapes": [
+            {
+              "id": "plaque",
+              "x": 70,
+              "y": 1087,
+              "w": 440,
+              "h": 97,
+              "fill": "#d8c07a",
+              "tone": "band"
+            }
+          ],
+          "texts": [
+            {
+              "id": "title",
+              "role": "title",
+              "text": "Concerto",
+              "font": "Gloock:400:n",
+              "size": 319,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "upper",
+              "color": "#ffdd80",
+              "tone": "bandInk",
+              "x": 43,
+              "y": 11,
+              "w": 1849,
+              "h": 351,
+              "align": "left",
+              "valign": "top"
+            },
+            {
+              "id": "sub",
+              "role": "sub",
+              "text": "for \npiano&strings",
+              "font": "Gloock:400:n",
+              "size": 36,
+              "lineHeight": 1,
+              "tracking": 0.2,
+              "textCase": "upper",
+              "color": "#000000",
+              "tone": "ink",
+              "x": 120,
+              "y": 1096,
+              "w": 383,
+              "h": 72,
+              "align": "right",
+              "valign": "top"
+            },
+            {
+              "id": "text-mwupg4is",
+              "role": "other",
+              "text": "ERTO",
+              "font": "Gloock:400:n",
+              "size": 531,
+              "lineHeight": 1.1,
+              "tracking": 0,
+              "textCase": "as-is",
+              "color": "#fcda7e",
+              "x": -155,
+              "y": 209,
+              "w": 1475,
+              "h": 584,
+              "align": "left",
+              "valign": "top"
+            }
+          ],
+          "from": {
+            "layout": "plaque",
+            "variant": "580",
+            "palette": "night",
+            "font": "Gloock:400:n",
+            "case": "upper"
+          }
+        },
+        "size": "100% 100.081%",
+        "position": "50% 50%"
       },
       "room": {
         "color": "#0b0f17",
@@ -457,7 +603,7 @@
       "intro": {
         "src": "/media/intros/piano-concerto.mp4",
         "play": 5.2,
-        "fit": "contain",
+        "fit": "cover",
         "fade": 0.5,
         "position": "49.964% 50%",
         "speed": 1.25
@@ -482,7 +628,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/i-journeys.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "ii-choices",
@@ -502,7 +648,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/i-journeys.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "cold-mountain-songs",
@@ -529,7 +675,7 @@
         "filter": "brightness(0.2) contrast(0.48) saturate(1.86)"
       },
       "audio": "/media/audio/cold-mountain-songs.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "kyrie",
@@ -624,7 +770,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/kyrie.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "blessed-is-the-match",
@@ -687,7 +833,7 @@
       },
       "audio": "/media/audio/blessed-is-the-match.mp3",
       "score": "/media/scores/blessed-is-the-match.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "fantastic-dances",
@@ -764,7 +910,7 @@
       },
       "audio": "/media/audio/fantastic-dances.mp3",
       "score": "/media/scores/fantastic-dances.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "magnet-sky",
@@ -783,7 +929,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/magnet-sky.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "the-return",
@@ -803,7 +949,7 @@
       },
       "audio": "/media/audio/the-return.mp3",
       "score": "/media/scores/the-return.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "a-doggone-symphony",
@@ -826,7 +972,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/a-doggone-symphony.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "mikrokosmos-suite-for-brass",
@@ -905,7 +1051,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/mikrokosmos-suite-for-brass.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "on-a-river-no-where",
@@ -1010,7 +1156,7 @@
       },
       "audio": "/media/audio/on-a-river-no-where.mp3",
       "score": "/media/scores/on-a-river-no-where.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "vexations-a-nightmare-for-orchestra",
@@ -1030,7 +1176,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/vexations-a-nightmare-for-orchestra.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "frayed-serenade",
@@ -1106,7 +1252,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/frayed-serenade.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "three-piano-preludes",
@@ -1176,14 +1322,15 @@
             "font": "Playfair Display:600:i",
             "case": "lower"
           }
-        }
+        },
+        "size": "100% 100.08%",
+        "position": "50% 93.059%"
       },
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/three-piano-preludes.mp3",
-      "hidden": true
+      "audio": "/media/audio/three-piano-preludes.mp3"
     },
     {
       "id": "two-ballades",
@@ -1262,7 +1409,7 @@
       },
       "score": "/media/scores/two-ballades.pdf",
       "audio": "/media/audio/two-ballades.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "scherzabella",
@@ -1359,7 +1506,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/scherzabella.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "sonata-of-songs",
@@ -1483,7 +1630,7 @@
       },
       "audio": "/media/audio/sonata-of-songs.mp3",
       "score": "/media/scores/sonata-of-songs.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "miniature-for-wind-quartet",
@@ -1660,7 +1807,7 @@
       },
       "audio": "/media/audio/four-short-scenes.mp3",
       "score": "/media/scores/four-short-scenes.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "sonnets-from-the-drain",
@@ -1673,14 +1820,16 @@
       "ensemble": "baritenor, two pianos",
       "duration": "16 minutes",
       "cover": {
-        "src": "/media/covers/sonnets-from-the-drain.png"
+        "src": "/media/covers/sonnets-from-the-drain.png",
+        "size": "100% 100.09%",
+        "position": "50% 0%"
       },
       "room": {
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/sonnets-from-the-drain.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "prelude-and-gigue",
@@ -1758,7 +1907,7 @@
       },
       "audio": "/media/audio/prelude-and-gigue.mp3",
       "score": "/media/scores/prelude-and-gigue.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "une-histoire-illustree",
@@ -1836,7 +1985,7 @@
       },
       "audio": "/media/audio/une-histoire-illustree.mp3",
       "score": "/media/scores/une-histoire-illustree.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "altar-of-creation",
@@ -1857,7 +2006,7 @@
       },
       "audio": "/media/audio/altar-of-creation.mp3",
       "score": "/media/scores/Goodhart - Altar of Creation.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "sebastian-s-voodoo",
@@ -1877,7 +2026,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/sebastian-s-voodoo.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "falling-birds-virtual-messiaen",
@@ -1900,7 +2049,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/falling-birds-virtual-messiaen.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "mouvement",
@@ -1977,7 +2126,7 @@
       },
       "audio": "/media/audio/mouvement.mp3",
       "score": "/media/scores/mouvement.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "janvier",
@@ -2053,7 +2202,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/janvier.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "tristan-not-forgotten",
@@ -2186,7 +2335,7 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "soliloquy",
@@ -2206,7 +2355,7 @@
       },
       "audio": "/media/audio/soliloquy.mp3",
       "score": "/media/scores/soliloquy.pdf",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "flute-v-contrabass",
@@ -2228,7 +2377,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/flute-v-contrabass.mp3",
-      "hidden": true
+      "hidden": false
     },
     {
       "id": "moods-for-cello-and-piano",
@@ -2306,7 +2455,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/moods-for-cello-and-piano.mp3",
-      "hidden": true
+      "hidden": false
     }
   ]
 }

@@ -85,7 +85,7 @@ button:focus-visible {
     --glass-tint: #56616a;
     --glass-frost: #d3dde3;
     --glass-shade: #14191e;
-    --glass-opacity: 82%;
+    --glass-opacity: 2%;
     --glass-blur: 16px;
     height: 100svh;
     min-height: 640px;
@@ -162,18 +162,18 @@ button:focus-visible {
 
 /* ==== PLAYER BAR ==== */
 .player-bar {
-    position: absolute;
+    position: fixed; /* the room has a min-height, so it can be taller than the window */
     left: 8px;
-    right: 120px;
+    right: 10px;
     bottom: 8px;
     height: var(--playerheight);
     display: grid;
-    grid-template-columns: minmax(0, 24%) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 45%) minmax(0, 1fr) auto;
     align-items: center;
     gap: 34px;
     padding: 0 40px 0 36px;
     border-radius: 22px;
-    z-index: 14;
+    z-index: 999;
     transform: translateY(calc(100% + 18px));
     transition: transform 1s cubic-bezier(.32, .8, .2, 1), height 1s cubic-bezier(.32, .8, .2, 1);
 }
@@ -212,6 +212,7 @@ button:focus-visible {
     height: 100%;
     cursor: pointer;
     touch-action: none;
+    margin-bottom:-20px;
 }
 
 .scrub-track {
@@ -257,7 +258,7 @@ button:focus-visible {
 .player-time {
     display: grid;
     text-align: right;
-    font-family: 'Times New Roman', Tvorneido, serif;
+    font-family: 'Tvorneido', Tvorneido, serif;
     font-style: italic;
     font-size: 17px;
     line-height: 1.15;
@@ -277,7 +278,7 @@ button:focus-visible {
 }
 
 .reading .player-bar {
-    grid-template-columns: minmax(0, 24%) minmax(0, 1fr) auto auto;
+    grid-template-columns: minmax(0, 45%) minmax(0, 1fr) auto auto;
 }
 
 .reading .player-controls {
@@ -471,15 +472,22 @@ button:focus-visible {
     filter: var(--cover-filter, none);
     box-shadow: 0 12px 26px #0003, 0 1px 3px #0002;
     transition: box-shadow .5s, transform .5s;
+    transform-style:preserve-3d;
 }
 
 .score-position.current {
     z-index: 3;
+    perspective:800px;
+
 }
 
+.score-position.current .score-artwork {
+        transform: translateY(-5px) rotateY(0deg);
+    box-shadow: 50px 2px 40px #0000, inset -20px 0px 10px #0000;
+}
 .score-position.current:hover .score-artwork {
-    transform: translateY(-5px);
-    box-shadow: 0 22px 35px #0003;
+    transform: translateY(-15px) rotateY(15deg);
+    box-shadow: 50px 2px 40px #0004, inset -50px 0px 20px #0002;
 }
 
 .score-position.previous {
@@ -575,11 +583,11 @@ h1>span {
 }
 
 .enter-button {
+    display:none;
     position: absolute;
     top: 8%;
     left: 50%;
     transform: translateX(-50%);
-    display: inline-flex;
     align-items: center;
     gap: 14px;
     padding: 6px 7px 6px 24px;
@@ -625,6 +633,7 @@ h1>span {
 }
 
 .sidebar-top {
+    display:none;
     text-align: center;
     margin-top: 40px;
     font-size: 8px;
@@ -673,11 +682,11 @@ h1>span {
 
 .monogram {
     position: absolute;
-    bottom: 51px;
+    top: 51px;
     align-self: center;
     width: 70px;
     height: 75px;
-    font-family: 'Times New Roman', serif;
+    font-family: 'Tvorneido', serif;
     font-size: 76px;
     font-weight: 400;
     filter:invert(.9);
@@ -720,7 +729,7 @@ h1>span {
 }
 
 .browse-controls {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 10px;
     padding: 3px 12px 3px 3px;
@@ -926,7 +935,7 @@ h1>span {
 }
 
 .immersive-heading h1 {
-    font-family: Tvorneido, 'Times New Roman', serif;
+    font-family: Tvorneido, 'Tvorneido', serif;
     font-weight: 400;
     font-size: clamp(60px, 7vw, 110px);
     letter-spacing: -4px;
@@ -1094,7 +1103,7 @@ h1>span {
     }
     .player-bar {
         right: 74px;
-        grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
         gap: 14px;
         border-radius: 18px;
         padding: 0 14px;
@@ -1260,3 +1269,6 @@ h1>span {
 }
 
 * {user-select:none}
+.player-controls {
+    border:none;   box-shadow:none;backdrop-filter:none;filter:none;background:none;top:10px;
+}

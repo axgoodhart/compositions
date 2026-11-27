@@ -11,7 +11,7 @@ const defaultCatalog: Catalog = { settings: { introCooldownHours, homeId, galler
 // ==== SORT ==== "none" is the catalog order the editor's rail writes
 export type SortKey = "none" | "alpha" | "year" | "duration" | "players";
 export const sortKeys: SortKey[] = ["none", "alpha", "year", "duration", "players"];
-const sortLabel: Record<SortKey, string> = { none: "NO SORT", alpha: "A–Z", year: "YEAR", duration: "DURATION", players: "PLAYERS" };
+const sortLabel: Record<SortKey, string> = { none: "NO SORT", alpha: "A–Z", year: "YEAR"};
 const sortStorageKey = "composition-sort";
 const firstNumber = (s = "") => { const m = s.match(/\d+(\.\d+)?/); return m ? parseFloat(m[0]) : NaN; };
 const sortTitle = (t: string) => t.replace(/^(the|a|an)\s+/i, "");

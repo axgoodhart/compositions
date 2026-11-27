@@ -33,7 +33,9 @@
         "src": "/media/intros/raven.m4v",
         "fade": 2.6
       },
-      "ensemble": "baritone, chorus, piano, strings"
+      "ensemble": "baritone, chorus, piano, strings",
+      "score": "/media/scores/raven.pdf",
+      "players": 30
     },
     {
       "id": "midnight",
@@ -56,6 +58,7 @@
         "overlay": "radial-gradient(ellipse at 70% 32%,#55707575,transparent 35%),radial-gradient(ellipse at 30% 70%,#41365680,transparent 50%)",
         "color": "#070d19"
       },
+      "score": "/media/scores/Goodhart - OF MIDNIGHT.pdf",
       "hidden": true
     },
     {
@@ -86,7 +89,9 @@
         "filter": "brightness(0.52)",
         "speed": 1.2,
         "fade": 1.2
-      }
+      },
+      "score": "/media/scores/mountain.pdf",
+      "players": 20
     },
     {
       "id": "lorcanto",
@@ -104,8 +109,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "score": "/media/scores/lorcanto.pdf",
-      "hidden": false
+      "score": "/media/scores/lorcanto-selections.pdf",
+      "players": 26
     },
     {
       "id": "divided",
@@ -125,7 +130,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": false
+      "score": "/media/scores/divided-i-iii.pdf",
+      "players": 100
     },
     {
       "id": "serenade-for-strings",
@@ -144,7 +150,7 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": false
+      "players": 24
     },
     {
       "id": "viola-suite",
@@ -303,7 +309,7 @@
         "overlay": "linear-gradient(90deg,#000000ff,#00000026)"
       },
       "audio": "/media/audio/viola-suite.mp3",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "classical-suite",
@@ -378,7 +384,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": true
+      "hidden": true,
+      "players": 1
     },
     {
       "id": "piano-sonata",
@@ -435,7 +442,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/piano-sonata.mp3",
-      "hidden": false
+      "players": 1,
+      "hidden": true
     },
     {
       "id": "erosions",
@@ -474,7 +482,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/purgatorium.mp3",
-      "hidden": false
+      "score": "/media/scores/purgatorium.pdf",
+      "players": 1
     },
     {
       "id": "aviary",
@@ -486,14 +495,19 @@
       "ensemble": "flute and piano",
       "duration": "7 minutes",
       "cover": {
-        "src": "/media/covers/aviary.webp"
+        "src": "/media/covers/aviary.webp",
+        "size": "106.729% 100%",
+        "position": "55.598% 50%"
       },
       "room": {
         "color": "#0b0f17",
-        "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
+        "overlay": "radial-gradient(ellipse at 50% 40%,#2a344700,transparent 60%)",
+        "filter": "brightness(0.34) saturate(0.92) blur(7px)",
+        "src": "/media/rooms/Screenshot-2026-11-27-at-1.33.20-PM-2.png"
       },
       "audio": "/media/audio/aviary.mp3",
-      "hidden": false
+      "score": "/media/scores/Goodhart - Aviary Variations.pdf",
+      "players": 2
     },
     {
       "id": "piano-concerto",
@@ -505,7 +519,7 @@
       "ensemble": "piano, strings",
       "duration": "10 minutes",
       "cover": {
-        "src": "/media/covers/generated/piano-concerto-39ccc31a.webp",
+        "src": "/media/library/piano-concerto.png",
         "doc": {
           "v": 1,
           "sheet": "#647296",
@@ -590,8 +604,9 @@
             "case": "upper"
           }
         },
-        "size": "100% 100.081%",
-        "position": "50% 50%"
+        "size": "115% 115.087%",
+        "position": "51.501% 47.772%",
+        "filter": "brightness(1.08)"
       },
       "room": {
         "color": "#0b0f17",
@@ -609,7 +624,8 @@
         "speed": 1.25
       },
       "audio": "/media/audio/piano-concerto.mp3",
-      "score": "/media/scores/piano-concerto.pdf"
+      "score": "/media/scores/piano-concerto.pdf",
+      "players": 30
     },
     {
       "id": "i-journeys",
@@ -628,7 +644,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/i-journeys.mp3",
-      "hidden": false
+      "players": 6
     },
     {
       "id": "ii-choices",
@@ -648,7 +664,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/i-journeys.mp3",
-      "hidden": false
+      "players": 6
     },
     {
       "id": "cold-mountain-songs",
@@ -675,7 +691,8 @@
         "filter": "brightness(0.2) contrast(0.48) saturate(1.86)"
       },
       "audio": "/media/audio/cold-mountain-songs.mp3",
-      "hidden": false
+      "score": "/media/scores/cold-mountain-songs.pdf",
+      "players": 2
     },
     {
       "id": "kyrie",
@@ -770,7 +787,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/kyrie.mp3",
-      "hidden": false
+      "score": "/media/scores/Goodhart - Kyrie for Double Choir.pdf",
+      "players": 20
     },
     {
       "id": "blessed-is-the-match",
@@ -833,7 +851,7 @@
       },
       "audio": "/media/audio/blessed-is-the-match.mp3",
       "score": "/media/scores/blessed-is-the-match.pdf",
-      "hidden": false
+      "players": 25
     },
     {
       "id": "fantastic-dances",
@@ -910,7 +928,7 @@
       },
       "audio": "/media/audio/fantastic-dances.mp3",
       "score": "/media/scores/fantastic-dances.pdf",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "magnet-sky",
@@ -929,7 +947,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/magnet-sky.mp3",
-      "hidden": false
+      "score": "/media/scores/Goodhart - Magnet Sky.pdf",
+      "players": 60
     },
     {
       "id": "the-return",
@@ -949,7 +968,7 @@
       },
       "audio": "/media/audio/the-return.mp3",
       "score": "/media/scores/the-return.pdf",
-      "hidden": false
+      "players": 16
     },
     {
       "id": "a-doggone-symphony",
@@ -972,7 +991,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/a-doggone-symphony.mp3",
-      "hidden": false
+      "score": "/media/scores/a-doggone-symphony.pdf",
+      "players": 50
     },
     {
       "id": "mikrokosmos-suite-for-brass",
@@ -1051,7 +1071,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/mikrokosmos-suite-for-brass.pdf",
-      "hidden": false
+      "players": 5
     },
     {
       "id": "on-a-river-no-where",
@@ -1156,7 +1176,7 @@
       },
       "audio": "/media/audio/on-a-river-no-where.mp3",
       "score": "/media/scores/on-a-river-no-where.pdf",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "vexations-a-nightmare-for-orchestra",
@@ -1176,7 +1196,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/vexations-a-nightmare-for-orchestra.mp3",
-      "hidden": false
+      "score": "/media/scores/Goodhart - Vexations v3.pdf",
+      "players": 60
     },
     {
       "id": "frayed-serenade",
@@ -1252,7 +1273,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/frayed-serenade.mp3",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "three-piano-preludes",
@@ -1330,7 +1351,9 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/three-piano-preludes.mp3"
+      "audio": "/media/audio/three-piano-preludes.mp3",
+      "score": "/media/scores/Goodhart - Piano Preludes, Vol 1.pdf",
+      "players": 1
     },
     {
       "id": "two-ballades",
@@ -1409,7 +1432,7 @@
       },
       "score": "/media/scores/two-ballades.pdf",
       "audio": "/media/audio/two-ballades.mp3",
-      "hidden": false
+      "players": 1
     },
     {
       "id": "scherzabella",
@@ -1506,7 +1529,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/scherzabella.pdf",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "sonata-of-songs",
@@ -1630,7 +1653,7 @@
       },
       "audio": "/media/audio/sonata-of-songs.mp3",
       "score": "/media/scores/sonata-of-songs.pdf",
-      "hidden": false
+      "players": 3
     },
     {
       "id": "miniature-for-wind-quartet",
@@ -1640,7 +1663,6 @@
         "Wind Quartet"
       ],
       "year": "2016",
-      "place": "",
       "ensemble": "picc, fl, ob, b.clar",
       "duration": "2 minutes",
       "cover": {
@@ -1719,7 +1741,8 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "audio": "/media/audio/miniature-for-wind-quartet.mp3"
+      "audio": "/media/audio/miniature-for-wind-quartet.mp3",
+      "players": 4
     },
     {
       "id": "four-short-scenes",
@@ -1807,7 +1830,7 @@
       },
       "audio": "/media/audio/four-short-scenes.mp3",
       "score": "/media/scores/four-short-scenes.pdf",
-      "hidden": false
+      "players": 4
     },
     {
       "id": "sonnets-from-the-drain",
@@ -1829,7 +1852,8 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/sonnets-from-the-drain.mp3",
-      "hidden": false
+      "score": "/media/scores/sonnets-from-the-drain-selections.pdf",
+      "players": 3
     },
     {
       "id": "prelude-and-gigue",
@@ -1907,7 +1931,7 @@
       },
       "audio": "/media/audio/prelude-and-gigue.mp3",
       "score": "/media/scores/prelude-and-gigue.pdf",
-      "hidden": false
+      "players": 1
     },
     {
       "id": "une-histoire-illustree",
@@ -1985,7 +2009,7 @@
       },
       "audio": "/media/audio/une-histoire-illustree.mp3",
       "score": "/media/scores/une-histoire-illustree.pdf",
-      "hidden": false
+      "players": 15
     },
     {
       "id": "altar-of-creation",
@@ -2006,7 +2030,7 @@
       },
       "audio": "/media/audio/altar-of-creation.mp3",
       "score": "/media/scores/Goodhart - Altar of Creation.pdf",
-      "hidden": false
+      "players": 1
     },
     {
       "id": "sebastian-s-voodoo",
@@ -2026,7 +2050,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/sebastian-s-voodoo.mp3",
-      "hidden": false
+      "players": 1
     },
     {
       "id": "falling-birds-virtual-messiaen",
@@ -2049,7 +2073,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/falling-birds-virtual-messiaen.mp3",
-      "hidden": false
+      "players": 1
     },
     {
       "id": "mouvement",
@@ -2126,7 +2150,7 @@
       },
       "audio": "/media/audio/mouvement.mp3",
       "score": "/media/scores/mouvement.pdf",
-      "hidden": false
+      "players": 4
     },
     {
       "id": "janvier",
@@ -2202,7 +2226,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "score": "/media/scores/janvier.pdf",
-      "hidden": false
+      "players": 24
     },
     {
       "id": "tristan-not-forgotten",
@@ -2335,7 +2359,7 @@
         "color": "#0b0f17",
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "soliloquy",
@@ -2355,7 +2379,7 @@
       },
       "audio": "/media/audio/soliloquy.mp3",
       "score": "/media/scores/soliloquy.pdf",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "flute-v-contrabass",
@@ -2377,7 +2401,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/flute-v-contrabass.mp3",
-      "hidden": false
+      "players": 2
     },
     {
       "id": "moods-for-cello-and-piano",
@@ -2455,7 +2479,7 @@
         "overlay": "radial-gradient(ellipse at 50% 40%,#2a3447a0,transparent 60%)"
       },
       "audio": "/media/audio/moods-for-cello-and-piano.mp3",
-      "hidden": false
+      "players": 2
     }
   ]
 }
